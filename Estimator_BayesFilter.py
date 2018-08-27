@@ -21,7 +21,7 @@ class Bayes:
         self.Q = Q
         
     
-    def bayes_filter(self, beliefXtPrev, control_t, z_t):    
+    def bayes_filter(self, beliefXtPrev, control_t, z_t): #solves the linear localisation problem with the more general bayes filter
         myBeliefXtPrev = copy.deepcopy(beliefXtPrev) ##deepcopy?
         R_Inv = np.linalg.inv(self.R)
         myMatrix = np.concatenate((np.identity(len(self.A)), -self.A.T, -self.B.T))
@@ -42,7 +42,7 @@ class Bayes:
         beliefXt_ = fac_xt_ut_xtprev.multiplyNew(myBeliefXtPrev)
         beliefXt_.marginalizeIndicesUpdate(np.array([2,3]))
         
-        beliefXt_.toStringCan()
+        #beliefXt_.toStringCan()
         #beliefXt_.evidenceUpdate(np.array([4,5]), control_t)
         
         Q_Inv = np.linalg.inv(self.Q)
@@ -54,4 +54,4 @@ class Bayes:
         
         beliefXt = fac_zt_xt.multiplyNew(beliefXt_)
         
-        return beliefXt
+        return beliefXt #returns the belief of the Xt

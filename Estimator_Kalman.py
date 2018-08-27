@@ -20,7 +20,7 @@ class Kalman:
         self.Q = Q
         
     
-    def kalman_filter(self, meanPrev, sigPrev, control_t, z_t):
+    def kalman_filter(self, meanPrev, sigPrev, control_t, z_t): #kalman filter algorithm... solves the linear localisation problem
         A = self.A
         B = self.B
         C = self.C
