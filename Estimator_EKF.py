@@ -36,6 +36,8 @@ class EKF:
         mean_stripe_t = meanPrev + np.array([-(vt/wt)*np.sin(theta_prev) + (vt/wt)*np.sin(theta_prev + wt*dt),
                                           (vt/wt)*np.cos(theta_prev) - (vt/wt)*np.cos(theta_prev + wt*dt),
                                           wt*dt])
+    
+        print("\nmean_predict\n", mean_stripe_t)
        # print("mean_vec_t", mean_vec_t)
         sig_stripe_t = Gt.dot(sigPrev).dot(Gt.T) + self.R
         
