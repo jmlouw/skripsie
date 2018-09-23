@@ -9,14 +9,11 @@ import numpy as np
 from gauss import Gaussian
 
 import copy
-class Bayes:
+class BayesTaylor:
     
     ##KALMAN FILTER##
     
-    def __init__(self, A, B, C, R, Q):
-        self.A = A
-        self.B = B
-        self.C = C
+    def __init__(self, R, Q):
         self.R = R
         self.Q = Q
         
@@ -25,6 +22,20 @@ class Bayes:
         
         myBeliefXtPrev = copy.deepcopy(beliefXtPrev) #deepcopy?
         R_Inv = np.linalg.inv(self.R)
+        
+        dt = 1
+        theta_prev = beliefXtPrev.mean
+        
+        vt = control_t[0]
+        wt = control_t[1]
+        
+        Gt = np.array([[1,0, -(vt/wt)*np.cos(theta_prev) + (vt/wt)*np.cos(theta_prev + wt*dt)],
+                       [0,1, -(vt/wt)*np.sin(theta_prev) + (vt/wt)*np.sin(theta_prev + wt*dt)],
+                       [0,0, 1]])
+    
+        Ht = np.array([[1,0,0],
+                       [0,1,0],
+                       [0,0,1]])
         
         myMatrix = np.concatenate((np.identity(len(self.A)), -self.A.T, -self.B.T))
        

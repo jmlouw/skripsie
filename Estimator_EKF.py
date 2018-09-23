@@ -37,7 +37,7 @@ class EKF:
                                           (vt/wt)*np.cos(theta_prev) - (vt/wt)*np.cos(theta_prev + wt*dt),
                                           wt*dt])
     
-        print("\nmean_predict\n", mean_stripe_t)
+        #print("\nmean_predict\n", mean_stripe_t)
        # print("mean_vec_t", mean_vec_t)
         sig_stripe_t = Gt.dot(sigPrev).dot(Gt.T) + self.R
         
