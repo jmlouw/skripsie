@@ -1,0 +1,39 @@
+\select@language {english}
+\setcounter {tocdepth}{-1}
+\contentsline {chapter}{Declaration}{i}
+\contentsline {chapter}{Contents}{ii}
+\setcounter {tocdepth}{2}
+\contentsline {chapter}{List of Figures}{iii}
+\contentsline {chapter}{List of Acronyms}{iv}
+\contentsline {chapter}{Abstract}{v}
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}
+\contentsline {chapter}{\chapternumberline {2}Gaussian Random Variables}{2}
+\contentsline {section}{\numberline {2.1}Covariance form}{2}
+\contentsline {subsection}{\numberline {2.1.1}Univariate Gaussians}{2}
+\contentsline {subsection}{\numberline {2.1.2}Multivariate Gaussians}{3}
+\contentsline {subsection}{\numberline {2.1.3}Error ellipse}{4}
+\contentsline {subsubsection}{Eigenvalue decomposition}{4}
+\contentsline {subsubsection}{Plotting a 2D error ellipse}{4}
+\contentsline {section}{\numberline {2.2}Canonical form}{5}
+\contentsline {subsection}{\numberline {2.2.1}Operations using the canonical form}{6}
+\contentsline {subsubsection}{Extending the scope of a canonical form:}{6}
+\contentsline {subsubsection}{Rearranging the scope of a canonical form:}{7}
+\contentsline {subsubsection}{Multiplication of canonical forms:}{7}
+\contentsline {subsubsection}{Division of canonical forms:}{7}
+\contentsline {subsubsection}{Marginalization of a canonical form:}{7}
+\contentsline {subsubsection}{Reduction with evidence:}{8}
+\contentsline {subsection}{\numberline {2.2.2}Using the canonical form the present conditional distributions (linear transformations)}{8}
+\contentsline {chapter}{\chapternumberline {3}Localisation using Kalman Filters}{10}
+\contentsline {section}{\numberline {3.1}Kalman Filter}{10}
+\contentsline {section}{\numberline {3.2}Motion models}{10}
+\contentsline {section}{\numberline {3.3}Measurement models}{10}
+\contentsline {section}{\numberline {3.4}Extended Kalman Filter}{10}
+\contentsline {section}{\numberline {3.5}Unscented Kalman Filter}{10}
+\contentsline {chapter}{\chapternumberline {4}Probabilistic Graphical Models}{11}
+\contentsline {chapter}{\chapternumberline {5}Localisation using Probabilistic Graphical Models}{12}
+\contentsline {section}{\numberline {5.1}Linear localisation}{12}
+\contentsline {section}{\numberline {5.2}Non-linear localisation}{12}
+\contentsline {subsection}{\numberline {5.2.1}Taylor series expansion}{12}
+\contentsline {subsection}{\numberline {5.2.2}Unscented transform}{12}
+\contentsline {subsection}{\numberline {5.2.3}Monte Carlo integration}{12}
+\contentsline {chapter}{List of References}{13}

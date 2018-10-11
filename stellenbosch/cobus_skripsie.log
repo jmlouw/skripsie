@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.6)  8 OCT 2018 16:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.6)  11 OCT 2018 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**test.tex
-(./test.tex
+**cobus_skripsie.tex
+(./cobus_skripsie.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/memoir/memoir.cls
@@ -531,6 +531,34 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen166
 \Gin@req@width=\dimen167
 )
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
+
+
+Class memoir Warning: You are using the caption package with the memoir class. 
+To prepare we will now reset all captioning macros and configurations to kernel
+ defaults, and then let the caption package take over. Please remember to use t
+he caption package interfaces in order to configure your captions. .
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen168
+\captionmargin@=\dimen169
+\captionwidth=\dimen170
+\caption@tempdima=\dimen171
+\caption@indent=\dimen172
+\caption@parindent=\dimen173
+\caption@hangindent=\dimen174
+)
+\c@ContinuedFloat=\count159
+)
+\c@subfigure=\count160
+\c@subtable=\count161
+)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
 
@@ -541,7 +569,7 @@ Package color Info: Driver file: pdftex.def on input line 143.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count159
+\c@float@type=\count162
 \float@exts=\toks28
 \float@box=\box33
 \@float@everytoks=\toks29
@@ -549,7 +577,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tabto-ltx/tabto.sty
 Package: tabto 2013/03/25  v 1.3  Another tabbing mechanism
-\CurrentLineWidth=\dimen168
+\CurrentLineWidth=\dimen175
 )
 (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
@@ -565,35 +593,45 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip194
 \bibsep=\skip256
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count160
-)) (./test.aux)
-\openout1 = `test.aux'.
+\c@NAT@ctr=\count163
+))
+(./cobus_skripsie.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Warning: Label `fig:e_ellipse' multiply defined.
 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+
+LaTeX Warning: Label `fig:e_ellipse' multiply defined.
+
+
+LaTeX Warning: Label `fig:e_ellipse' multiply defined.
+
+)
+\openout1 = `cobus_skripsie.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+ (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count161
-\scratchdimen=\dimen169
+\scratchcounter=\count164
+\scratchdimen=\dimen176
 \scratchbox=\box35
-\nofMPsegments=\count162
-\nofMParguments=\count163
+\nofMPsegments=\count165
+\nofMParguments=\count166
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count164
-\MPscratchDim=\dimen170
-\MPnumerator=\count165
-\makeMPintoPDFobject=\count166
+\MPscratchCnt=\count167
+\MPscratchDim=\dimen177
+\MPnumerator=\count168
+\makeMPintoPDFobject=\count169
 \everyMPtoPDFconversion=\toks31
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -634,18 +672,21 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box36
 
 <USlogo-top.pdf, id=1, 560.0925pt x 183.68625pt>
 File: USlogo-top.pdf Graphic file (type pdf)
  <use USlogo-top.pdf>
-Package pdftex.def Info: USlogo-top.pdf used on input line 43.
+Package pdftex.def Info: USlogo-top.pdf used on input line 44.
 (pdftex.def)             Requested size: 284.52756pt x 93.31717pt.
 
 <UScrest-WM.jpg, id=2, 49.8663pt x 69.3792pt>
 File: UScrest-WM.jpg Graphic file (type jpg)
  <use UScrest-WM.jpg>
-Package pdftex.def Info: UScrest-WM.jpg used on input line 43.
+Package pdftex.def Info: UScrest-WM.jpg used on input line 44.
 (pdftex.def)             Requested size: 89.70789pt x 124.82738pt.
  [1
 
@@ -655,105 +696,153 @@ Package pdftex.def Info: UScrest-WM.jpg used on input line 43.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </usr/share/texlive/texmf-d
 ist/tex/latex/stellenbosch/logos/UScrest-WM.jpg> </usr/share/texlive/texmf-dist
 /tex/latex/stellenbosch/logos/USlogo-top.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 48.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 48.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
  [1
 
-] (./test.toc)
-[2] (./test.lof) [3]
-Underfull \hbox (badness 10000) in paragraph at lines 61--67
+]
+(./cobus_skripsie.toc [2]) [3] (./cobus_skripsie.lof) [4]
+Underfull \hbox (badness 10000) in paragraph at lines 62--69
 
  []
 
-[4
+[5
 
-] [5
+] [6
 
 ] [1
 
 
-] <Figures/univariate.png, id=40, 1132.23pt x 719.68875pt>
+] <Figures/univariate.png, id=43, 1132.23pt x 719.68875pt>
 File: Figures/univariate.png Graphic file (type png)
 
 <use Figures/univariate.png>
-Package pdftex.def Info: Figures/univariate.png used on input line 102.
+Package pdftex.def Info: Figures/univariate.png used on input line 104.
 (pdftex.def)             Requested size: 278.59879pt x 177.0885pt.
  [2
 
 ] [3 <./Figures/univariate.png>]
-<Figures/e_ellipse.png, id=56, 804.00375pt x 725.71124pt>
+<Figures/e_ellipse.png, id=57, 804.00375pt x 725.71124pt>
 File: Figures/e_ellipse.png Graphic file (type png)
 
 <use Figures/e_ellipse.png>
-Package pdftex.def Info: Figures/e_ellipse.png used on input line 149.
+Package pdftex.def Info: Figures/e_ellipse.png used on input line 151.
 (pdftex.def)             Requested size: 238.80243pt x 215.54465pt.
  [4]
-Underfull \hbox (badness 10000) in paragraph at lines 183--186
+Underfull \hbox (badness 10000) in paragraph at lines 185--188
 
  []
 
 [5 <./Figures/e_ellipse.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
  []
 
 [6] [7] [8] [9] [10
 
-] [11
+]
 
-] [12
+Package natbib Warning: Citation `barber' on page 11 undefined on input line 50
+6.
 
-] (./test.bbl
+<Figures/undirected_graph.png, id=82, 672.5125pt x 636.3775pt>
+File: Figures/undirected_graph.png Graphic file (type png)
+
+<use Figures/undirected_graph.png>
+Package pdftex.def Info: Figures/undirected_graph.png used on input line 516.
+(pdftex.def)             Requested size: 119.40121pt x 112.97964pt.
+
+<Figures/directed_graph.png, id=83, 661.47125pt x 640.3925pt>
+File: Figures/directed_graph.png Graphic file (type png)
+
+<use Figures/directed_graph.png>
+Package pdftex.def Info: Figures/directed_graph.png used on input line 520.
+(pdftex.def)             Requested size: 119.40121pt x 115.58813pt.
+ [11
+
+]
+<Figures/bayesian_pgm.png, id=87, 926.46124pt x 540.0175pt>
+File: Figures/bayesian_pgm.png Graphic file (type png)
+
+<use Figures/bayesian_pgm.png>
+Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 528.
+(pdftex.def)             Requested size: 238.80243pt x 139.18996pt.
+
+<Figures/cluster_divisions.png, id=88, 875.27pt x 496.85625pt>
+File: Figures/cluster_divisions.png Graphic file (type png)
+
+<use Figures/cluster_divisions.png>
+Package pdftex.def Info: Figures/cluster_divisions.png used on input line 538.
+(pdftex.def)             Requested size: 238.80243pt x 135.55553pt.
+
+<Figures/clustergraph.png, id=89, 1444.39626pt x 603.25375pt>
+File: Figures/clustergraph.png Graphic file (type png)
+
+<use Figures/clustergraph.png>
+Package pdftex.def Info: Figures/clustergraph.png used on input line 544.
+(pdftex.def)             Requested size: 398.0pt x 166.22206pt.
+ [12 <./Figures/undirected_graph.png> <./Figures/directed_graph.png> <./Figures
+/bayesian_pgm.png>] [13 <./Figures/cluster_divisions.png> <./Figures/clustergra
+ph.png>] [14
+
+] (./cobus_skripsie.bbl
 (/usr/share/texlive/texmf-dist/tex/latex/stellenbosch/usbib.eng)
 Underfull \hbox (badness 10000) in paragraph at lines 41--45
 []\OT1/cmr/m/n/12 Visiondummy, how to draw a co-vari-ance er-ror el-lipse.
  []
 
-) [13
+)
+
+Package natbib Warning: There were undefined citations.
+
+[15
 
 
 ]
 \tf@toc=\write4
-\openout4 = `test.toc'.
+\openout4 = `cobus_skripsie.toc'.
 
 \tf@lof=\write5
-\openout5 = `test.lof'.
+\openout5 = `cobus_skripsie.lof'.
 
- (./test.aux) ) 
+ (./cobus_skripsie.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 7570 strings out of 493029
- 104284 string characters out of 6136235
- 220403 words of memory out of 5000000
- 10984 multiletter control sequences out of 15000+600000
- 15784 words of font info for 55 fonts, out of 8000000 for 9000
+ 8673 strings out of 493029
+ 124880 string characters out of 6136235
+ 240610 words of memory out of 5000000
+ 12075 multiletter control sequences out of 15000+600000
+ 15476 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,22n,46p,924b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-bx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on test.pdf (19 pages, 304783 bytes).
+ 45i,22n,46p,932b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on cobus_skripsie.pdf (22 pages, 537557 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
+ 161 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

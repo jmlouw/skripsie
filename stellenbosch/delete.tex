@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{bm}
+
+
+\begin{document}
+\tableofcontents
+\section{Introduction}
+For modern mobile vehicles and robots it is important to have the ability to navigate their environment. It is critical for these devices to avoid collisions or dangerous environments. Some robots must move very precisely and therefore should have an accurate reading of their location.
+
+Localisation is essential for robot navigation, but is used in various other applications such missile tracking. For applications like this, it is crucial to have accurate and instantaneous information of the missile's location. Measurements of any object's location will always have some noise,  the measured location is never 100\% accurate. Therefore, one should rather approach the localisation problem in a probabilistic manner. A probability density function where the object is most likely can be calculated.
+
+For systems with continuous random variables, most of the operations used in probabilistic reasoning use integration. These integrals can be solved analytically in the case of a problem with linear movement. Most systems are nonlinear. The integrals in nonlinear systems cannot be computed analytically and one has to resort to numerical methods. Commonly-used techniques such as the extend or unscented Kalman filters use rudimentary numerical integration that are very inaccurate in some scenarios. There are several numerical techniques available that are more accurate.
+
+The end goal of this project is to compare different numerical techniques to solve the nonlinear localisation problem. To reach the end goal, one should first have a good understanding of Gaussian random variables and traditional techniques such as the extended - and unscented kalman filters. Modeling the problem with Probabilistic Graphical Models has a lot of advantages and is therefore also investigated. 
+
+A relevant problem has been simulated in Python. Different techniques were implemented and compared in terms of accuracy and efficiency.
+
