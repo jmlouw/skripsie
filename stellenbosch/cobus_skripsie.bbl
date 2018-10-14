@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{6}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \expandafter\ifx\csname bibnamefont\endcsname\relax
   \def\bibnamefont#1{#1}\fi
@@ -47,5 +47,10 @@ Visiondummy, how to draw a covariance error ellipse.
 \bibnamefont{Schoeman}, \bibfnamefont{J.}: \emph{Simultaneous Localisation and
   Mapping of a Robotic Vehicle using a Probabilistic Graphical Model}.
 \newblock Stellenbosch University, 2016.
+
+\bibitem[{\citenamefont{Barber}(2012)}]{barber}
+\bibnamefont{Barber}, \bibfnamefont{D.}: \emph{Bayesian reasoning and machine
+  learning}.
+\newblock Cambridge University Press, 2012.
 
 \end{thebibliography}

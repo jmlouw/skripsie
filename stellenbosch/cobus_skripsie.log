@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.6)  11 OCT 2018 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.14)  14 OCT 2018 17:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -595,17 +595,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count163
 ))
-(./cobus_skripsie.aux
-
-LaTeX Warning: Label `fig:e_ellipse' multiply defined.
-
-
-LaTeX Warning: Label `fig:e_ellipse' multiply defined.
-
-
-LaTeX Warning: Label `fig:e_ellipse' multiply defined.
-
-)
+(./cobus_skripsie.aux)
 \openout1 = `cobus_skripsie.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -620,7 +610,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count164
 \scratchdimen=\dimen176
@@ -745,50 +736,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
 [6] [7] [8] [9] [10
 
+] [11
+
 ]
-
-Package natbib Warning: Citation `barber' on page 11 undefined on input line 50
-6.
-
-<Figures/undirected_graph.png, id=82, 672.5125pt x 636.3775pt>
+<Figures/undirected_graph.png, id=85, 672.5125pt x 636.3775pt>
 File: Figures/undirected_graph.png Graphic file (type png)
 
 <use Figures/undirected_graph.png>
-Package pdftex.def Info: Figures/undirected_graph.png used on input line 516.
+Package pdftex.def Info: Figures/undirected_graph.png used on input line 520.
 (pdftex.def)             Requested size: 119.40121pt x 112.97964pt.
 
-<Figures/directed_graph.png, id=83, 661.47125pt x 640.3925pt>
+<Figures/directed_graph.png, id=86, 661.47125pt x 640.3925pt>
 File: Figures/directed_graph.png Graphic file (type png)
 
 <use Figures/directed_graph.png>
-Package pdftex.def Info: Figures/directed_graph.png used on input line 520.
+Package pdftex.def Info: Figures/directed_graph.png used on input line 524.
 (pdftex.def)             Requested size: 119.40121pt x 115.58813pt.
- [11
+ [12
 
 ]
-<Figures/bayesian_pgm.png, id=87, 926.46124pt x 540.0175pt>
+<Figures/bayesian_pgm.png, id=91, 926.46124pt x 540.0175pt>
 File: Figures/bayesian_pgm.png Graphic file (type png)
 
 <use Figures/bayesian_pgm.png>
-Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 528.
+Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 547.
 (pdftex.def)             Requested size: 238.80243pt x 139.18996pt.
+ [13 <./Figures/undirected_graph.png> <./Figures/directed_graph.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 569--570
 
-<Figures/cluster_divisions.png, id=88, 875.27pt x 496.85625pt>
+ []
+
+[14 <./Figures/bayesian_pgm.png>]
+<Figures/cluster_divisions.png, id=99, 855.195pt x 484.81125pt>
 File: Figures/cluster_divisions.png Graphic file (type png)
 
 <use Figures/cluster_divisions.png>
-Package pdftex.def Info: Figures/cluster_divisions.png used on input line 538.
-(pdftex.def)             Requested size: 238.80243pt x 135.55553pt.
+Package pdftex.def Info: Figures/cluster_divisions.png used on input line 587.
+(pdftex.def)             Requested size: 238.80243pt x 135.37634pt.
 
-<Figures/clustergraph.png, id=89, 1444.39626pt x 603.25375pt>
+<Figures/clustergraph.png, id=100, 1361.085pt x 569.12625pt>
 File: Figures/clustergraph.png Graphic file (type png)
 
 <use Figures/clustergraph.png>
-Package pdftex.def Info: Figures/clustergraph.png used on input line 544.
-(pdftex.def)             Requested size: 398.0pt x 166.22206pt.
- [12 <./Figures/undirected_graph.png> <./Figures/directed_graph.png> <./Figures
-/bayesian_pgm.png>] [13 <./Figures/cluster_divisions.png> <./Figures/clustergra
-ph.png>] [14
+Package pdftex.def Info: Figures/clustergraph.png used on input line 599.
+(pdftex.def)             Requested size: 398.0pt x 166.41447pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 596--603
+
+ []
+
+[15 <./Figures/cluster_divisions.png>] [16 <./Figures/clustergraph.png>]
+Overfull \hbox (36.68727pt too wide) in paragraph at lines 641--641
+[] 
+ []
+
+[17] [18] [19
 
 ] (./cobus_skripsie.bbl
 (/usr/share/texlive/texmf-dist/tex/latex/stellenbosch/usbib.eng)
@@ -796,11 +798,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--45
 []\OT1/cmr/m/n/12 Visiondummy, how to draw a co-vari-ance er-ror el-lipse.
  []
 
-)
-
-Package natbib Warning: There were undefined citations.
-
-[15
+) [20
 
 
 ]
@@ -810,39 +808,36 @@ Package natbib Warning: There were undefined citations.
 \tf@lof=\write5
 \openout5 = `cobus_skripsie.lof'.
 
- (./cobus_skripsie.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ (./cobus_skripsie.aux) ) 
 Here is how much of TeX's memory you used:
- 8673 strings out of 493029
- 124880 string characters out of 6136235
- 240610 words of memory out of 5000000
- 12075 multiletter control sequences out of 15000+600000
+ 8682 strings out of 493029
+ 125004 string characters out of 6136233
+ 240933 words of memory out of 5000000
+ 12084 multiletter control sequences out of 15000+600000
  15476 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,22n,46p,932b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on cobus_skripsie.pdf (22 pages, 537557 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on cobus_skripsie.pdf (27 pages, 552773 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
+ 181 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -6,45 +6,45 @@ Database file #1: mybib.bib
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty year in draw_ellipse
-You've used 5 entries,
+You've used 6 entries,
             3338 wiz_defined-function locations,
-            681 strings with 5749 characters,
-and the built_in function-call counts, 2868 in all, are:
-= -- 211
-> -- 40
-< -- 5
-+ -- 24
-- -- 12
-* -- 228
-:= -- 359
-add.period$ -- 11
-call.type$ -- 5
-change.case$ -- 23
-chr.to.int$ -- 5
-cite$ -- 8
-duplicate$ -- 291
-empty$ -- 300
-format.name$ -- 30
-if$ -- 587
+            686 strings with 5837 characters,
+and the built_in function-call counts, 3371 in all, are:
+= -- 246
+> -- 47
+< -- 6
++ -- 28
+- -- 14
+* -- 266
+:= -- 427
+add.period$ -- 13
+call.type$ -- 6
+change.case$ -- 27
+chr.to.int$ -- 6
+cite$ -- 9
+duplicate$ -- 343
+empty$ -- 358
+format.name$ -- 35
+if$ -- 692
 int.to.chr$ -- 1
-int.to.str$ -- 6
-missing$ -- 42
-newline$ -- 43
-num.names$ -- 12
-pop$ -- 106
+int.to.str$ -- 7
+missing$ -- 50
+newline$ -- 47
+num.names$ -- 15
+pop$ -- 126
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 24
 quote$ -- 0
-skip$ -- 106
+skip$ -- 126
 stack$ -- 0
-substring$ -- 155
-swap$ -- 110
+substring$ -- 178
+swap$ -- 127
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
+type$ -- 28
 warning$ -- 1
-while$ -- 22
+while$ -- 26
 width$ -- 0
-write$ -- 78
+write$ -- 89
 (There was 1 warning)

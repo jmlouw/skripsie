@@ -496,20 +496,24 @@ I\\
 \right)
 \end{split}
 \end{equation}
+\chapter{Motion models}
+Before implementing a localisation algorithm to localise an object, it is important to have a model which desctibes the movement of the object. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear objects. 
 \chapter{Localisation using Kalman Filters}
-\section{Kalman Filter}
+This chapter will focus on localisation using traditional techniques such as the Kalman filter, extended Kalman filter and Unscented Kalman filter. This is important to investigate and understand as there is a strong correspondance to the PGM technique that will be discussed in a following section. The motion an measurement models will also be discussed 
 \section{Motion models}
 \section{Measurement models}
+\section{Kalman Filter}
 \section{Extended Kalman Filter}
 \section{Unscented Kalman Filter}
 \chapter{Probabilistic Graphical Models}
 This chapter gives a brief introduction to Probabilistic Graphical Models (PGMs). PGMs are a very vast field which is beyond the scope of this document, therefore only the theory relevant to this paper will be covered. This chapter is based on the work of Koller and Friedman~\cite{koller}, Barber~\cite{barber} and Schoeman~\citep{JC}.
 \section{Overview}
-Reasoning about systems with uncertainty can become very complex and sometimes seems to be completely unmanageable. The PGM is a graphical technique which allows to construct probabilistic systems in a logical and compact manner which makes problems tractable. PGMs are thus used to describe the relationship between RVs and allows to reason about them. (note the action of querying a system is called inference) These relationships are usually in the form of conditional probability densities (CPDs). It is a very popular technique, as it is intuitive, transparent and easy to manipulate. PGMs have limitations such as image recognition, where neural networks thrive.\\
-PGMs can be divided in to two categories. The first is Markov networks, which uses directed graphs. The second is Bayesian networks, which uses undirected graphs. Markov networks are used for non-causal systems and Bayesian networks are used for causal systems. In most cases the localisation problem is causal, thus Bayesian networks are used in this paper and the focus is on directed graphs.\\
-Continuous RVs are used to describe PGMs in this paper, as it is applicable for localisation. PGMs have countless applications from making medical diagnosis to localising robots.
+Reasoning about systems with uncertainty can become very complex and sometimes it is completely unmanageable. The PGM is a graphical technique which allows to construct probabilistic systems in a logical and compact manner which makes problems tractable. PGMs are thus used to describe the relationship between RVs and allows to reason about them. This action of querying a system or reasoning about a variable is called inference. The relationships in a PGM are usually in the form of conditional probability densities (CPDs). It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from making medical diagnosis to localising robots. Although it is a powerful technique, it has its limitations such as image recognition, where neural networks thrive.\\
+PGMs can be divided in to two categories. The first is Markov networks, which are used for non-causal systems and uses directed graphs. The second is Bayesian networks, which are used for causal systems and uses undirected graphs. As the localisation problem is in most cases causal, the focus of this chapter is on Bayesian networks.\\
+The theory is also discussed in terms of continuous RVs, because problems addressed in following chapters make use of continuous RVs. Note that all of the theory can also be applied to discrete RVs. 
 \section{Basic concepts of graphical models}
-A graph consists of nodes and edges. Edges are the link between nodes and can be undirected or directed. If all edges are undirected then the graph is classified as undirected. If all edges are directed, then the graph is classified as directed. If there is an edge in the direction from A to B, as in Figure \ref{fig:comGraphs} (b), then A is a parent of B and B is a child of A.
+A graph consists of nodes and edges. Edges are the link between nodes and can be undirected or directed. If all edges are undirected then the graph is classified as undirected. If all edges are directed, then the graph is classified as directed.\\
+In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $X_1 \to X_k$, then $X_1$ is an ancestor of $X_k$, and $X_k$ is a descendant of $X_1$. In Figure \ref{fig:comGraphs}(b), $A$ is an ancestor of $C$ and $C$ is a descendant of $A$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:comGraphs} (b), then A is a parent of B and B is a child of A.~\cite{barber}
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.3\linewidth}
@@ -524,29 +528,151 @@ A graph consists of nodes and edges. Edges are the link between nodes and can be
   \label{fig:comGraphs}
 \end{figure}
 \section{Bayesian PGMs}
+Bayesian networks consists out of a set of nodes and directed edges. Nodes represent RVs($X_1, ..., X_n$).\\
+Each node is associated with a conditional probability distribution.
+\begin{equation}
+X_i \sim p(X_i|Par(X_i))
+\end{equation}
+where $Par(X_i)$ indicates the parent of node $X_i$.\\
+CPDs can be written as factors
+\begin{equation}
+\phi_i(X_i, Par(X_i)) = p(X_i|Par(X_i))
+\end{equation}
+Where the scope of a factor is
+\begin{equation}
+Scope\{\phi_i\} = \{X_i, Par(X_i)\}
+\end{equation}
+Figure \ref{fig:bays_pgm} is a simple example of a Bayesian network.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/bayesian_pgm.png}
   \centering
   \caption{Bayesian PGM}
   \label{fig:bays_pgm}
 \end{figure}
+\subsubsection{Chain Rule for Bayesian Networks}
+All of the CPDs or factors of a Bayesian network can be multiplied to find the joint distribution of the network. (Koller and Friedman~\citep{koller})
 \begin{equation}
-p(a,b,c,d,e,f,g) = p(a)p(b)p(c)p(d|a)p(e|b,d)p(f|b,c)p(g|f)
+p(X_1, ..., X_n) = \prod_i p(X_i|Par(X_i))
 \end{equation}
-\section{Inference with cluster graphs}
+Applying the Chain Rule to the Bayesian network in Figure \ref{fig:bays_pgm}
+\begin{equation}
+\begin{split}
+p(a,b,c,d,e,f,g) & = p(a)p(b)p(c)p(d|a)p(e|b,d)p(f|b,c)p(g|f)\\
+& = \phi_a(a)\phi_b(b)\phi_c(c)\phi_d(d,a)\phi_e(e,b,d)\phi_f(f,b,c)\phi_g(g,f)
+\end{split}
+\end{equation}
+A marginal PDF can be found by integrating over a subset of variables.
+\begin{equation}
+p(a,b,c) = \int\int\int\int p(a,b,c,d,e,f,g)dd\ de\ df\ dg
+\end{equation}
+\section{Cluster graphs}
+Cluster graphs can be generated from Bayesian networks and are used to do inference. The cluster graph consists of clusters and undirected edges.\\Clusters are subsets of variables and can be formed by grouping factors together.\\
+\begin{equation}
+\bm{C}_i \subseteq \{X_1, ..., X_n\}
+\end{equation}
+The undirected edges between clusters are called sepsets and are responsible for passing messages between clusters. A sepset between two clusters contains information about variables that are common to both clusters.
+\begin{equation}
+\bm{S}_{i,j} \subseteq \bm{C}_i \cap \bm{C}_j
+\end{equation}
+There are multiple ways to construct clusters, but it should adhere to two requirements specified Koller and Friedman~\citep{koller}.\\
+\textbf{1. Family Preservation}\\
+Every factor $\phi_k$ in a set of factors $\Phi$ should be accommodated by a cluster.
+\begin{equation}
+Scope[{\phi}_k] \subseteq \bm{C}_i
+\end{equation}\\
+\textbf{2. Running Intersection Property}\\
+There exists an unique path connecting a pair of clusters containing the same variable $X$, and every cluster and sepset along the path also contain $X$. This path allows clusters to share their beliefs of $X$. In other words, for any variable $X$, the set of sepsets and clusters containing $X$ form a tree~\citep{koller}. This prevents feedback loops and thus counters the phenomena where cluster's reinforce their own beliefs of variables.\\
+Figure \ref{fig:bays_pgm} is updated in Figure \ref{fig:cluster_bound} where CPDs is replaced with factors and potential Cluster boundaries are indicated with dashed rectangles. Note that there are other ways to configure the cluster graph.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/cluster_divisions.png}
   \centering
   \caption{Bayesian PGM with cluster boundaries}
-  \label{fig:e_ellipse}
+  \label{fig:cluster_bound}
 \end{figure}
+
+The initial belief of an cluster can be calculated by finding the product of all the factors inside the cluster.~\citep{koller}
+\begin{equation}
+\psi_i(C_i) = \prod_{k:\alpha (k) = i}\phi_k
+\end{equation}
+Figure \ref{fig:cluster_bound} is updated in Figure \ref{fig:clustergraph}. Clusters are indicated by ellipsis. Initial beliefs are calculated and shown inside the ellipsis. Sepsets are indicated by rectangles.\\
 \begin{figure}[H]
   \includegraphics[width=\linewidth]{Figures/clustergraph.png}
   \centering
   \caption{Cluster graph}
-  \label{fig:e_ellipse}
+  \label{fig:clustergraph}
 \end{figure}
-\section{Message passing}
+\section{Message Passing}
+Clusters share beliefs of common variables with messages passing. Messages are associated with sepsets. An outgoing message of a cluster can be calculated by multiplying the cluster with all the incoming messages and then integrating over the variables that are not in the sepset.
+\\Thus, messages can be calculated accordingly~\citep{koller}
+\begin{equation}
+\delta_{i\to j}(\bm{S}_{i,j}) = \int_{\bm{C}_i - \bm{S}_{i,j}}\psi_i \times \prod_{k\in(\mathcal{N}_i - \{j\})} \delta_{k\to i}
+\end{equation}
+Applying to the cluster graph in Figure \ref{fig:clustergraph}
+\begin{equation}\label{eq:del12}
+\delta_{1,2}(d) = \int_a \psi_1(a,d)da
+\end{equation}
+\begin{equation}
+\delta_{2,3}(b) = \int_d \int_e \delta_{1,2}(d)\psi_2(b,d,e)dd\ de
+\end{equation}
+\begin{equation}
+\delta_{3,4}(f) = \int_b \int_c \delta_{2,3}(b)\psi_3(b,c,f)db\ dc
+\end{equation}
+\begin{equation}
+\delta_{4,3}(f) = \int_g \psi_4(f,g)dg
+\end{equation}
+\begin{equation}
+\delta_{3,2}(b) = \int_c \int_f \delta_{4,3}(f)\psi_3(b,c,f)dc\ df
+\end{equation}
+\begin{equation}
+\delta_{2,1}(d) = \int_b \int_e \delta_{3,2}(b)\psi_2(b,d,e)db\ de
+\end{equation}
+\section{Inference: Variable Elimination}
+There are many different algorithms for inferencing graphical models. A popular one is that of variable elimination. 
+Consider Figure \ref{fig:bays_pgm} again. The belief $p(f,g)$ can be obtained by finding the marginal distribution of $f$ and $g$ from the joint distribution of the Bayesian network. 
+\begin{equation}
+p(f,g) = \int_a\int_b\int_c\int_d\int_e p(a,b,c,d,e,f,g)\,da\,db\,dc\,dd\,de
+\end{equation}
+With the chain rule, the joint distribution can be rewritten as the product of clusters defined in Figure \ref{fig:clustergraph}.
+\begin{equation}
+\begin{split}
+p(f,g) & = \int_b\int_c\int_d\int_e\int_a\phi_a(a)\phi_b(b)\phi_c(c)\phi_d(d,a)\phi_e(e,b,d)\phi_f(f,b,c)\phi_g(g,f)\,da\,db\,dc\,dd\,de\\
+& = \int_b\int_c\int_d\int_e\int_a \psi_1(a,d)\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,da\,db\,dc\,dd\,de
+\end{split}
+\end{equation}%rather invloved%
+Factors with variables that are not in the scope of an integration can be moved out of the integration. Thus, in equation \ref{eq:integrala} $\psi_2$, $\psi_3$ and $\psi_4$ can be moved out the integral over $a$, as they do not contain $a$.
+%Messages $\delta_{1,2}$ to $\delta_{3,4}$ can be found by eliminating variables %that are not in the sepsets in the correct order. 
+\begin{equation}
+\label{eq:integrala}
+p(f,g) = \int_b\int_c\int_d\int_e\left[\int_a\psi_1(a,d)\,da\right]\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc\,dd\,de
+\end{equation}
+The result in equation \ref{eq:del12} can be used to make a substitution
+\begin{equation}\label{eq:suba}
+p(f,g) = \int_b\int_c\int_d\int_e\delta_{1,2}(d)\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc\,dd\,de
+\end{equation}
+Steps in equation \ref{eq:integrala} and \ref{eq:suba} are repeated in equation \ref{eq:subde} to \ref{eq:endeq}.
+\begin{equation}\label{eq:subde}
+p(f,g) = \int_b\int_c\left[\int_d\int_e\delta_{1,2}(d)\psi_2(b,d,e)\,dd\,de\right]\psi_3(b,c,f)\psi_4(f,g)\,db\,dc
+\end{equation}
+\begin{equation}
+p(f,g) = \int_b\int_c\delta_{2,3}(b)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc
+\end{equation}
+\begin{equation}
+p(f,g) = \left[\int_b\int_c\delta_{2,3}(b)\psi_3(b,c,f)\,db\,dc\right]\psi_4(f,g)
+\end{equation}
+\begin{equation}\label{eq:endeq}
+p(f,g) = \delta_{3,4}(f)\psi_4(f,g)
+\end{equation}
+The belief of a cluster can be calculated by multliplying the cluster with all of its' incoming messages. Koller and Friedman~\cite{koller} specifies this as
+\begin{equation}
+\beta_i(\bm{C}_i) = \psi_i \times \prod_{k \in \mathcal{N}_i} \delta_{k \to i}
+\end{equation}
+\section{Summary}
+Bayesian networks consists of factors and directed edges.\\
+Cluster graphs can be constructed by grouping factors.\\
+Clusters in a cluster graph are connected by sepsets.\\
+Adjacent clusters pass information to each other about variables in sepset.\\
+Outgoing messages can be calculated with equation 4.11.
+
 \chapter{Localisation using Probabilistic Graphical Models}
 \section{Linear localisation}
 \section{Non-linear localisation}
