@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.14)  14 OCT 2018 17:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.14)  17 OCT 2018 22:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -413,6 +413,30 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks22
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count145
+\Gm@cntv=\count146
+\c@Gm@tempcnt=\count147
+\Gm@bindingoffset=\dimen150
+\Gm@wd@mp=\dimen151
+\Gm@odd@mp=\dimen152
+\Gm@even@mp=\dimen153
+\Gm@layoutwidth=\dimen154
+\Gm@layoutheight=\dimen155
+\Gm@layouthoffset=\dimen156
+\Gm@layoutvoffset=\dimen157
+\Gm@dimlist=\toks23
+)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2016/03/03 v2.15a AMS math features
 \@mathmargin=\skip190
@@ -423,61 +447,57 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks22
-\ex@=\dimen150
+\@emptytoks=\toks24
+\ex@=\dimen158
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen151
+\pmbraise@=\dimen159
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count145
+\inf@bad=\count148
 LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count146
-\leftroot@=\count147
+\uproot@=\count149
+\leftroot@=\count150
 LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count148
-\DOTSCASE@=\count149
+\classnum@=\count151
+\DOTSCASE@=\count152
 LaTeX Info: Redefining \ldots on input line 394.
 LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
 \Mathstrutbox@=\box31
 \strutbox@=\box32
-\big@size=\dimen152
+\big@size=\dimen160
 LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count150
-\c@MaxMatrixCols=\count151
+\macc@depth=\count153
+\c@MaxMatrixCols=\count154
 \dotsspace@=\muskip10
-\c@parentequation=\count152
-\dspbrk@lvl=\count153
-\tag@help=\toks23
-\row@=\count154
-\column@=\count155
-\maxfields@=\count156
-\andhelp@=\toks24
-\eqnshift@=\dimen153
-\alignsep@=\dimen154
-\tagshift@=\dimen155
-\tagwidth@=\dimen156
-\totwidth@=\dimen157
-\lineht@=\dimen158
-\@envbody=\toks25
+\c@parentequation=\count155
+\dspbrk@lvl=\count156
+\tag@help=\toks25
+\row@=\count157
+\column@=\count158
+\maxfields@=\count159
+\andhelp@=\toks26
+\eqnshift@=\dimen161
+\alignsep@=\dimen162
+\tagshift@=\dimen163
+\tagwidth@=\dimen164
+\totwidth@=\dimen165
+\lineht@=\dimen166
+\@envbody=\toks27
 \multlinegap=\skip191
 \multlinetaggap=\skip192
-\mathdisplay@stack=\toks26
+\mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2735.
 LaTeX Info: Redefining \] on input line 2736.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
 Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks27
-)
 (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
@@ -485,15 +505,15 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count157
-\l_MT_multwidth_dim=\dimen159
+\g_MT_multlinerow_int=\count160
+\l_MT_multwidth_dim=\dimen167
 \origjot=\skip193
-\l_MT_shortvdotswithinadjustabove_dim=\dimen160
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen161
-\l_MT_above_intertext_sep=\dimen162
-\l_MT_below_intertext_sep=\dimen163
-\l_MT_above_shortintertext_sep=\dimen164
-\l_MT_below_shortintertext_sep=\dimen165
+\l_MT_shortvdotswithinadjustabove_dim=\dimen168
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen169
+\l_MT_above_intertext_sep=\dimen170
+\l_MT_below_intertext_sep=\dimen171
+\l_MT_above_shortintertext_sep=\dimen172
+\l_MT_below_shortintertext_sep=\dimen173
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2014/10/28 v1.1c Bold Symbol Support (DPC/FMi)
@@ -526,10 +546,10 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count158
+\Gread@gobject=\count161
 ))
-\Gin@req@height=\dimen166
-\Gin@req@width=\dimen167
+\Gin@req@height=\dimen174
+\Gin@req@width=\dimen175
 )
 (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2016/02/20 v1.1-142 Sub-captions (AR)
@@ -546,18 +566,18 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen168
-\captionmargin@=\dimen169
-\captionwidth=\dimen170
-\caption@tempdima=\dimen171
-\caption@indent=\dimen172
-\caption@parindent=\dimen173
-\caption@hangindent=\dimen174
+\captionmargin=\dimen176
+\captionmargin@=\dimen177
+\captionwidth=\dimen178
+\caption@tempdima=\dimen179
+\caption@indent=\dimen180
+\caption@parindent=\dimen181
+\caption@hangindent=\dimen182
 )
-\c@ContinuedFloat=\count159
+\c@ContinuedFloat=\count162
 )
-\c@subfigure=\count160
-\c@subtable=\count161
+\c@subfigure=\count163
+\c@subtable=\count164
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/01/03 v1.1b Standard LaTeX Color (DPC)
@@ -569,15 +589,15 @@ Package color Info: Driver file: pdftex.def on input line 143.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count162
-\float@exts=\toks28
+\c@float@type=\count165
+\float@exts=\toks29
 \float@box=\box33
-\@float@everytoks=\toks29
+\@float@everytoks=\toks30
 \@floatcapt=\box34
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tabto-ltx/tabto.sty
 Package: tabto 2013/03/25  v 1.3  Another tabbing mechanism
-\CurrentLineWidth=\dimen175
+\CurrentLineWidth=\dimen183
 )
 (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
@@ -593,37 +613,71 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip194
 \bibsep=\skip256
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count163
+\c@NAT@ctr=\count166
 ))
 (./cobus_skripsie.aux)
 \openout1 = `cobus_skripsie.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-35.5119pt
+* \headheight=14.5pt
+* \headsep=19.8738pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=85.68553pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 4.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count164
-\scratchdimen=\dimen176
+\scratchcounter=\count167
+\scratchdimen=\dimen184
 \scratchbox=\box35
-\nofMPsegments=\count165
-\nofMParguments=\count166
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count167
-\MPscratchDim=\dimen177
-\MPnumerator=\count168
-\makeMPintoPDFobject=\count169
-\everyMPtoPDFconversion=\toks31
+\nofMPsegments=\count168
+\nofMParguments=\count169
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count170
+\MPscratchDim=\dimen185
+\MPnumerator=\count171
+\makeMPintoPDFobject=\count172
+\everyMPtoPDFconversion=\toks32
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -671,14 +725,14 @@ Package caption Info: End \AtBeginDocument code.
 <USlogo-top.pdf, id=1, 560.0925pt x 183.68625pt>
 File: USlogo-top.pdf Graphic file (type pdf)
  <use USlogo-top.pdf>
-Package pdftex.def Info: USlogo-top.pdf used on input line 44.
+Package pdftex.def Info: USlogo-top.pdf used on input line 45.
 (pdftex.def)             Requested size: 284.52756pt x 93.31717pt.
 
 <UScrest-WM.jpg, id=2, 49.8663pt x 69.3792pt>
 File: UScrest-WM.jpg Graphic file (type jpg)
  <use UScrest-WM.jpg>
-Package pdftex.def Info: UScrest-WM.jpg used on input line 44.
-(pdftex.def)             Requested size: 89.70789pt x 124.82738pt.
+Package pdftex.def Info: UScrest-WM.jpg used on input line 45.
+(pdftex.def)             Requested size: 89.62253pt x 124.70882pt.
  [1
 
 
@@ -687,110 +741,321 @@ Package pdftex.def Info: UScrest-WM.jpg used on input line 44.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </usr/share/texlive/texmf-d
 ist/tex/latex/stellenbosch/logos/UScrest-WM.jpg> </usr/share/texlive/texmf-dist
 /tex/latex/stellenbosch/logos/USlogo-top.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
- [1
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 50.
 
-]
-(./cobus_skripsie.toc [2]) [3] (./cobus_skripsie.lof) [4]
-Underfull \hbox (badness 10000) in paragraph at lines 62--69
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
 
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[1
+
+] (./cobus_skripsie.toc
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[2])
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[3] (./cobus_skripsie.lof)
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 63--70
+
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
  []
 
 [5
 
-] [6
+]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
 
-] [1
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[6
+
+]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
 
 
-] <Figures/univariate.png, id=43, 1132.23pt x 719.68875pt>
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[1
+
+
+] <Figures/univariate.png, id=43, 953.5625pt x 619.31375pt>
 File: Figures/univariate.png Graphic file (type png)
 
 <use Figures/univariate.png>
-Package pdftex.def Info: Figures/univariate.png used on input line 104.
-(pdftex.def)             Requested size: 278.59879pt x 177.0885pt.
- [2
+Package pdftex.def Info: Figures/univariate.png used on input line 114.
+(pdftex.def)             Requested size: 273.14923pt x 177.40399pt.
 
-] [3 <./Figures/univariate.png>]
-<Figures/e_ellipse.png, id=57, 804.00375pt x 725.71124pt>
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[2
+
+]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[3 <./Figures/univariate.png>]
+<Figures/e_ellipse.png, id=58, 807.015pt x 710.655pt>
 File: Figures/e_ellipse.png Graphic file (type png)
 
 <use Figures/e_ellipse.png>
-Package pdftex.def Info: Figures/e_ellipse.png used on input line 151.
-(pdftex.def)             Requested size: 238.80243pt x 215.54465pt.
- [4]
-Underfull \hbox (badness 10000) in paragraph at lines 185--188
+Package pdftex.def Info: Figures/e_ellipse.png used on input line 181.
+(pdftex.def)             Requested size: 227.62206pt x 200.44594pt.
 
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[4]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
  []
 
 [5 <./Figures/e_ellipse.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 193--195
-
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
  []
 
-[6] [7] [8] [9] [10
 
-] [11
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[6]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[7]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[8]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[9
 
 ]
-<Figures/undirected_graph.png, id=85, 672.5125pt x 636.3775pt>
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[10
+
+] <Figures/undirected_graph.png, id=83, 613.29124pt x 615.29875pt>
 File: Figures/undirected_graph.png Graphic file (type png)
 
 <use Figures/undirected_graph.png>
-Package pdftex.def Info: Figures/undirected_graph.png used on input line 520.
-(pdftex.def)             Requested size: 119.40121pt x 112.97964pt.
+Package pdftex.def Info: Figures/undirected_graph.png used on input line 535.
+(pdftex.def)             Requested size: 136.57462pt x 137.01854pt.
 
-<Figures/directed_graph.png, id=86, 661.47125pt x 640.3925pt>
+<Figures/directed_graph.png, id=84, 614.295pt x 620.3175pt>
 File: Figures/directed_graph.png Graphic file (type png)
 
 <use Figures/directed_graph.png>
-Package pdftex.def Info: Figures/directed_graph.png used on input line 524.
-(pdftex.def)             Requested size: 119.40121pt x 115.58813pt.
- [12
+Package pdftex.def Info: Figures/directed_graph.png used on input line 539.
+(pdftex.def)             Requested size: 136.57462pt x 137.909pt.
 
-]
-<Figures/bayesian_pgm.png, id=91, 926.46124pt x 540.0175pt>
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[11
+
+] <Figures/bayesian_pgm.png, id=88, 926.46124pt x 540.0175pt>
 File: Figures/bayesian_pgm.png Graphic file (type png)
 
 <use Figures/bayesian_pgm.png>
-Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 547.
-(pdftex.def)             Requested size: 238.80243pt x 139.18996pt.
- [13 <./Figures/undirected_graph.png> <./Figures/directed_graph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 569--570
+Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 562.
+(pdftex.def)             Requested size: 273.14923pt x 159.21313pt.
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[12 <./Figures/undirected_graph.png> <./Figures/directed_graph.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 584--585
 
  []
 
-[14 <./Figures/bayesian_pgm.png>]
-<Figures/cluster_divisions.png, id=99, 855.195pt x 484.81125pt>
+<Figures/cluster_divisions.png, id=94, 855.195pt x 484.81125pt>
 File: Figures/cluster_divisions.png Graphic file (type png)
 
 <use Figures/cluster_divisions.png>
-Package pdftex.def Info: Figures/cluster_divisions.png used on input line 587.
-(pdftex.def)             Requested size: 238.80243pt x 135.37634pt.
+Package pdftex.def Info: Figures/cluster_divisions.png used on input line 602.
+(pdftex.def)             Requested size: 273.14923pt x 154.84686pt.
 
-<Figures/clustergraph.png, id=100, 1361.085pt x 569.12625pt>
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[13 <./Figures/bayesian_pgm.png>]
+<Figures/clustergraph.png, id=98, 1362.08875pt x 571.13374pt>
 File: Figures/clustergraph.png Graphic file (type png)
 
 <use Figures/clustergraph.png>
-Package pdftex.def Info: Figures/clustergraph.png used on input line 599.
-(pdftex.def)             Requested size: 398.0pt x 166.41447pt.
+Package pdftex.def Info: Figures/clustergraph.png used on input line 614.
+(pdftex.def)             Requested size: 455.24411pt x 190.88872pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 596--603
+Underfull \hbox (badness 10000) in paragraph at lines 611--618
 
  []
 
-[15 <./Figures/cluster_divisions.png>] [16 <./Figures/clustergraph.png>]
-Overfull \hbox (36.68727pt too wide) in paragraph at lines 641--641
-[] 
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
  []
 
-[17] [18] [19
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[14 <./Figures/cluster_divisions.png> <./Figures/clustergraph.png>]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[15]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[16]
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[17
 
 ] (./cobus_skripsie.bbl
 (/usr/share/texlive/texmf-dist/tex/latex/stellenbosch/usbib.eng)
@@ -798,7 +1063,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--45
 []\OT1/cmr/m/n/12 Visiondummy, how to draw a co-vari-ance er-ror el-lipse.
  []
 
-) [20
+)
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+
+Overfull \hbox (57.24411pt too wide) has occurred while \output is active
+[]
+ []
+
+[18
 
 
 ]
@@ -810,13 +1085,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--45
 
  (./cobus_skripsie.aux) ) 
 Here is how much of TeX's memory you used:
- 8682 strings out of 493029
- 125004 string characters out of 6136233
- 240933 words of memory out of 5000000
- 12084 multiletter control sequences out of 15000+600000
+ 9151 strings out of 493029
+ 131799 string characters out of 6136233
+ 254459 words of memory out of 5000000
+ 12546 multiletter control sequences out of 15000+600000
  15476 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,22n,46p,932b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,22n,46p,866b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
@@ -834,10 +1109,10 @@ s/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on cobus_skripsie.pdf (27 pages, 552773 bytes).
+Output written on cobus_skripsie.pdf (25 pages, 561795 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 121 compressed objects within 2 object streams
+ 175 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

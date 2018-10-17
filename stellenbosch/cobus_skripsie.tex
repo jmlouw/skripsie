@@ -4,7 +4,8 @@ afrikaans,english,
 ]{memoir}
 \usepackage[report, goldenblock]{usthesis}%... Thesis options
 \usepackage[afrikaans, english]{babel}
-
+%\SingleSpacing
+\usepackage[left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \numberwithin{equation}{chapter}
@@ -74,137 +75,164 @@ Text in default language ...
 
 \mainmatter
 \chapter{Introduction}
-For modern mobile vehicles and robots it is important for them to have the ability to navigate their environment. It is critical for these devices to avoid collisions or dangerous environments. Some robots must move very precisely and therefore should have an accurate reading of their location.
-
-Localisation is essential for robot navigation, but is used in various other applications such missile tracking. For applications like this, it is crucial to have accurate and instantaneous information of the missile's location. Measurements of any object's location will always have some noise,  the measured location is thus never 100\% accurate. Therefore, one should rather approach the localisation problem in a probabilistic manner and the object's location can be described in terms of a PDF.
-
-For systems with continuous random variables, most of the operations used in probabilistic reasoning use integration. These integrals can be solved analytically in the case of a problem with linear movement. Most systems are nonlinear. The integrals in nonlinear systems cannot be computed analytically and one has to use numerical methods. Commonly-used techniques such as the extended or unscented Kalman filters use primitive numerical integration that are very inaccurate, especially when measurements are also nonlinear. There are several numerical techniques available that are more accurate.
-
-The end goal of this project is to investigate different numerical techniques to solve the nonlinear localisation problem. To reach the end goal, one should have a good understanding of Gaussian random variables, motion and measurement models, and traditional techniques such as the extended - and unscented kalman filters. Also, modeling the problem with a Probabilistic Graphical Model has advantages and is therefore investigated. 
-
-A relevant problem has been simulated in Python. Different techniques were implemented and compared in terms of accuracy and efficiency.
-
+Robot localisation is the process of estimating where a robot is located relative to its environment. It is essential for autonomous robots to have precise knowledge of their location in order to navigate their surroundings.\\
+When localising a robot, the control input to the robot, and a map of the environment is usually available. Further the robot is generally fitted with sensors which, together with beacons, measure where the robot is located relative to the map. Unfortunately the information of the robot's movements and location always have noise to some degree.\\
+The position and orientation of the robot should rather be estimated in a probabilistic manner from the information gathered from the sensors. The localisation techniques must therefore be able to deal with noise and describe the robot's location with a measure of uncertainty.\\
+Probabilistic reasoning of systems with continuous random variables (RV) use integration for various operations. In most nonlinear systems these integrals cannot be calculated analytically and one must use numerical methods. Kalman filters have been used extensively to localise robots and other objects. Techniques such as the extended or unscented Kalman filters use primitive numerical integration that is very inaccurate, especially when measurements are also nonlinear. However, there are several alternative numerical techniques available that are more accurate.\\
+A probabilistic graphical model (PGM) is a technique that is be used to model systems with uncertainty in an organised manner. It describes the relationship between random variables (RV) and allows to reason about their likelihood based on knowledge that is available to the system. Reasoning about RVs in a PGM consists out of concrete steps and one can easily identify where integration is used.\\
+The end goal of this project is investigate different numerical techniques of integration and to implement them in a PGM to localise a simulated robot. The accuracy and efficiency of different techniques of numerical integration when used to inference a nonlinear system will be compared using a simulated environment.
 \setcounter{secnumdepth}{2}
 \chapter{Gaussian Random Variables}
-The Gaussian or normal distribution is commonly used in probability theory, as it is easy to work with and are remarkably close to real-world distributions. Gaussians make severe assumptions such as exponential decay of the distribution away from its mean and linear interactions between variables. Gaussians are in many cases a good estimation for real world distributions, such as noise, even though they make invalid assumptions. The Gaussian random variable (RV) is a very important concept in this paper as all probability distributions are approximated as Gaussian distributions. Key concepts and features of the Gaussian RV are discussed in this chapter. The canonical form and conditional distributions are very important concepts and will be used in following chapters. The following chapter is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
+The Gaussian or normal distribution is commonly used in probability theory, as it is very easy to work with. Although Gaussian distributions make severe assumptions such as exponential decay of the distribution away from its mean and linear interactions between variables, they are often surprisingly good estimations for real world distributions, such as noise. The Gaussian distribution is a very important concept in this report as all probability distributions are approximated as Gaussian distributions. Key concepts and features of the Gaussian distributions are discussed in this chapter. The canonical form and conditional distributions are very important concepts and will be used in following chapters. The following chapter is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
 
 \section{Covariance form}
-\subsection{Univariate Gaussians}
-An univariate Gaussian random variable $X$ with mean $\mu$ and variance $\sigma^2$ is described by
+The likelihood of the values of a continuous Gaussian RV can be described with a Gaussian distribution. \
+The univariate Gaussian distribution is probability density function (PDF) of a single Gaussian RV. The covariance form fully describes a univariate Gaussian distribution by a mean $\mu$ and variance $\sigma^2$.
+The univariate Gaussian distribution of a RV $X$, denoted
+\begin{equation}
+X\sim\mathcal{N}(\mu,\sigma),
+\end{equation}
+has a PDF that is described by
 \begin{equation}\label{eq:1}
-p(x) = \mathcal{N}(\mu;\sigma) = \eta\exp\left[\frac{-(x-\mu)^2}{2\sigma^2}\right]
+p(x) = \eta\exp\left[\frac{-(x-\mu)^2}{2\sigma^2}\right],
 \end{equation}
-with normalisation coefficient 
+with a normalisation coefficient 
 \begin{equation}\label{eq:2}
-\eta = \frac{1}{\sqrt{2\pi\sigma^2}}
+\eta = \frac{1}{\sqrt{2\pi\sigma^2}}.
 \end{equation}
-The mean parameter $\mu$ describes the location of the peak of the distribution and the variance parameter $\sigma^2$ describes the tempo which the distribution decays. The standard deviation is denoted by $\sigma$. The probability of $x$ decays exponentially as $x$ moves farther from the mean. Figure \ref{fig:gPDF1} indicates the mean $\mu$ and standard deviation $\sigma$ of an univariate Gaussian PDF.
-
+The mean parameter $\mu$ describes the location of the peak of the distribution and the variance parameter $\sigma^2$ describes the tempo which the distribution decays. The probability of RV $X$ having a value $x$ decays exponentially as $x$ moves farther from the mean. The standard deviation of the Gaussian distribution is denoted as $\sigma$.\\
+If $X$ is a continuous RV, then the mean or expectation of $X$ is
+\begin{equation}
+\mu = E\left[ X \right] = \int x \cdot p(x)dx.
+\end{equation}
+The variance of $X$ can be calculated as
+\begin{equation}
+\sigma^2 = E[X^2] - (E[X])^2
+\end{equation}
+ Figure \ref{fig:gPDF1} indicates the mean $\mu$ and standard deviation $\sigma$ of an univariate Gaussian PDF.
 \begin{figure}[H]
-  \includegraphics[width=0.7\linewidth]{Figures/univariate.png}
+  \includegraphics[width=0.6\linewidth]{Figures/univariate.png}
   \centering
   \caption{Univariate Gaussian PDF}
   \label{fig:gPDF1}
 \end{figure}
-
-\subsection{Multivariate Gaussians}
-The multivariate Gaussian distribution is described by an $n$-dimensional mean vector $\bm{\mu}$ and an $n\times n$ covariance matrix $\Sigma$. The multivariate Gaussian distribution is commonly described by the following function 
+The definition of the Gaussian distribution can be extended to describe the PDF of $N$ random variables, this is called the multivariate Gaussian distribution. The multivariate Guassian distribution is described by an $N$-dimensional mean vector $\bm{\mu}$ and an $N\times N$ covariance matrix $\Sigma$. The multivariate Gaussian distribution of a RV vector a with length of $N$, $\bm{X} = [X_1,...,X_N]$, denoted
+\begin{equation}
+\bm{X} \sim \mathcal{N}(\bm{\mu},\Sigma),
+\end{equation}
+has a PDF that is described by
 \begin{equation}\label{eq:3}
-p(x) = \mathcal{N}(\bm{\mu};\Sigma) = \eta\exp\left[-\frac{1}{2}(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})\right]
+p(\bm{x})  = \eta\exp\left[-\frac{1}{2}(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})\right],
 \end{equation}
-with normalisation coefficient
+with a normalisation coefficient
 \begin{equation}\label{eq:4}
-\eta = \frac{1}{(2\pi^{n/2)}|\Sigma|^{\frac{1}{2}}}
+\eta = \frac{1}{(2\pi)^{\frac{N}{2}}|\Sigma|^{\frac{1}{2}}}.
 \end{equation}
-$|\Sigma|$ is the the determinant of $\Sigma$
-It is important that the determinant of $\Sigma$ is nonzero for the equation above to be valid. It is a requirement that $\Sigma$ is positive definite and therefore also non-singular, which guarantees a  determinant that is nonzero. In this paper we focus on positive definite covariance matrices, as it is invertible, consequentially one can use the alternative canonical or information parameterization. The canonical form is discussed in the following section.\\
-The mean and covariance can sequentially be found by calculating the first and second moments of the Gaussian distribution.\\
-The mean is equal to the first moment:
+$|\Sigma|$ is the the determinant of $\Sigma$.\\
+For this report it is required that $\Sigma$ is positive definite and thus also non-singular, which guarantees a determinant that is nonzero. Positive definite covariance matrices are also invertible, thus the alternative canonical or information parameterization, which requires $\Sigma^{-1}$, can be used. The canonical form is discussed in the following section.\\
+The mean vector of RV vector $\bm{X}$ is equal to the expectation of $\bm{X}$ and is defined as
 \begin{equation}
-\bm{\mu} = \bm{E}\left[\bm{X}\right]
+\bm{\mu} = E[\bm{X}].
 \end{equation}
-The covariance is equal to the second moment:
+The covariance matrix $\Sigma$ specifies the correlation between RVs and is equal to
 \begin{equation}
-\Sigma = \bm{E}[\bm{XX}]^T - \bm{E}[\bm{X}]\bm{E}[\bm{X}]^T
+\Sigma = E[\bm{XX}^T] - E[\bm{X}]\bm{E}[\bm{X}]^T.
 \end{equation}
-\subsection{Error ellipse}
-Multivariate Gaussian distributions can be visualized as a series of ellipsoidal contours around the mean vector $\bm{\mu}$. The contours are parallel to each other and the distance between contours suggests the steepness of the density function. The steepness of the density function is determined by the covariance matrix $\Sigma$.\\
-In the following chapters it is important to show the uncertainty of PDFs, a plot of an error ellipses is an effective way to illustrate this.
+\subsection{Error ellipse}The following section is based on an article by H. Abdi ~\cite{abdi} and on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.\par
+A multivariate Gaussian distribution with RV vector
+\begin{equation}
+\bm{X} = [X_1, X_2]
+\end{equation}
+can be visualised as a series of ellipsoidal contours around the mean vector $\bm{\mu}$. The contours are an indication of the correlation between $X_1$ and $X_2$ and also show the uncertainty of the PDF. Contours close to each other suggest a steep incline and contours farther apart suggest a gradual incline in the PDF. Hence, small and concentrated contours represent certain Gaussian distributions and contours that are larger and further apart represent uncertain Gaussian distributions. Error ellipsis are an effective way to indicate the mean, uncertainty and correlation of 2D Gaussian distributions.
 
-\subsubsection{Eigenvalue decomposition}
-The following section is based on an article from H Abdi ~\cite{abdi}.\\
-In order to plot an error ellipse, the directions the covariance varies the most and the variances in those directions are needed.\\
-We can use eigenvalue decomposition to factorize the covariance matrix $\Sigma$ in terms of its eigenvalues $\Lambda$ and its eigenvectors $Q$.
+An ellipse has a major axis and a minor axis as shown in Figure \ref{fig:e_ellipse}. The major axis of the error ellipse is always aligned in the direction the Gaussian distribution varies most. This direction can be found by determining the eigenvectors of the distribution. Each eigenvector has a corresponding eigenvalue which indicates the spread of the distribution in the direction of the eigenvector. 
+
+We can use eigenvalue decomposition to factorise the covariance matrix $\Sigma$,
 \begin{equation}
-\Sigma = Q\Lambda Q^{-1}
+\Sigma = Q\Lambda Q^{-1}.
 \end{equation}
-Each column of the eigenvector matrix $Q$ contains an eigenvector $\bm{v}$. The eigenvectors indicate the direction which the covariance varies the most. Each eigenvector has a corresponding eigenvalue $\lambda$ which specifies the variance in the direction of the eigenvector. 
-\subsubsection{Plotting a 2D error ellipse}
-The following section is based on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.\\
-Error ellipsis are specified in terms of the confidence or probability that a random data point will fall inside the ellipse.\\To plot an error ellipse, the major - and minor axes' lengths are sequentially specified as $2\sqrt{s\lambda_1}$ and $2\sqrt{s\lambda_2}$, where $\lambda_1$ and $\lambda_2$ represent the eigenvalues of the covariance matrix ($\lambda_1 \geq \lambda_2$). For a 95\% confident ellipse $s$ is set to 5.991. If we are interested in other confidence intervals, the Chi-Sqaure distribution can be used to find an $s$ that less than or equal to a specific value which correlates with the probability of the confidence interval.\\
-To obtain the orientation $\alpha$ of the error ellipse, we calculate the angle of the largest eigenvector relative to the x-axis.
+Each column of the eigenvector matrix $Q$ contains an eigenvector $\bm{v}$. $Q$ is defined as
 \begin{equation}
-\alpha = \arctan\left(\frac{\bm{v_1}(y)}{\bm{v_1}(x)}\right)
+Q =
+[\bm{v_1} \ \bm{v_2}]
+=
+\begin{bmatrix}
+v_{11} & v_{21}\\
+v_{12} & v_{22}
+\end{bmatrix}.
 \end{equation}
-In the case of an uncorrelated covariance, the eigenvalues are equal to the variances of the covariance matrix and the eigenvectors are in the same direction as the x-axis and y-axis.
-\begin{figure}
-  \includegraphics[width=0.6\linewidth]{Figures/e_ellipse.png}
+$\Lambda$ is a diagonal matrix and each of its diagonal entries contains an eigenvalue $\lambda$. $\Lambda$ is defined as 
+\begin{equation}
+\Lambda =
+\begin{bmatrix}
+\lambda_1 & 0\\
+0 & \lambda_2
+\end{bmatrix}.
+\end{equation}
+An error ellipsis of a Gaussian PDF can be specified in terms of confidence levels which is the probability that a value drawn from the distribution will fall inside the ellipse. Thus, differently sized ellipsis can be plotted for different confidence levels. The lengths of the major an minor axes are sequentially specified as $2\sqrt{s\lambda_1}$ and $2\sqrt{s\lambda_2}$, where $\lambda_1 \geq \lambda_2$. The value of $s$ is determined by the confidence level of the error ellipse. In the case of an error ellipse with a confidence level of 95\%, $s$ is set to 5.991. The Chi-Sqaure distribution can be used to find $s$ for other confidence levels, but it is beyond the scope of this document.
+
+The orientation $\alpha$ of the error ellipse is shown in Figure \ref{fig:e_ellipse}. To obtain $\alpha$ we calculate the angle, relative to the x-axis, of the eigenvector with the largest spread. The angle $\alpha$ is defined as
+\begin{equation}
+\alpha = \arctan\left(\frac{v_{11}}{v_{12}}\right),
+\end{equation}
+where $\lambda_1 \geq \lambda_2$.
+
+\begin{figure}[H]
+  \includegraphics[width=0.5\linewidth]{Figures/e_ellipse.png}
   \centering
   \caption{Error Ellipse}
   \label{fig:e_ellipse}
 \end{figure}
-Figure \ref{fig:e_ellipse} shows $\alpha$ and indicates the major and minor axes of the error ellipse.
-
 \section{Canonical form}
-Linear Gaussian CPDs (conditional probability densities) are generally not Gaussians. It will be handy to find general representation that accommodates both Gaussian distributions and linear Gaussian models. The canonical or information form is a viable option. It is also much easier to perform certain operations in the canonical form. The following section is based on the work of Koller and Friedman~\cite{koller} and JC Schoeman~\citep{JC}.
+The canonical or information form is an alternative way to represent Gaussian distributions. A big advantage of using the canonical form is that it is much easier to perform certain operations. It can also be used to represent Gaussina conditional probability densities (CPDs), which will be discussed later in this section. The following section is based on the work of Koller and Friedman~\cite{koller} and Schoeman~\citep{JC}.
 
-\begin{equation}\label{eq:canonical}
-\mathcal{C}(\bm{X}; K,\bm{h},g) = \exp\left(-\frac{1}{2}\bm{X}^TK\bm{X} + \bm{h}^T\bm{X} +g \right)
+Equation \ref{eq:3}, which is the definition of a Gaussian PDF, can be rewritten
+\begin{equation}
+\begin{split}\label{eq:6}
+p(\bm{x}) & = \eta\exp\left[-\frac{1}{2}(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})\right]\\
+& = \exp\left(-\frac{1}{2}\bm{x}^T\Sigma^{-1}\bm{x} + \bm{\mu}^T\Sigma^{-1}\bm{x} - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}\right),
+\end{split}
 \end{equation}
-
-
-It is possible to represent every Gaussian as a canonical form. Equation \ref{eq:3} can be rewritten:
-
-
-\begin{multline}\label{eq:6}
-\eta\exp\left[-\frac{1}{2}(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})\right]
-\\ = \exp\left(-\frac{1}{2}\bm{x}^T\Sigma^{-1}\bm{x} + \bm{\mu}^T\Sigma^{-1}\bm{x} - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}\right)
-\end{multline}
-
-
-$\mathcal{N}(\bm{\mu}; \Sigma) = \mathcal{C}(K,\bm{h}, g)$ by comparing \ref{eq:6} with \ref{eq:canonical}
-
+with the information matrix
 \begin{equation}\label{eq:7}
-K = \Sigma^{-1}
+K = \Sigma^{-1},
 \end{equation}
+the potential vector
 \begin{equation}\label{eq:8}
-\bm{h} = \Sigma^{-1}\bm{\mu}
+\bm{h} = \Sigma^{-1}\bm{\mu},
 \end{equation}
+and
 \begin{equation}\label{eq:9}
-g = - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}
+g = - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}.
 \end{equation}
-$\bm{h}$ is called the potential vector and $K$ is called the information matrix.\\\\
-The covariance parameters can again be recovered
+Thus the definition of the canonical form is
+\begin{equation}\label{eq:canonical}
+\mathcal{C}(\bm{x}; K,\bm{h},g) = \exp\left(-\frac{1}{2}\bm{x}^TK\bm{x} + \bm{h}^T\bm{x} +g \right).
+\end{equation}
+As one can always determine $g$ from $\bm{h}$ and $K$, thus a more general notation for a Gaussian distribution in canonical form is $\mathcal{C}(\bm{x}; K,\bm{h})$.
+
+It is easy to recover the covariance parameters:
 \begin{equation}
 \Sigma = K^{-1}
 \end{equation}
 \begin{equation}
 \bm{\mu} = \Sigma\bm{h}
 \end{equation}
-The covariance form is not defined when K is not invertible, even though the distribution can still be represented in the canonical form. The canonical form is only a valid Gaussian density if and only if $K$ (information matrix) is symmetric and positive definite. The canonical form is therefore more general than the covariance form. The canonical form is very useful to present linear Gaussian CPDs. From \ref{eq:9} it can be seen that only $K$ and $\bm{h}$ are necessary to calculate $g$. Thus, $g$ can be omitted when working in the canonical form. \\
+Sometimes $K$ is not invertible and the covariance can not be recovered, the canonical form is therfore more general than the covariance form.
 
-
+It can be seen from the above that it is very easy to switch between the canonical an covariance form. 
 \subsection{Operations using the canonical form}
-The main advantage of using the canonical form is that it is very easy to perform various operations on distributions. The variable $g$ is included in the following operations for completeness sake, but can be omitted as stated above.\\
-Extending and rearranging scopes of canonical forms may be necessary before doing operations, as it is important that scopes of canonical forms are identical when doing operations.
+A big advantage of using the canonical form is that it makes it easy to perform various operations on Gaussian distributions. This section will cover useful operations using the canonical form. 
+
+Extending and rearranging scopes of canonical forms may be necessary before doing operations, as it is important that scopes of canonical forms are identical when doing operations. 
 \subsubsection{Extending the scope of a canonical form:}
-If additional variables are needed, the scope of a canonical form can be extended by adding zero entries to $K$, $\bm{h}$ and $g$. 
-\begin{multline}
+The scope of a canonical form can be extended by adding zero entries to $K$ and $\bm{h}$:
+\begin{equation}
 \mathcal{C}\left(
 \begin{bmatrix}
 x\\
 y
-\end{bmatrix}:
+\end{bmatrix};
 \begin{bmatrix}
 k_{xx} & k_{xy}\\
 k_{yx} & k_{yy}
@@ -212,19 +240,15 @@ k_{yx} & k_{yy}
 \begin{bmatrix}
 h_x\\
 h_y
-\end{bmatrix},
-\begin{bmatrix}
-g_x\\
-g_y
 \end{bmatrix}
 \right)
-\\=
+=
 \mathcal{C}\left(
 \begin{bmatrix}
 x\\
 y\\
 z
-\end{bmatrix}:
+\end{bmatrix};
 \begin{bmatrix}
 k_{xx} & k_{xy} & 0\\
 k_{yx} & k_{yy} & 0\\
@@ -234,23 +258,18 @@ k_{yx} & k_{yy} & 0\\
 h_x\\
 h_y\\
 0
-\end{bmatrix},
-\begin{bmatrix}
-g_x\\
-g_y\\
-0
 \end{bmatrix}
 \right)
-\end{multline}
+\end{equation}
 \subsubsection{Rearranging the scope of a canonical form:}
-The order of the scope can be rearranged by rearranging the rows and columns of $K$  and rearranging the entries of $\bm{h}$ and $g$.
-\begin{multline}
+The scope can be rearranged by rearranging the rows and columns of $K$  and rearranging the entries of $\bm{h}$:
+\begin{equation}
 \mathcal{C}\left(
 \begin{bmatrix}
 x\\
 y\\
 z
-\end{bmatrix}:
+\end{bmatrix};
 \begin{bmatrix}
 k_{xx} & k_{xy} & k_{xz}\\
 k_{yx} & k_{yy} & k_{yz}\\
@@ -260,20 +279,15 @@ k_{zx} & k_{zy} & k_{zz}
 h_x\\
 h_y\\
 h_z
-\end{bmatrix},
-\begin{bmatrix}
-g_x\\
-g_y\\
-g_z
 \end{bmatrix}
 \right)
-\\=
+=
 \mathcal{C}\left(
 \begin{bmatrix}
 y\\
 x\\
 z
-\end{bmatrix}:
+\end{bmatrix};
 \begin{bmatrix}
 k_{yy} & k_{yx} & k_{yz}\\
 k_{xy} & k_{xx} & k_{xz}\\
@@ -283,54 +297,49 @@ k_{zy} & k_{zx} & k_{zz}
 h_y\\
 h_x\\
 h_z
-\end{bmatrix},
-\begin{bmatrix}
-g_y\\
-g_x\\
-g_z
 \end{bmatrix}
 \right)
-\end{multline}
+\end{equation}
 \subsubsection{Multiplication of canonical forms:}
-When multiplying two canonical forms, it is important that their scopes are identical. Multiplying canonical forms with the same scope is simply:
+If the scopes of two canonical forms are identical, one can multiply them by simply summing the $K$ and $\bm{h}$ parameters:
 \begin{equation}\label{eq:10}
 \mathcal{C}(K_1,\bm{h_1},g_1)\times\mathcal{C}(K_2,\bm{h_2},g_2) = \mathcal{C}(K_1 + K_2,\bm{h_1} + \bm{h_2},g_1 + g_2)
 \end{equation}
-\subsubsection{Division of canonical forms:}
-Again, it important that the scopes of the distributions are identical.
-\begin{equation}\label{eq:11}
-\frac{\mathcal{C}(K_1,\bm{h_1},g_1)}{\mathcal{C}(K_2,\bm{h_2},g_2)} = \mathcal{C}(K_1 - K_2,\bm{h_1} - \bm{h_2},g_1 - g_2)
-\end{equation}
-\subsubsection{Marginalization of a canonical form:}
-A marginal distribution can be found by integrating over a subset of variables. For example the marginal distribution over $\bm{X}$ can be found by integrating over $\bm{Y}$.\\
-Let $\mathcal{C}(\bm{X},\bm{Y};K,\bm{h},g)$ be a canonical form with subsets $\bm{X}$ and $\bm{Y}$ where
+%\subsubsection{Division of canonical forms:}
+%Again, it important that the scopes of the distributions are identical.
+%\begin{equation}\label{eq:11}
+%\frac{\mathcal{C}(K_1,\bm{h_1},g_1)}{\mathcal{C}(K_2,\bm{h_2},g_2)} = %\mathcal{C}(K_1 - K_2,\bm{h_1} - \bm{h_2},g_1 - g_2)
+%\end{equation}
+\subsubsection{Marginalisation of a canonical form:}
+A marginal distribution can be found by integrating over a subset of variables. For example the marginal distribution over $\bm{x}$ can be found by integrating over $\bm{y}$. Let $\mathcal{C}(\bm{x},\bm{y};K,\bm{h},g)$ be a canonical form with subsets $\bm{x}$ and $\bm{y}$ where
 \begin{equation}
 K = 
 \begin{bmatrix}
-K_{\bm{XX}} & K_{\bm{XY}}\\
-K_{\bm{XY}} & K_{\bm{YY}}
+K_{\bm{xx}} & K_{\bm{xy}}\\
+K_{\bm{yx}} & K_{\bm{yy}}
 \end{bmatrix}
- ; h = 
+ ;\ h = 
 \begin{pmatrix}
-h_{\bm{X}} \\
-h_{\bm{Y}}
-\end{pmatrix}
+h_{\bm{x}} \\
+h_{\bm{y}}
+\end{pmatrix}.
 \end{equation}
-To obtain the marginal distribution over $\bm{X}$, we have to find the integral over $\bm{Y}$. Therefore
+To obtain the marginal distribution over $\bm{x}$, we have to find the integral over $\bm{y}$. Therefore the marginal distribution over $\bm{x}$ is
 \begin{equation}
-\int\mathcal{C}(\bm{X},\bm{Y};K,\bm{h},g)d\bm{Y} = \mathcal{C}(\bm{X};K',\bm{h}',g')
+\int\mathcal{C}(\bm{X},\bm{Y};K,\bm{h},g)d\bm{Y} = \mathcal{C}(\bm{X};K',\bm{h}',g'),
 \end{equation}
  where
 \begin{equation}
-K' = K_{\bm{XX}} - K_{\bm{XY}}K_{\bm{XY}}^{-1}K_{\bm{YX}}
+K' = K_{\bm{xx}} - K_{\bm{xy}}K_{\bm{yy}}^{-1}K_{\bm{yx}},
 \end{equation}
 \begin{equation}
-h' = \bm{h}_{\bm{X}} - K_{\bm{XX}}K_{\bm{YY}}^{-1}\bm{h}_{\bm{Y}}
+h' = \bm{h}_{\bm{x}} - K_{\bm{xx}}K_{\bm{yy}}^{-1}\bm{h}_{\bm{y}},
 \end{equation}
+and
 \begin{equation}
-g' = g - \frac{1}{2}\left(\ln|2\pi K_{\bm{YY}}^{-1}|+ \bm{h_Y}^T K_{\bm{YY}}^{-1}\bm{h_Y}\right)
+g' = g - \frac{1}{2}\left(\ln|2\pi K_{\bm{yy}}^{-1}|+ \bm{h_y}^T K_{\bm{yy}}^{-1}\bm{h_y}\right).
 \end{equation}
-It is important to that $K_{\bm{YY}}$ is positive-definite for the result to be finite.
+It is important to that $K_{\bm{yy}}$ is positive-definite for the result to be finite.
 \subsubsection{Reduction with evidence:}
 Let $\mathcal{C}(\bm{X},\bm{Y};K,\bm{h},g)$ be a canonical form with subsets $\bm{X}$ and $\bm{Y}$. If subset $\bm{Y}$ is known $(\bm{Y} =  \bm{y})$, then the canonical form can be reduced to $\mathcal{C}(\bm{X}; K',\bm{h}',g')$, where
 \begin{equation}
@@ -497,7 +506,13 @@ I\\
 \end{split}
 \end{equation}
 \chapter{Motion models}
-Before implementing a localisation algorithm to localise an object, it is important to have a model which desctibes the movement of the object. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear objects. 
+Before implementing a localisation algorithm to localise an object, it is important to have a model which desctibes the movement of the object. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear moving objects. A more sophisticated nonlinear motion model will be explored which will be essential when investigating numerical integration techniques for localising nonlinear moving objects. This chapter is based on the work of S. Thrun, W. Burgard and D. Fox~\citep{thrun};
+\section{Basic concepts}
+The motion model describes $p(x_t|u_t,x_{t-1})$, which is the transition probability and it is vital in the the prediction step of the Bayes filter. The material will cover kinematics in a stochastic form. Robot motion will be limited to planar movement as it is easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement.  
+\section{Linear Motion}
+
+\section{Nonlinear motion}
+\subsection{Velocity motion model}
 \chapter{Localisation using Kalman Filters}
 This chapter will focus on localisation using traditional techniques such as the Kalman filter, extended Kalman filter and Unscented Kalman filter. This is important to investigate and understand as there is a strong correspondance to the PGM technique that will be discussed in a following section. The motion an measurement models will also be discussed 
 \section{Motion models}
@@ -508,12 +523,12 @@ This chapter will focus on localisation using traditional techniques such as the
 \chapter{Probabilistic Graphical Models}
 This chapter gives a brief introduction to Probabilistic Graphical Models (PGMs). PGMs are a very vast field which is beyond the scope of this document, therefore only the theory relevant to this paper will be covered. This chapter is based on the work of Koller and Friedman~\cite{koller}, Barber~\cite{barber} and Schoeman~\citep{JC}.
 \section{Overview}
-Reasoning about systems with uncertainty can become very complex and sometimes it is completely unmanageable. The PGM is a graphical technique which allows to construct probabilistic systems in a logical and compact manner which makes problems tractable. PGMs are thus used to describe the relationship between RVs and allows to reason about them. This action of querying a system or reasoning about a variable is called inference. The relationships in a PGM are usually in the form of conditional probability densities (CPDs). It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from making medical diagnosis to localising robots. Although it is a powerful technique, it has its limitations such as image recognition, where neural networks thrive.\\
-PGMs can be divided in to two categories. The first is Markov networks, which are used for non-causal systems and uses directed graphs. The second is Bayesian networks, which are used for causal systems and uses undirected graphs. As the localisation problem is in most cases causal, the focus of this chapter is on Bayesian networks.\\
+Reasoning about systems with uncertainty can become very complex and sometimes it is completely unmanageable. The PGM is a graphical technique which allows to model probabilistic systems in a logical and compact manner which makes problems tractable. PGMs are thus used to describe the relationship between RVs and allows to reason about them. This action of querying a system or reasoning about a variable is called inference. The relationships in a PGM are usually in the form of conditional probability densities (CPDs). It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from making medical diagnosis to localising robots. Although it is a powerful technique, it has its limitations such as image recognition, where neural networks thrive.\\
+PGMs can be divided in to two categories. The first is Markov networks, which are used for non-causal systems, and the second is Bayesian networks, which are used for causal systems. As the localisation problem is in most cases causal, the focus of this chapter is on Bayesian networks.\\
 The theory is also discussed in terms of continuous RVs, because problems addressed in following chapters make use of continuous RVs. Note that all of the theory can also be applied to discrete RVs. 
 \section{Basic concepts of graphical models}
-A graph consists of nodes and edges. Edges are the link between nodes and can be undirected or directed. If all edges are undirected then the graph is classified as undirected. If all edges are directed, then the graph is classified as directed.\\
-In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $X_1 \to X_k$, then $X_1$ is an ancestor of $X_k$, and $X_k$ is a descendant of $X_1$. In Figure \ref{fig:comGraphs}(b), $A$ is an ancestor of $C$ and $C$ is a descendant of $A$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:comGraphs} (b), then A is a parent of B and B is a child of A.~\cite{barber}
+A graph consists of nodes and edges. Edges are the link between nodes and can be directed or undirected. If all edges are undirected then the graph is classified as undirected. If all edges are directed, then the graph is classified as directed. Bayesian networks are directed and Markov networks are undirected.\\
+In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $X_1 \to X_k$, then $X_1$ is an ancestor of $X_k$, and $X_k$ is a descendant of $X_1$. In Figure \ref{fig:comGraphs}(b), $a$ is an ancestor of $c$ and $c$ is a descendant of $a$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:comGraphs} (b), then $a$ is a parent of $b$ and $b$ is a child of $a$.~\cite{barber}
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.3\linewidth}
@@ -528,21 +543,21 @@ In the case of directed graphs, nodes can be classified as ancestors, parents, c
   \label{fig:comGraphs}
 \end{figure}
 \section{Bayesian PGMs}
-Bayesian networks consists out of a set of nodes and directed edges. Nodes represent RVs($X_1, ..., X_n$).\\
+A system with uncertainty can be modeled with a Bayesian network. Bayesian networks consists out of a set of nodes and directed edges. Nodes represent RVs($X_1, ..., X_n$). Edges indicate the relationship between nodes.\\
 Each node is associated with a conditional probability distribution.
 \begin{equation}
 X_i \sim p(X_i|Par(X_i))
 \end{equation}
 where $Par(X_i)$ indicates the parent of node $X_i$.\\
-CPDs can be written as factors
+The CPD associated with each node can be written as a factor. A factor is a function that takes a number of random variables as arguments.
 \begin{equation}
 \phi_i(X_i, Par(X_i)) = p(X_i|Par(X_i))
 \end{equation}
-Where the scope of a factor is
+Where the scope of a factor is its' arguments
 \begin{equation}
 Scope\{\phi_i\} = \{X_i, Par(X_i)\}
 \end{equation}
-Figure \ref{fig:bays_pgm} is a simple example of a Bayesian network.
+Figure \ref{fig:bays_pgm} is an example of a Bayesian network with seven nodes labeled from $a$ to $c$. Each node is associated with a CPD. Directed edges between nodes are indicated with arrows.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/bayesian_pgm.png}
   \centering
@@ -550,7 +565,7 @@ Figure \ref{fig:bays_pgm} is a simple example of a Bayesian network.
   \label{fig:bays_pgm}
 \end{figure}
 \subsubsection{Chain Rule for Bayesian Networks}
-All of the CPDs or factors of a Bayesian network can be multiplied to find the joint distribution of the network. (Koller and Friedman~\citep{koller})
+The joint probability density distribution of all the variables in a Bayesian network can be found by finding the product of all the CPDs associated with nodes. (Koller and Friedman~\citep{koller})
 \begin{equation}
 p(X_1, ..., X_n) = \prod_i p(X_i|Par(X_i))
 \end{equation}
@@ -561,12 +576,12 @@ p(a,b,c,d,e,f,g) & = p(a)p(b)p(c)p(d|a)p(e|b,d)p(f|b,c)p(g|f)\\
 & = \phi_a(a)\phi_b(b)\phi_c(c)\phi_d(d,a)\phi_e(e,b,d)\phi_f(f,b,c)\phi_g(g,f)
 \end{split}
 \end{equation}
-A marginal PDF can be found by integrating over a subset of variables.
+A marginal PDF of a subset of variables can be found by integrating over the remaining variables.
 \begin{equation}
 p(a,b,c) = \int\int\int\int p(a,b,c,d,e,f,g)dd\ de\ df\ dg
 \end{equation}
 \section{Cluster graphs}
-Cluster graphs can be generated from Bayesian networks and are used to do inference. The cluster graph consists of clusters and undirected edges.\\Clusters are subsets of variables and can be formed by grouping factors together.\\
+After a Bayesian network has been constructed, it must be possible to reason about RVs in the network. Various methods can be used to inference a Bayesian network, one method is to construct a cluster graph. The cluster graph consists of clusters and undirected edges.\\Clusters are subsets of variables and can be formed by grouping factors together.\\
 \begin{equation}
 \bm{C}_i \subseteq \{X_1, ..., X_n\}
 \end{equation}
@@ -582,7 +597,7 @@ Scope[{\phi}_k] \subseteq \bm{C}_i
 \end{equation}\\
 \textbf{2. Running Intersection Property}\\
 There exists an unique path connecting a pair of clusters containing the same variable $X$, and every cluster and sepset along the path also contain $X$. This path allows clusters to share their beliefs of $X$. In other words, for any variable $X$, the set of sepsets and clusters containing $X$ form a tree~\citep{koller}. This prevents feedback loops and thus counters the phenomena where cluster's reinforce their own beliefs of variables.\\
-Figure \ref{fig:bays_pgm} is updated in Figure \ref{fig:cluster_bound} where CPDs is replaced with factors and potential Cluster boundaries are indicated with dashed rectangles. Note that there are other ways to configure the cluster graph.
+Figure \ref{fig:bays_pgm} is updated in Figure \ref{fig:cluster_bound} where CPDs is replaced with factors and possible cluster boundaries are indicated with dashed rectangles. Note that there are other ways to construct the cluster graph.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/cluster_divisions.png}
   \centering
@@ -590,9 +605,9 @@ Figure \ref{fig:bays_pgm} is updated in Figure \ref{fig:cluster_bound} where CPD
   \label{fig:cluster_bound}
 \end{figure}
 
-The initial belief of an cluster can be calculated by finding the product of all the factors inside the cluster.~\citep{koller}
+The initial belief of a cluster can be calculated by finding the product of all the factors inside the cluster.~\citep{koller}
 \begin{equation}
-\psi_i(C_i) = \prod_{k:\alpha (k) = i}\phi_k
+\psi_i(C_i) = \prod_{k}\phi_k
 \end{equation}
 Figure \ref{fig:cluster_bound} is updated in Figure \ref{fig:clustergraph}. Clusters are indicated by ellipsis. Initial beliefs are calculated and shown inside the ellipsis. Sepsets are indicated by rectangles.\\
 \begin{figure}[H]
@@ -602,10 +617,10 @@ Figure \ref{fig:cluster_bound} is updated in Figure \ref{fig:clustergraph}. Clus
   \label{fig:clustergraph}
 \end{figure}
 \section{Message Passing}
-Clusters share beliefs of common variables with messages passing. Messages are associated with sepsets. An outgoing message of a cluster can be calculated by multiplying the cluster with all the incoming messages and then integrating over the variables that are not in the sepset.
+Clusters can share beliefs of common variables with messages passing. Messages are associated with sepsets. An outgoing message of a cluster can be calculated by multiplying the cluster with all the incoming messages and then integrating over the variables that are not in the sepset.
 \\Thus, messages can be calculated accordingly~\citep{koller}
 \begin{equation}
-\delta_{i\to j}(\bm{S}_{i,j}) = \int_{\bm{C}_i - \bm{S}_{i,j}}\psi_i \times \prod_{k\in(\mathcal{N}_i - \{j\})} \delta_{k\to i}
+\delta_{i\to j}(\bm{S}_{i,j}) = \int_{\bm{C}_i - \bm{S}_{i,j}}\psi_i \times \prod_{k\ne j} \delta_{k\to i}(\bm{S}_{k,i})
 \end{equation}
 Applying to the cluster graph in Figure \ref{fig:clustergraph}
 \begin{equation}\label{eq:del12}
@@ -626,45 +641,14 @@ Applying to the cluster graph in Figure \ref{fig:clustergraph}
 \begin{equation}
 \delta_{2,1}(d) = \int_b \int_e \delta_{3,2}(b)\psi_2(b,d,e)db\ de
 \end{equation}
-\section{Inference: Variable Elimination}
-There are many different algorithms for inferencing graphical models. A popular one is that of variable elimination. 
-Consider Figure \ref{fig:bays_pgm} again. The belief $p(f,g)$ can be obtained by finding the marginal distribution of $f$ and $g$ from the joint distribution of the Bayesian network. 
+Sometimes the value of certain variables in a PGM are known. This is known as evidence of a RV. If there is evidence of a RV, the evidence is available for entire the PGM and the RV itself doesn't appear in the PGM anymore. Evidence is indicated by a capital letter, thus $X$ is evidence of the RV $x$. Evidence is used to reduce PDFs, before calculating outgoing messages. Therefore RVs with evidence is left out of the integral when calculating messages.\\
+In equation a message, containing RV $y$, is calculated. Evidence of $x$ is available and is indicated as $X$. The evidence of $x$ is used to reduce the cluster $\psi_i$. After $\psi_i$ has been multiplied with all other incoming messages, the result is integrated, but only over $z$.
 \begin{equation}
-p(f,g) = \int_a\int_b\int_c\int_d\int_e p(a,b,c,d,e,f,g)\,da\,db\,dc\,dd\,de
+\delta_{i\to j}(y) = \int_{z}\psi_i(x = X, y, z) \times \prod_{k\ne j} \delta_{k\to i}(\bm{S}_{k,i})
 \end{equation}
-With the chain rule, the joint distribution can be rewritten as the product of clusters defined in Figure \ref{fig:clustergraph}.
+After all the incoming messages of a cluster have been determined, the belief of a cluster can be calculated by multliplying the cluster's initial belief with all of the incoming messages, and normalizing the end result. Koller and Friedman~\cite{koller} specifies this as
 \begin{equation}
-\begin{split}
-p(f,g) & = \int_b\int_c\int_d\int_e\int_a\phi_a(a)\phi_b(b)\phi_c(c)\phi_d(d,a)\phi_e(e,b,d)\phi_f(f,b,c)\phi_g(g,f)\,da\,db\,dc\,dd\,de\\
-& = \int_b\int_c\int_d\int_e\int_a \psi_1(a,d)\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,da\,db\,dc\,dd\,de
-\end{split}
-\end{equation}%rather invloved%
-Factors with variables that are not in the scope of an integration can be moved out of the integration. Thus, in equation \ref{eq:integrala} $\psi_2$, $\psi_3$ and $\psi_4$ can be moved out the integral over $a$, as they do not contain $a$.
-%Messages $\delta_{1,2}$ to $\delta_{3,4}$ can be found by eliminating variables %that are not in the sepsets in the correct order. 
-\begin{equation}
-\label{eq:integrala}
-p(f,g) = \int_b\int_c\int_d\int_e\left[\int_a\psi_1(a,d)\,da\right]\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc\,dd\,de
-\end{equation}
-The result in equation \ref{eq:del12} can be used to make a substitution
-\begin{equation}\label{eq:suba}
-p(f,g) = \int_b\int_c\int_d\int_e\delta_{1,2}(d)\psi_2(b,d,e)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc\,dd\,de
-\end{equation}
-Steps in equation \ref{eq:integrala} and \ref{eq:suba} are repeated in equation \ref{eq:subde} to \ref{eq:endeq}.
-\begin{equation}\label{eq:subde}
-p(f,g) = \int_b\int_c\left[\int_d\int_e\delta_{1,2}(d)\psi_2(b,d,e)\,dd\,de\right]\psi_3(b,c,f)\psi_4(f,g)\,db\,dc
-\end{equation}
-\begin{equation}
-p(f,g) = \int_b\int_c\delta_{2,3}(b)\psi_3(b,c,f)\psi_4(f,g)\,db\,dc
-\end{equation}
-\begin{equation}
-p(f,g) = \left[\int_b\int_c\delta_{2,3}(b)\psi_3(b,c,f)\,db\,dc\right]\psi_4(f,g)
-\end{equation}
-\begin{equation}\label{eq:endeq}
-p(f,g) = \delta_{3,4}(f)\psi_4(f,g)
-\end{equation}
-The belief of a cluster can be calculated by multliplying the cluster with all of its' incoming messages. Koller and Friedman~\cite{koller} specifies this as
-\begin{equation}
-\beta_i(\bm{C}_i) = \psi_i \times \prod_{k \in \mathcal{N}_i} \delta_{k \to i}
+\beta_i(\bm{C}_i) \propto \psi_i \times \prod_{k} \delta_{k \to i}(\bm{S}_{k,i})
 \end{equation}
 \section{Summary}
 Bayesian networks consists of factors and directed edges.\\

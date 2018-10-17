@@ -9,40 +9,38 @@
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}
 \contentsline {chapter}{\chapternumberline {2}Gaussian Random Variables}{2}
 \contentsline {section}{\numberline {2.1}Covariance form}{2}
-\contentsline {subsection}{\numberline {2.1.1}Univariate Gaussians}{2}
-\contentsline {subsection}{\numberline {2.1.2}Multivariate Gaussians}{3}
-\contentsline {subsection}{\numberline {2.1.3}Error ellipse}{4}
-\contentsline {subsubsection}{Eigenvalue decomposition}{4}
-\contentsline {subsubsection}{Plotting a 2D error ellipse}{4}
+\contentsline {subsection}{\numberline {2.1.1}Error ellipse}{4}
 \contentsline {section}{\numberline {2.2}Canonical form}{5}
 \contentsline {subsection}{\numberline {2.2.1}Operations using the canonical form}{6}
 \contentsline {subsubsection}{Extending the scope of a canonical form:}{6}
-\contentsline {subsubsection}{Rearranging the scope of a canonical form:}{7}
-\contentsline {subsubsection}{Multiplication of canonical forms:}{7}
-\contentsline {subsubsection}{Division of canonical forms:}{7}
-\contentsline {subsubsection}{Marginalization of a canonical form:}{7}
-\contentsline {subsubsection}{Reduction with evidence:}{8}
-\contentsline {subsection}{\numberline {2.2.2}Using the canonical form the present conditional distributions (linear transformations)}{8}
-\contentsline {chapter}{\chapternumberline {3}Motion models}{10}
-\contentsline {chapter}{\chapternumberline {4}Localisation using Kalman Filters}{11}
-\contentsline {section}{\numberline {4.1}Motion models}{11}
-\contentsline {section}{\numberline {4.2}Measurement models}{11}
-\contentsline {section}{\numberline {4.3}Kalman Filter}{11}
-\contentsline {section}{\numberline {4.4}Extended Kalman Filter}{11}
-\contentsline {section}{\numberline {4.5}Unscented Kalman Filter}{11}
-\contentsline {chapter}{\chapternumberline {5}Probabilistic Graphical Models}{12}
-\contentsline {section}{\numberline {5.1}Overview}{12}
-\contentsline {section}{\numberline {5.2}Basic concepts of graphical models}{13}
-\contentsline {section}{\numberline {5.3}Bayesian PGMs}{13}
-\contentsline {subsubsection}{Chain Rule for Bayesian Networks}{14}
-\contentsline {section}{\numberline {5.4}Cluster graphs}{14}
-\contentsline {section}{\numberline {5.5}Message Passing}{16}
-\contentsline {section}{\numberline {5.6}Inference: Variable Elimination}{17}
-\contentsline {section}{\numberline {5.7}Summary}{18}
-\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{19}
-\contentsline {section}{\numberline {6.1}Linear localisation}{19}
-\contentsline {section}{\numberline {6.2}Non-linear localisation}{19}
-\contentsline {subsection}{\numberline {6.2.1}Taylor series expansion}{19}
-\contentsline {subsection}{\numberline {6.2.2}Unscented transform}{19}
-\contentsline {subsection}{\numberline {6.2.3}Monte Carlo integration}{19}
-\contentsline {chapter}{List of References}{20}
+\contentsline {subsubsection}{Rearranging the scope of a canonical form:}{6}
+\contentsline {subsubsection}{Multiplication of canonical forms:}{6}
+\contentsline {subsubsection}{Marginalisation of a canonical form:}{6}
+\contentsline {subsubsection}{Reduction with evidence:}{7}
+\contentsline {subsection}{\numberline {2.2.2}Using the canonical form the present conditional distributions (linear transformations)}{7}
+\contentsline {chapter}{\chapternumberline {3}Motion models}{9}
+\contentsline {section}{\numberline {3.1}Basic concepts}{9}
+\contentsline {section}{\numberline {3.2}Linear Motion}{9}
+\contentsline {section}{\numberline {3.3}Nonlinear motion}{9}
+\contentsline {subsection}{\numberline {3.3.1}Velocity motion model}{9}
+\contentsline {chapter}{\chapternumberline {4}Localisation using Kalman Filters}{10}
+\contentsline {section}{\numberline {4.1}Motion models}{10}
+\contentsline {section}{\numberline {4.2}Measurement models}{10}
+\contentsline {section}{\numberline {4.3}Kalman Filter}{10}
+\contentsline {section}{\numberline {4.4}Extended Kalman Filter}{10}
+\contentsline {section}{\numberline {4.5}Unscented Kalman Filter}{10}
+\contentsline {chapter}{\chapternumberline {5}Probabilistic Graphical Models}{11}
+\contentsline {section}{\numberline {5.1}Overview}{11}
+\contentsline {section}{\numberline {5.2}Basic concepts of graphical models}{11}
+\contentsline {section}{\numberline {5.3}Bayesian PGMs}{12}
+\contentsline {subsubsection}{Chain Rule for Bayesian Networks}{13}
+\contentsline {section}{\numberline {5.4}Cluster graphs}{13}
+\contentsline {section}{\numberline {5.5}Message Passing}{15}
+\contentsline {section}{\numberline {5.6}Summary}{16}
+\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{17}
+\contentsline {section}{\numberline {6.1}Linear localisation}{17}
+\contentsline {section}{\numberline {6.2}Non-linear localisation}{17}
+\contentsline {subsection}{\numberline {6.2.1}Taylor series expansion}{17}
+\contentsline {subsection}{\numberline {6.2.2}Unscented transform}{17}
+\contentsline {subsection}{\numberline {6.2.3}Monte Carlo integration}{17}
+\contentsline {chapter}{List of References}{18}
