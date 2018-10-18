@@ -17,7 +17,7 @@
 \contentsline {subsubsection}{Multiplication of canonical forms:}{6}
 \contentsline {subsubsection}{Marginalisation of a canonical form:}{6}
 \contentsline {subsubsection}{Reduction with evidence:}{7}
-\contentsline {subsection}{\numberline {2.2.2}Using the canonical form the present conditional distributions (linear transformations)}{7}
+\contentsline {subsection}{\numberline {2.2.2}Linear transformations using the canoncical form}{7}
 \contentsline {chapter}{\chapternumberline {3}Motion models}{9}
 \contentsline {section}{\numberline {3.1}Basic concepts}{9}
 \contentsline {section}{\numberline {3.2}Linear Motion}{9}
@@ -35,12 +35,12 @@
 \contentsline {section}{\numberline {5.3}Bayesian PGMs}{12}
 \contentsline {subsubsection}{Chain Rule for Bayesian Networks}{13}
 \contentsline {section}{\numberline {5.4}Cluster graphs}{13}
-\contentsline {section}{\numberline {5.5}Message Passing}{15}
-\contentsline {section}{\numberline {5.6}Summary}{16}
-\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{17}
-\contentsline {section}{\numberline {6.1}Linear localisation}{17}
-\contentsline {section}{\numberline {6.2}Non-linear localisation}{17}
-\contentsline {subsection}{\numberline {6.2.1}Taylor series expansion}{17}
-\contentsline {subsection}{\numberline {6.2.2}Unscented transform}{17}
-\contentsline {subsection}{\numberline {6.2.3}Monte Carlo integration}{17}
-\contentsline {chapter}{List of References}{18}
+\contentsline {section}{\numberline {5.5}Message Passing}{14}
+\contentsline {section}{\numberline {5.6}Summary}{15}
+\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{16}
+\contentsline {section}{\numberline {6.1}Linear localisation}{16}
+\contentsline {section}{\numberline {6.2}Non-linear localisation}{16}
+\contentsline {subsection}{\numberline {6.2.1}Taylor series expansion}{16}
+\contentsline {subsection}{\numberline {6.2.2}Unscented transform}{16}
+\contentsline {subsection}{\numberline {6.2.3}Monte Carlo integration}{16}
+\contentsline {chapter}{List of References}{17}

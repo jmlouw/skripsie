@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.14)  17 OCT 2018 22:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.14)  18 OCT 2018 17:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -836,7 +836,7 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 File: Figures/univariate.png Graphic file (type png)
 
 <use Figures/univariate.png>
-Package pdftex.def Info: Figures/univariate.png used on input line 114.
+Package pdftex.def Info: Figures/univariate.png used on input line 119.
 (pdftex.def)             Requested size: 273.14923pt x 177.40399pt.
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
@@ -865,7 +865,7 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 File: Figures/e_ellipse.png Graphic file (type png)
 
 <use Figures/e_ellipse.png>
-Package pdftex.def Info: Figures/e_ellipse.png used on input line 181.
+Package pdftex.def Info: Figures/e_ellipse.png used on input line 189.
 (pdftex.def)             Requested size: 227.62206pt x 200.44594pt.
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
@@ -941,19 +941,19 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 
 [10
 
-] <Figures/undirected_graph.png, id=83, 613.29124pt x 615.29875pt>
+] <Figures/undirected_graph.png, id=84, 613.29124pt x 615.29875pt>
 File: Figures/undirected_graph.png Graphic file (type png)
 
 <use Figures/undirected_graph.png>
-Package pdftex.def Info: Figures/undirected_graph.png used on input line 535.
-(pdftex.def)             Requested size: 136.57462pt x 137.01854pt.
+Package pdftex.def Info: Figures/undirected_graph.png used on input line 561.
+(pdftex.def)             Requested size: 113.81102pt x 114.17586pt.
 
-<Figures/directed_graph.png, id=84, 614.295pt x 620.3175pt>
+<Figures/directed_graph.png, id=85, 614.295pt x 620.3175pt>
 File: Figures/directed_graph.png Graphic file (type png)
 
 <use Figures/directed_graph.png>
-Package pdftex.def Info: Figures/directed_graph.png used on input line 539.
-(pdftex.def)             Requested size: 136.57462pt x 137.909pt.
+Package pdftex.def Info: Figures/directed_graph.png used on input line 565.
+(pdftex.def)             Requested size: 113.81102pt x 114.9273pt.
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
@@ -966,12 +966,12 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 
 [11
 
-] <Figures/bayesian_pgm.png, id=88, 926.46124pt x 540.0175pt>
+] <Figures/bayesian_pgm.png, id=89, 926.46124pt x 540.0175pt>
 File: Figures/bayesian_pgm.png Graphic file (type png)
 
 <use Figures/bayesian_pgm.png>
-Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 562.
-(pdftex.def)             Requested size: 273.14923pt x 159.21313pt.
+Package pdftex.def Info: Figures/bayesian_pgm.png used on input line 589.
+(pdftex.def)             Requested size: 227.62206pt x 132.67212pt.
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
@@ -982,16 +982,13 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
  []
 
-[12 <./Figures/undirected_graph.png> <./Figures/directed_graph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 584--585
-
- []
-
-<Figures/cluster_divisions.png, id=94, 855.195pt x 484.81125pt>
+[12 <./Figures/undirected_graph.png> <./Figures/directed_graph.png> <./Figures/
+bayesian_pgm.png>]
+<Figures/cluster_divisions.png, id=95, 855.195pt x 484.81125pt>
 File: Figures/cluster_divisions.png Graphic file (type png)
 
 <use Figures/cluster_divisions.png>
-Package pdftex.def Info: Figures/cluster_divisions.png used on input line 602.
+Package pdftex.def Info: Figures/cluster_divisions.png used on input line 630.
 (pdftex.def)             Requested size: 273.14923pt x 154.84686pt.
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
@@ -1003,18 +1000,12 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
  []
 
-[13 <./Figures/bayesian_pgm.png>]
-<Figures/clustergraph.png, id=98, 1362.08875pt x 571.13374pt>
+[13] <Figures/clustergraph.png, id=99, 1362.08875pt x 571.13374pt>
 File: Figures/clustergraph.png Graphic file (type png)
 
 <use Figures/clustergraph.png>
-Package pdftex.def Info: Figures/clustergraph.png used on input line 614.
+Package pdftex.def Info: Figures/clustergraph.png used on input line 642.
 (pdftex.def)             Requested size: 455.24411pt x 190.88872pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 611--618
-
- []
-
 
 Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
@@ -1045,17 +1036,7 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
  []
 
-[16]
-Overfull \hbox (57.24411pt too wide) has occurred while \output is active
-[]
- []
-
-
-Overfull \hbox (57.24411pt too wide) has occurred while \output is active
-[]
- []
-
-[17
+[16
 
 ] (./cobus_skripsie.bbl
 (/usr/share/texlive/texmf-dist/tex/latex/stellenbosch/usbib.eng)
@@ -1073,7 +1054,7 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 []
  []
 
-[18
+[17
 
 
 ]
@@ -1085,31 +1066,32 @@ Overfull \hbox (57.24411pt too wide) has occurred while \output is active
 
  (./cobus_skripsie.aux) ) 
 Here is how much of TeX's memory you used:
- 9151 strings out of 493029
- 131799 string characters out of 6136233
- 254459 words of memory out of 5000000
- 12546 multiletter control sequences out of 15000+600000
+ 9154 strings out of 493029
+ 131832 string characters out of 6136233
+ 255534 words of memory out of 5000000
+ 12549 multiletter control sequences out of 15000+600000
  15476 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,22n,46p,866b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,22n,46p,831b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on cobus_skripsie.pdf (25 pages, 561795 bytes).
+onts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on cobus_skripsie.pdf (24 pages, 562257 bytes).
 PDF statistics:
  175 PDF objects out of 1000 (max. 8388607)
  117 compressed objects within 2 object streams
