@@ -7,11 +7,13 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Univariate Gaussian PDF\relax }}{3}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Error Ellipse\relax }}{5}
 \addvspace {10pt}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Robot pose\relax }}{9}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Velocity motion model\relax }}{11}
 \addvspace {10pt}
 \addvspace {10pt}
 \addvspace {10pt}
-\contentsline {figure}{\numberline {6.1}{\ignorespaces \relax }}{17}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Bayesian PGM\relax }}{17}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Bayesian PGM with cluster boundaries\relax }}{19}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Cluster graph\relax }}{19}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Undirected and directed graphs\relax }}{18}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Bayesian PGM\relax }}{18}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Bayesian PGM with cluster boundaries\relax }}{20}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Cluster graph\relax }}{20}
 \addvspace {10pt}

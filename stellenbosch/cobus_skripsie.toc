@@ -10,9 +10,9 @@
 \contentsline {chapter}{Abstract}{viii}
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}
 \contentsline {chapter}{\chapternumberline {2}Gaussian Random Variables}{2}
-\contentsline {section}{\numberline {2.1}Covariance form}{2}
-\contentsline {subsection}{\numberline {2.1.1}Error ellipse}{4}
-\contentsline {section}{\numberline {2.2}Canonical form}{5}
+\contentsline {section}{\numberline {2.1}Covariance Form}{2}
+\contentsline {subsection}{\numberline {2.1.1}Error Ellipse}{4}
+\contentsline {section}{\numberline {2.2}Canonical Form}{5}
 \contentsline {subsection}{\numberline {2.2.1}Operations using the Canonical Form}{6}
 \contentsline {subsubsection}{Extending the Scope of a Canonical Form:}{6}
 \contentsline {subsubsection}{Rearranging the Scope of a Canonical Form:}{6}
@@ -20,9 +20,9 @@
 \contentsline {subsubsection}{Marginalisation of a Canonical Form:}{6}
 \contentsline {subsubsection}{Reduction with Evidence:}{7}
 \contentsline {subsection}{\numberline {2.2.2}Linear Transformations using the Canoncical Form}{7}
-\contentsline {chapter}{\chapternumberline {3}Motion models}{9}
-\contentsline {section}{\numberline {3.1}Basic concepts}{9}
-\contentsline {section}{\numberline {3.2}Linear Motion Model}{9}
+\contentsline {chapter}{\chapternumberline {3}Motion Models}{9}
+\contentsline {section}{\numberline {3.1}Basic Concepts}{9}
+\contentsline {section}{\numberline {3.2}Linear Motion Model}{10}
 \contentsline {section}{\numberline {3.3}Non-linear Motion Model}{10}
 \contentsline {chapter}{\chapternumberline {4}Measurement Models}{12}
 \contentsline {section}{\numberline {4.1}Linear Measurement Model}{12}
@@ -30,19 +30,20 @@
 \contentsline {section}{\numberline {5.1}Background}{13}
 \contentsline {section}{\numberline {5.2}Bayes Filter}{13}
 \contentsline {section}{\numberline {5.3}Kalman Filter}{14}
-\contentsline {subsection}{\numberline {5.3.1}Implementation}{15}
+\contentsline {subsection}{\numberline {5.3.1}Description of Kalman Filter}{14}
+\contentsline {subsection}{\numberline {5.3.2}Kalman Filter Implementation}{15}
 \contentsline {section}{\numberline {5.4}Extended Kalman Filter}{15}
-\contentsline {section}{\numberline {5.5}Unscented Kalman Filter}{15}
-\contentsline {chapter}{\chapternumberline {6}Probabilistic Graphical Models}{16}
-\contentsline {section}{\numberline {6.1}Overview}{16}
-\contentsline {section}{\numberline {6.2}Basic Concepts of Graphical Models}{16}
-\contentsline {section}{\numberline {6.3}Bayesian PGMs}{17}
-\contentsline {section}{\numberline {6.4}Cluster Graphs}{18}
-\contentsline {section}{\numberline {6.5}Message Passing}{19}
-\contentsline {chapter}{\chapternumberline {7}Localisation using Probabilistic Graphical Models}{21}
-\contentsline {section}{\numberline {7.1}Linear localisation}{21}
-\contentsline {section}{\numberline {7.2}Non-linear localisation}{21}
-\contentsline {subsection}{\numberline {7.2.1}Taylor series expansion}{21}
-\contentsline {subsection}{\numberline {7.2.2}Unscented transform}{21}
-\contentsline {subsection}{\numberline {7.2.3}Monte Carlo integration}{21}
-\contentsline {chapter}{List of References}{22}
+\contentsline {section}{\numberline {5.5}Unscented Kalman Filter}{16}
+\contentsline {chapter}{\chapternumberline {6}Probabilistic Graphical Models}{17}
+\contentsline {section}{\numberline {6.1}Overview}{17}
+\contentsline {section}{\numberline {6.2}Basic Concepts of Graphical Models}{17}
+\contentsline {section}{\numberline {6.3}Bayesian PGMs}{18}
+\contentsline {section}{\numberline {6.4}Cluster Graphs}{19}
+\contentsline {section}{\numberline {6.5}Message Passing}{20}
+\contentsline {chapter}{\chapternumberline {7}Localisation using Probabilistic Graphical Models}{22}
+\contentsline {section}{\numberline {7.1}Linear localisation}{22}
+\contentsline {section}{\numberline {7.2}Non-linear localisation}{22}
+\contentsline {subsection}{\numberline {7.2.1}Taylor series expansion}{22}
+\contentsline {subsection}{\numberline {7.2.2}Unscented transform}{22}
+\contentsline {subsection}{\numberline {7.2.3}Monte Carlo integration}{22}
+\contentsline {chapter}{List of References}{23}

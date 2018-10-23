@@ -86,7 +86,9 @@ Private Bag X1, 7602 Matieland, South Africa.}
 \> $|X|$ \> - \> determinant of matrix\\
 \> $p(x)$ \> - \> probability density function\\
 \> $\mathcal{N}(\bm{x}; \bm{\mu}, \Sigma)$ \> - \> covariance form\\
-\> $\mathcal{C}(\bm{x}; K, \bm{h})$ \> - \> canonical form
+\> $\mathcal{C}(\bm{x}; K, \bm{h})$ \> - \> canonical form\\
+\> $[0]$ \> - \> zero matrix\\
+\> $\bm{0}$ \> - \> zero vector
 \end{tabbing}
 
 \chapter{List of Symbols}
@@ -120,7 +122,7 @@ The end goal of this project is investigate different numerical techniques of in
 \chapter{Gaussian Random Variables}
 The Gaussian or normal distribution is commonly used in probability theory, as it is very easy to work with. Although Gaussian distributions make severe assumptions such as exponential decay of the distribution away from its mean and linear interactions between variables, they are often surprisingly good estimations for real world distributions. The Gaussian distribution is a very important concept in this report as all probability distributions are approximated as Gaussian distributions. Key concepts, features and representations of the Gaussian distribution are discussed in this chapter. The following chapter is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
 
-\section{Covariance form}
+\section{Covariance Form}
 Random variables can take different values described by some function. A Gaussian RV is a RV which value is drawn from Gaussian distribution.
 
 The univariate Gaussian distribution is probability density function (PDF) of a single Gaussian RV. The covariance form fully describes a univariate Gaussian distribution by a mean $\mu$ and variance $\sigma^2$.
@@ -182,9 +184,12 @@ The mean vector of RV vector $\bm{x}$ is equal to the expectation of $\bm{x}$ an
 \end{equation}
 The covariance matrix $\Sigma$ specifies the correlation between RVs and is equal to
 \begin{equation}
-\Sigma = E[\bm{xx}^T] - E[\bm{x}]E[\bm{x}]^T.
+\begin{split}
+\Sigma & = E\left[(\bm{x} - E[\bm{x}])^2\right]\\
+& = E[\bm{xx}^T] - E[\bm{x}]E[\bm{x}]^T.
+\end{split}
 \end{equation}
-\subsection{Error ellipse}The following section is based on an article by Abdi ~\cite{abdi} and on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.
+\subsection{Error Ellipse}The following section is based on an article by Abdi ~\cite{abdi} and on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.
 
 A multivariate Gaussian distribution with RV vector
 \begin{equation}
@@ -230,7 +235,7 @@ where $\lambda_1 \geq \lambda_2$.
   \caption{Error Ellipse}
   \label{fig:e_ellipse}
 \end{figure}
-\section{Canonical form}
+\section{Canonical Form}
 The canonical or information form is an alternative way to describe Gaussian distributions. Using the canonical form has benefits, such as certain operations are easier to perform. It can also be used to represent Gaussian conditional probability densities (CPDs), which will be discussed later in this section. The following section is based on the work of Koller and Friedman~\cite{koller} and Schoeman~\citep{JC}.
 
 Equation \ref{eq:3}, which is the definition of a Gaussian PDF, can be rewritten
@@ -299,14 +304,14 @@ K_{\bm{yx}} & K_{\bm{yy}}
 \bm{z}
 \end{bmatrix};
 \begin{bmatrix}
-K_{\bm{xx}} & K_{\bm{xy}} & \textit{0}\\
-K_{\bm{yx}} & K_{\bm{yy}} & \textit{0}\\
-\textit{0} & \textit{0} & \textit{0}
+K_{\bm{xx}} & K_{\bm{xy}} & [0]\\
+K_{\bm{yx}} & K_{\bm{yy}} & [0]\\
+[0] & [0] & [0]
 \end{bmatrix},
 \begin{bmatrix}
 \bm{h_x}\\
 \bm{h_y}\\
-\textit{0}
+\bm{0}
 \end{bmatrix}
 \right)
 \end{equation}
@@ -567,10 +572,10 @@ I\\
 \end{split}
 \end{equation}
 This representation of conditional probability densities in the canonical form will be very useful in future chapters.
-\chapter{Motion models}
-Before implementing a localisation algorithm to localise a robot, it is important to have a model which describes the movement of the robot. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear moving objects. A more complex non-linear motion model will be explored which will be essential when investigating numerical integration techniques for localising non-linear moving objects. This chapter is based on the work of S. Thrun, W. Burgard and D. Fox~\citep{thrun};
-\section{Basic concepts}
-The motion model describes $p(x_t|u_t,x_{t-1})$, which is the transition probability and it is vital in the the prediction step of the Bayes filter. The material will cover kinematics in a stochastic form. Robot motion will be limited to planar movement as it is easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement.
+\chapter{Motion Models}\label{chapMotionModel}
+Before implementing a localisation algorithm to localise a robot, it is important to have a model which describes the movement of the robot. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear moving robots. In reality the movement of a robot is rarely linear, therefore a more complex non-linear motion model will be explored. This chapter is based on the work of Thrun, Burgard and Fox~\citep{thrun};
+\section{Basic Concepts}
+The motion model describes $p(x_t|u_t,x_{t-1})$, which is the transition probability and it is vital in the the \textit{prediction step} of the Bayes filter, discussed in Chapter 5. The material will cover kinematics in a stochastic form. Robot motion will be limited to planar movement as it is easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement and can be easily extended to three dimensions.
 
 The kinematic state of a robot moving in a plane can be described by three variables which is referred to as the pose of the robot.
 The pose is defined as
@@ -580,13 +585,20 @@ The pose is defined as
 x_t\\
 y_t\\
 \theta_t
-\end{bmatrix},
+\end{bmatrix}.
 \end{equation}
-where $x_t$ is the x-coordinate, $y_t$ is the y-coordinate and $\theta_t$ is the orientation of the robot at time $t$. 
-\section{Linear Motion Model}
+As shown in Figure \ref{fig:pose_robot}, $x_t$ is the x-coordinate, $y_t$ is the y-coordinate and $\theta_t$ is the orientation of the robot at time $t$.
+
+\begin{figure}[H]
+  \includegraphics[width=0.4\linewidth]{Figures/pose_robot.png}
+  \centering
+  \caption{Robot pose}
+  \label{fig:pose_robot}
+\end{figure}
+\section{Linear Motion Model}\label{linearmotionmodel}
 The linear motion model describes linear movement of a robot between time steps in a plane. The parameter $\theta_t$ is omitted from the pose  and therefore the kinematic state of the robot is described by only a location
 \begin{equation}
-\bm{x_t} =
+\bm{y_t} =
 \begin{bmatrix}
 x_t\\
 y_t
@@ -604,9 +616,9 @@ v_{y,t}
 \end{equation}
 where $v_{x,t}$ is the velocity in the x-direction and $v_{y,t}$ is the velocity in the y-direction at time $t$.
 
-The position of the robot at time $t$ can be described as linear function in the form of
-\begin{equation}
-\bm{x_t} = A \bm{x_{t - 1}} + B \bm{u_t} + \bm{n},
+The position $\bm{y_t}$ of the robot at time $t$ can be described as linear function in the form of
+\begin{equation}\label{eq:lineartrans}
+\bm{y_t} = A \bm{y_{t - 1}} + B \bm{u_t} + \bm{\varepsilon},
 \end{equation}
 where
 \begin{equation}
@@ -623,26 +635,26 @@ B = \begin{bmatrix}
 \end{bmatrix},
 \end{equation}
 \begin{equation}
-\bm{n} =
+\bm{\varepsilon} =
 \begin{bmatrix}
-n_x\\
-n_y
+\varepsilon_x\\
+\varepsilon_y
 \end{bmatrix},
 \end{equation}
 and the noise is described as Gaussian distributions
 \begin{equation}
-n_x \sim \mathcal{N}(n_x; 0, \sigma_x^2),
+\varepsilon_x \sim \mathcal{N}(\varepsilon_x; 0, \sigma_x^2),
 \end{equation}
 \begin{equation}
-n_y \sim \mathcal{N}(n_y; 0, \sigma_y^2).
+\varepsilon_y \sim \mathcal{N}(\varepsilon_y; 0, \sigma_y^2).
 \end{equation}
 The variances $\sigma_x^2$ and $\sigma_y^2$ is determined empirically and $\Delta t$ is the length of a time step.
 
 
 \section{Non-linear Motion Model}
-Two non-linear motion models were considered for this project, namely the velocity and odometry model. The odometry motion model uses sensor measurements to describe a robot's motion over time as a rotation, translation and then another rotation. Odometry models can only be used for retrospect after a robot moved and can not be used for motion planning. The velocity model is suitable for motion planning and assumes that a robot can be controlled with a rotational and translational velocity. The odometry model is usually more accurate than the velocity model, as it is difficult to get an accurate reading of the revolution of a robot's wheels. The velocity motion model was used in this project as it more relevant to motion planning for autonomous robots.
+Two non-linear motion models were considered for this project, namely the velocity and odometry model. The odometry motion model uses sensor measurements to describe a robot's movement over time. Odometry models can  only be used for retrospect after a robot moved and can not be used for motion planning. The velocity model is suitable for motion planning and assumes that a robot can be controlled with a rotational and translational velocity. The velocity motion model therefore predicts how the robot will move and is not as accurate as the odometry motion model. Both the odometry and velocity motion models are common and widely used. As the velocity motion model was sufficient for the goal this project, it was the motion model of choice.
 
-The velocity motion model assumes that the movement of a robot can be described by a translational velocity $v_t$ and a rotational velocity $\omega_t$ . The control vector $u_t$ is thus described as
+The velocity motion model assumes that the movement of a robot can be described by a translational velocity $v_t$ and a rotational velocity $\omega_t$, shown in Figure \ref{fig:vel_model}. The control vector $u_t$ is thus described as
 \begin{equation}
 \bm{u_t} = 
 \begin{bmatrix}
@@ -650,33 +662,44 @@ v_t\\
 \omega_t
 \end{bmatrix}.
 \end{equation}
+\begin{figure}
+  \includegraphics[width=0.4\linewidth]{Figures/velocity_model.png}
+  \centering
+  \caption{Velocity motion model}
+  \label{fig:vel_model}
+\end{figure}
+
 Positive rotational velocities are defined to be counter-clockwise and positive translational velocities are specified to be in the "forward" direction.
-The position $x_t$ and $y_t$, and orientation $\theta_t$ at time $t$ can be determined
+The pose at time $t$ can be determined
 \begin{equation}
-x_t = x_{t-1} - \frac{v_t}{\omega_t} \sin\theta_{t-1} + \frac{v_t}{\omega_t} \sin(\theta_{t-1} + \omega_t \Delta t) + n_x
-\end{equation}
-\begin{equation}
-y_t = y_{t-1} - \frac{v_t}{\omega_t} \cos\theta_{t-1} + \frac{v_t}{\omega_t} \cos(\theta_{t-1} + \omega_t \Delta t) + n_y
-\end{equation}
-\begin{equation}
-\theta_t = \theta_{t-1} + \omega_t \Delta t + n_\theta,
+\begin{bmatrix}
+x_t\\
+y_t\\
+\theta_t
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_{t-1} - \frac{v_t}{\omega_t} \sin\theta_{t-1} + \frac{v_t}{\omega_t} \sin(\theta_{t-1} + \omega_t \Delta t) + \varepsilon_x\\
+y_{t-1} - \frac{v_t}{\omega_t} \cos\theta_{t-1} + \frac{v_t}{\omega_t} \cos(\theta_{t-1} + \omega_t \Delta t) + \varepsilon_y\\
+\theta_{t-1} + \omega_t \Delta t + \varepsilon_\theta
+\end{bmatrix},
 \end{equation}
 where
 \begin{equation}
-n_x \sim \mathcal{N}(n_x; 0, {\sigma_x}^2),
+\varepsilon_x \sim \mathcal{N}(\varepsilon_x; 0, {\sigma_x}^2),
 \end{equation}
 \begin{equation}
-n_y \sim \mathcal{N}(n_y; 0, {\sigma_y}^2)
+\varepsilon_y \sim \mathcal{N}(\varepsilon_y; 0, {\sigma_y}^2)
 \end{equation}
 and
 \begin{equation}
-n_\theta \sim \mathcal{N}(n_\theta; 0, {\sigma_\theta}^2).
+\varepsilon_\theta \sim \mathcal{N}(\varepsilon_\theta; 0, {\sigma_\theta}^2).
 \end{equation}
-Where variances ${\sigma_x}^2$, ${\sigma_x}^2$ and ${\sigma_x}^2$ are determined empirically.
+Where variances ${\sigma_x}^2$, ${\sigma_y}^2$ and ${\sigma_\theta}^2$ are determined empirically.
 
 The model is non-linear due to the fact due to the fact that the movement of the robot cannot be described by a linear translation in the form of
 \begin{equation}
-\bm{y} = A\bm{x} + B
+\bm{y} = A\bm{x} + B.
 \end{equation}
 \chapter{Measurement Models}
 
@@ -684,17 +707,17 @@ As mentioned in the introduction, measurements retrieved from sensors always con
 \section{Linear Measurement Model}
 
 \chapter{Localisation using Kalman Filters}
-This chapter will focus on localisation using traditional techniques such as the Kalman filter, extended Kalman filter and unscented Kalman filter. This is important to investigate and understand as there is a strong correspondence to the PGM technique that will be discussed in a following section
+This chapter will focus on localisation using traditional techniques such as the Kalman filter, extended Kalman filter and unscented Kalman filter. This is important to investigate and understand as there is a strong correspondence to the PGM technique that will be discussed in a following section.
 \section{Background}
 A concept that is often used is in this report is that of \textit{belief}. As mentioned in the introduction, a robot cannot truly know its pose. A robot can infer a belief or have internal knowledge of its state from information gathered from sensors. There is thus a difference between internal belief and true state.
 
 Beliefs are represented with CPDs. A belief is thus a PDF of a state variable which is conditioned on given data. The belief of a state variable is denoted as
 \begin{equation}
-x_t \sim bel(x_t)
+x_t \sim bel(x_t),
 \end{equation}
 which a reduced notation for the posterior
 \begin{equation}
-bel(x_t) = p(x_t| z_{1:t}, u_{1:t})
+bel(x_t) = p(x_t| z_{1:t}, u_{1:t}).
 \end{equation}
 The posterior is the PDF of a state variable $x_t$ at time $t$ conditioned on all the previous control inputs $u_{1:t}$ and measurements $z_{1:t}$. The posterior $bel(x_t)$ is usually calculated from a \textit{predicted belief} $\overline{bel}(x_t)$, this calculation is known as the \textit{update step}.
 
@@ -704,11 +727,11 @@ The \textit{predicted belief} is defined as
 \end{equation} 
 and is the PDF of the state variable $x_t$ without taking the measurement $z_t$ in to consideration, hence it is known as the \textit{prediction step}.
 \section{Bayes Filter}
-The \textit{Bayes Filter} algorithm is the cornerstone for determining beliefs and filters such as the Kalman filter is a variation of it. The pseudo code for the Bayes filter is shown in Algorithm \ref{bayesAlg}. One can observe that the algorithm is recursive as it takes the previous belief $x_{t-1}$ at time $t-1$ as an argument to estimate and return the belief $x_t$ at time $t$. The algorithm takes three parameters, namely the previous belief $bel(x_{t-1})$, the latest control input $u_t$ and, the measurements $z_t$ which is a result of the control input. The pseudo code shows one iteration of the algorithm which consist out of two steps, namely the \textit{prediction step} in line 3, and \textit{update step} in line 4.
+The \textit{Bayes Filter} algorithm is the cornerstone for determining beliefs and filters such as the Kalman filter is a variation of it. The pseudo-algorithm for the Bayes filter is shown in Algorithm \ref{bayesAlg}. One can observe that the algorithm is recursive as it takes the previous belief $x_{t-1}$ at time $t-1$ as an argument to estimate and return the belief $x_t$ at time $t$. The algorithm takes three parameters, namely the previous belief $bel(x_{t-1})$, the latest control input $u_t$ and the measurements $z_t$, which is a result of the control input. The pseudo-algorithm shows one iteration of the algorithm which consist out of two steps, namely the \textit{prediction step} in line 3, and \textit{update step} in line 4.
 
-The \textit{prediction step} calculates a belief of the state $x_t$ based on the previous state $x_{t-1}$ and the control input $u_t$. In this step the marginal distribution over $x_{t-1}$ is calculated of the product of two distributions: the prior belief $bel(x_{t-1})$, and the PDF of $x_t$ given $u_t$ and $x_{t-1}$.
+The \textit{prediction step} calculates a belief of the state $x_t$ based on the previous state $x_{t-1}$ and the control input $u_t$. In this step the marginal distribution over $x_{t-1}$ is calculated of the product of two distributions: the prior belief $bel(x_{t-1})$, and the  transition probability $p(x_t|u_t,x_{t-1})$.
 
-In the \textit{update step} the final belief of state $x_t$ is calculated by multiplying the predicted belief $\overline{bel}(x_t)$ with the probability of $z_t$ given $x_t$. The result usually does not integrate to one, hence it is not a valid PDF and has to be normalized with $\eta$. The final belief $bel(x_t)$ is returned.
+In the \textit{update step} the final belief of state $x_t$ is calculated by multiplying the predicted belief $\overline{bel}(x_t)$ with the probability of $z_t$ given $x_t$. The result usually does not integrate to one, hence it is usually not a valid PDF and has to be normalized by multiplying it with $\eta$. The final belief $bel(x_t)$ is returned.
 \begin{algorithm}
 \caption{Bayes Filter}\label{bayesAlg}
 \begin{algorithmic}[1]
@@ -723,11 +746,13 @@ In the \textit{update step} the final belief of state $x_t$ is calculated by mul
 \end{algorithm}
 
 \section{Kalman Filter}
-The Kalman filter is an implementation of the Bayes filter and is used for prediction in linear Gaussian systems. The Kalman filter is used in systems data is continuously changing and it is not applicable in discrete state spaces. The Kalman filter makes three assumptions in addition to the Markov assumptions which have the outcome that posterior beliefs calculated with the Kalman filter are Gaussian distributions.
+The Kalman filter is an implementation of the Bayes filter and is used for prediction in linear Gaussian systems. The Kalman filter is used for belief estimation of systems with continuous states and is not applicable in discrete state spaces. 
+\subsection{Description of Kalman Filter}
+The Kalman filter makes three assumptions in addition to the Markov assumptions which have the outcome that posterior beliefs calculated with the Kalman filter are Gaussian distributions.
 
-1.Linear system dynamics are assumed. The motion model describing the movement must be linear with added Gaussian noise $\bm{n}$ and must be able to express it with 
-\begin{equation}
-\bm{x}_t = A \bm{x}_{t - 1} + B \bm{u}_t + \bm{\varepsilon},
+1.Linear system dynamics are assumed. The motion model describing the movement must be linear with added Gaussian noise $\bm{\varepsilon}$ and must be able to express it with 
+\begin{equation}\label{eq:linearKmm}
+\bm{y}_t = A \bm{y}_{t - 1} + B \bm{u}_t + \bm{\varepsilon},
 \end{equation}
 with 
 \begin{equation}
@@ -744,13 +769,15 @@ with
 \bm{\zeta}_t \sim \mathcal{N}(\bm{\zeta}_t; \bm{0}, Q).
 \end{equation}
 
-3 The initial belief $bel(\bm{x}_0)$ must be a Gaussian distribution.
+3. The initial belief $bel(\bm{x}_0)$ of the system must be a Gaussian distribution.
 
-The algorithm for the Kalman filter is shown in Algorithm \ref{kalAlg} and is very similar to the Bayes filter in Algorithm \ref{bayesAlg}.	
+The algorithm for the Kalman filter is shown in Algorithm \ref{kalAlg} and it is very similar to the Bayes filter in Algorithm \ref{bayesAlg}, as it is a variation of it. Line 1 and 2 of the Kalman filter is the \textit{prediction step} of the Bayes filter. The predicted mean $\overline{\bm{\mu}}_t$ and predicted covariance $\overline{\Sigma}_t $ is computed without including the measurements $z_t$ and describes the predicted belief $\overline{bel}(x_t)$. The previous mean $\bm{\mu}_t$ is transformed through the deterministic linear state transition function to determine the predicted mean $\overline{\bm{\mu}}$. The covariance $\Sigma_{t-1}$ is multiplied twice with $A_t$ and $R_t$ is added to determine the predicted covariance $\overline{\Sigma_t}$.
+
+Line 4 to 6 corresponds with the \textit{update step} of the Bayes filter and the desired belief $bel(x_t)$ is computed and described by mean $\overline{\bm{\mu}}_t$ and covariance $\Sigma_t $. The Kalman gain $K_t$ is calculated in line 4 and is used to determine how much influence the measurements \bm{$z}_t$ has when it is incorporated. The difference between the actual measurements $\bm{z}_t$ and the expected measurements $C_t \bm{\overline{\mu}}_t$ is called the innovation. In line 5 the predicted mean $\overline{\bm{\mu}}_t$ is adjusted by summing it with the product of the Kalman gain and innovation. In line 6 the covariance $\Sigma_t$ is calculated. 
 \begin{algorithm}
 \caption{Kalman Filter}\label{kalAlg}
 \begin{algorithmic}[1]
-\Procedure{Kalman\_Filter}{$\mu_{t-1}, \Sigma_{t-1},u_t, z_t$}
+\Procedure{Kalman\_Filter}{$\bm{\mu}_{t-1}, \Sigma_{t-1},\bm{u}_t, \bm{z}_t$}
 \State $\overline{\bm{\mu}}_t = A_t \bm{\mu}_{t-1} + B \bm{u_}t$
 \State $\overline{\Sigma}_t = A_t \Sigma_{t-1} A_t^T + R_t$
 \State $K_t = \overline{\Sigma}_t C_t^T(C_t\overline{\Sigma}_t C_t^T + Q_t)^{-1}$
@@ -760,11 +787,34 @@ The algorithm for the Kalman filter is shown in Algorithm \ref{kalAlg} and is ve
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+\subsection{Kalman Filter Implementation}
+For the implementation ten time steps of a robot's movement was simulated with 
+The linear motion model described with Equation \ref{eq:linearKmm} was used with
+\begin{equation}
+A =
+\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix},
+\end{equation}
+\begin{equation}
+B = \begin{bmatrix}
+\Delta t & 0\\
+0 & \Delta t
+\end{bmatrix}, \Delta t = 1,
+\end{equation}
 
-
-\subsection{Implementation}
+\begin{equation}
+\bm{\varepsilon} =
+\begin{bmatrix}
+\varepsilon_x\\
+\varepsilon_y
+\end{bmatrix},
+\end{equation}
 
 \section{Extended Kalman Filter}
+The Kalman filter discussed above is very efficient due to the fact that state transitions and measurements were linear, hence them mean $\bm{\mu}_t$ and covariance $\Sigma_t$ of a resulting Gaussian distribution can be computed analytically.
+As mentioned in Chapter \ref{chapMotionModel}, state transitions and measurements are in reality rarely linear. In this project, only non-linear state transitions were considered and measurements were assumed to be linear.
 \section{Unscented Kalman Filter}
 \chapter{Probabilistic Graphical Models}
 This chapter gives a brief introduction to probabilistic graphical models which will later be used to solve the localisation problem with different techniques of numerical integration. PGMs are a very vast field, therefore only the theory relevant to this report will be covered. This chapter is based on the work of Koller and Friedman~\cite{koller}, Barber~\cite{barber} and Schoeman~\citep{JC}.
@@ -788,7 +838,7 @@ In the case of directed graphs, nodes can be classified as ancestors, parents, c
     \includegraphics[width=\linewidth]{Figures/directed_graph.png}
     \caption{Directed graph}
   \end{subfigure}
-  \caption{}
+  \caption{Undirected and directed graphs}
   \label{fig:comGraphs}
 \end{figure}
 \section{Bayesian PGMs}
