@@ -113,17 +113,17 @@ Robot localisation is the process of estimating where a robot is located relativ
 
 When localising a robot, the control input to the robot, and a map of the environment is usually available. Further the robot is generally fitted with sensors which, together with beacons, measure where the robot is located relative to the map. Unfortunately the information of the robot's movements and location always have noise to some degree.\\
 The position and orientation of the robot should rather be estimated in a probabilistic manner from the information gathered from the sensors. The localisation techniques must therefore be able to deal with noise and describe the robot's location with a measure of uncertainty.\\
-Probabilistic reasoning of systems with continuous random variables (RV) use integration for various operations. In most non-linear systems these integrals cannot be calculated analytically and one must use numerical methods. Kalman filters have been extensively used for localisation. Techniques such as the extended or unscented Kalman filters use primitive numerical integration that is very inaccurate, especially when measurements are also non-linear. However, there are several alternative numerical techniques available that are more accurate.
+Probabilistic reasoning of systems with continuous random variables (RV) use integration for various operations. In most non-linear systems these integrals cannot be calculated analytically and one must use numerical methods. Kalman filters have been extensively used for localisation. Techniques such as the extended Kalman filter use primitive numerical integration that can lead to inaccurate estimations, especially when measurements are also non-linear. However, there are several alternative numerical techniques available that are more accurate.
 
 A probabilistic graphical model (PGM) is a technique that is used to model systems with uncertainty in an organised manner. It describes the relationship between random variables and allows to reason about their likelihood based on knowledge that is available to the system. Reasoning about random variables in a PGM consists of a number of steps and one can easily identify where integration is used.
 
-The end goal of this project is investigate different numerical techniques of integration and to implement them in a PGM to localise a simulated robot. The accuracy and efficiency of different techniques of numerical integration when used to inference a non-linear system will be compared using a simulated environment.
+The end goal of this project is investigate different techniques of numerical integration and to implement each in a PGM to reason about a non-linear robotics problem. The techniques of numerical integration will be compared in terms of accuracy and efficiency.
 \setcounter{secnumdepth}{2}
 \chapter{Gaussian Random Variables}
-The Gaussian or normal distribution is commonly used in probability theory, as it is very easy to work with. Although Gaussian distributions make severe assumptions such as exponential decay of the distribution away from its mean and linear interactions between variables, they are often surprisingly good estimations for real world distributions. The Gaussian distribution is a very important concept in this report as all probability distributions are approximated as Gaussian distributions. Key concepts, features and representations of the Gaussian distribution are discussed in this chapter. The following chapter is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
+The Gaussian or normal distribution is commonly used in probability theory, as it is very easy to work with. Although Gaussian distributions make severe assumptions such as exponential decay of the distribution away from its mean, they are often surprisingly good estimations for real world distributions. The Gaussian distribution is a very important concept in this report as all probability distributions are approximated as Gaussian distributions. Key concepts, features and representations of the Gaussian distribution are discussed in this chapter. The following chapter is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
 
 \section{Covariance Form}
-Random variables can take different values described by some function. A Gaussian RV is a RV which value is drawn from Gaussian distribution.
+The value if of a Random variable (RV) is of random nature and drawn from some function. The value of a Gaussian RV is drawn from Gaussian distribution.
 
 The univariate Gaussian distribution is probability density function (PDF) of a single Gaussian RV. The covariance form fully describes a univariate Gaussian distribution by a mean $\mu$ and variance $\sigma^2$.
 The univariate Gaussian distribution of a RV $x$, denoted
@@ -413,12 +413,12 @@ The operations discussed above are very simple to perform and will be used in fo
 \subsection{Linear Transformations using the Canoncical Form}
 One of the advantages of the canonical form is that it is possible to represent conditional probability distributions.
 
-The CPD $p(\bm{y}|\bm{x})$ is the distribution of the vector $\bm{y}$ given we know that the distribution over the vector $\bm{x}$ and is defined as
+The CPD $p(\bm{y}|\bm{x})$ is a distribution of the vector $\bm{y}$ given we know that the value the vector $\bm{x}$ and is defined as
 \begin{equation}
-p(\bm{y}|\bm{x}) = \frac{p(\bm{y},\bm{x})}{p(\bm{y})}.
+p(\bm{y}|\bm{x}) = \frac{p(\bm{y},\bm{x})}{p(\bm{x})}.
 \end{equation}
 
-If a CPD such as $p(\bm{y}|\bm{x})$ can be described as a linear transform
+If the arguments of CPD $p(\bm{y}|\bm{x})$ can be described as a linear function
 \begin{equation}
 \bm{y} = F\bm{x} + \bm{g} + \bm{n},
 \end{equation}
@@ -573,9 +573,9 @@ I\\
 \end{equation}
 This representation of conditional probability densities in the canonical form will be very useful in future chapters.
 \chapter{Motion Models}\label{chapMotionModel}
-Before implementing a localisation algorithm to localise a robot, it is important to have a model which describes the movement of the robot. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear moving robots. In reality the movement of a robot is rarely linear, therefore a more complex non-linear motion model will be explored. This chapter is based on the work of Thrun, Burgard and Fox~\citep{thrun};
+Before localising a robot, it is important to model the way the robot moves. A simple linear motion model will be covered which will later be used to illustrate basic principles when localising linear moving robots. In reality the movement of a robot is rarely linear, therefore a more complex non-linear motion model will be explored. This chapter is based on the work of Thrun, Burgard and Fox~\citep{thrun}.
 \section{Basic Concepts}
-The motion model describes $p(x_t|u_t,x_{t-1})$, which is the transition probability and it is vital in the the \textit{prediction step} of the Bayes filter, discussed in Chapter 5. The material will cover kinematics in a stochastic form. Robot motion will be limited to planar movement as it is easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement and can be easily extended to three dimensions.
+The motion model describes $p(\bm{x}_t|\bm{u}_t,\bm{x}_{t-1})$, which is the transition probability and it is vital in the the \textit{prediction step} of the Bayes filter, discussed in Chapter 5. The material will cover kinematics in a stochastic form. Robot motion will be limited to planar movement as it is easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement and can be easily extended to three dimensions.
 
 The kinematic state of a robot moving in a plane can be described by three variables which is referred to as the pose of the robot.
 The pose is defined as
@@ -596,17 +596,16 @@ As shown in Figure \ref{fig:pose_robot}, $x_t$ is the x-coordinate, $y_t$ is the
   \label{fig:pose_robot}
 \end{figure}
 \section{Linear Motion Model}\label{linearmotionmodel}
-The linear motion model describes linear movement of a robot between time steps in a plane. The parameter $\theta_t$ is omitted from the pose  and therefore the kinematic state of the robot is described by only a location
+This section describes the linear motion model. The parameter $\theta_t$ is omitted from the pose  and therefore the kinematic state of the robot is described by only a location
 \begin{equation}
 \bm{y_t} =
 \begin{bmatrix}
 x_t\\
 y_t
-\end{bmatrix},
+\end{bmatrix}.
 \end{equation}
-which allows the model to be linear.
 
-The linear motion model used in this project describes the movement of the robot with a control vector which contains two translational velocities
+The motion of the robot is independent of its orientation and can be controlled with two translational velocities in a control vector  $\bm{u}_t$, defined as
 \begin{equation}
 \bm{u_t} = 
 \begin{bmatrix}
@@ -651,7 +650,7 @@ and the noise is described as Gaussian distributions
 The variances $\sigma_x^2$ and $\sigma_y^2$ is determined empirically and $\Delta t$ is the length of a time step.
 
 
-\section{Non-linear Motion Model}
+\section{Non-linear Motion Model}\label{vmodel}
 Two non-linear motion models were considered for this project, namely the velocity and odometry model. The odometry motion model uses sensor measurements to describe a robot's movement over time. Odometry models can  only be used for retrospect after a robot moved and can not be used for motion planning. The velocity model is suitable for motion planning and assumes that a robot can be controlled with a rotational and translational velocity. The velocity motion model therefore predicts how the robot will move and is not as accurate as the odometry motion model. Both the odometry and velocity motion models are common and widely used. As the velocity motion model was sufficient for the goal this project, it was the motion model of choice.
 
 The velocity motion model assumes that the movement of a robot can be described by a translational velocity $v_t$ and a rotational velocity $\omega_t$, shown in Figure \ref{fig:vel_model}. The control vector $u_t$ is thus described as
@@ -679,9 +678,14 @@ y_t\\
 \end{bmatrix}
 =
 \begin{bmatrix}
-x_{t-1} - \frac{v_t}{\omega_t} \sin\theta_{t-1} + \frac{v_t}{\omega_t} \sin(\theta_{t-1} + \omega_t \Delta t) + \varepsilon_x\\
-y_{t-1} - \frac{v_t}{\omega_t} \cos\theta_{t-1} + \frac{v_t}{\omega_t} \cos(\theta_{t-1} + \omega_t \Delta t) + \varepsilon_y\\
-\theta_{t-1} + \omega_t \Delta t + \varepsilon_\theta
+x_{t-1} - \frac{v_t}{\omega_t} \sin\theta_{t-1} + \frac{v_t}{\omega_t} \sin(\theta_{t-1} + \omega_t \Delta t)\\
+y_{t-1} + \frac{v_t}{\omega_t} \cos\theta_{t-1} - \frac{v_t}{\omega_t} \cos(\theta_{t-1} + \omega_t \Delta t)\\
+\theta_{t-1} + \omega_t \Delta t
+\end{bmatrix}+
+\begin{bmatrix}
+\varepsilon_x\\
+\varepsilon_y\\
+\varepsilon_\theta\\
 \end{bmatrix},
 \end{equation}
 where
@@ -701,46 +705,44 @@ The model is non-linear due to the fact due to the fact that the movement of the
 \begin{equation}
 \bm{y} = A\bm{x} + B.
 \end{equation}
-\chapter{Measurement Models}
-
-As mentioned in the introduction, measurements retrieved from sensors always contain noise. A measurement model can be used one can describe it with a model. This chapter will describe the linear measurement model and is based on Thrun~\citep{thrun}.
-\section{Linear Measurement Model}
-
+%\chapter{Measurement Models}
+%As mentioned in the introduction, measurements retrieved from %sensors always contain noise. A measurement model can be used% %one can describe it with a model. This chapter will describe %the linear measurement model and is based on Thrun~%%\citep{thrun}.
+%\section{Linear Measurement Model}
 \chapter{Localisation using Kalman Filters}
 This chapter will focus on localisation using traditional techniques such as the Kalman filter, extended Kalman filter and unscented Kalman filter. This is important to investigate and understand as there is a strong correspondence to the PGM technique that will be discussed in a following section.
 \section{Background}
 A concept that is often used is in this report is that of \textit{belief}. As mentioned in the introduction, a robot cannot truly know its pose. A robot can infer a belief or have internal knowledge of its state from information gathered from sensors. There is thus a difference between internal belief and true state.
 
-Beliefs are represented with CPDs. A belief is thus a PDF of a state variable which is conditioned on given data. The belief of a state variable is denoted as
+In this report the belief is a probability density function of a state variable $\bm{x}_t$ given all the previous measurements $\bm{z}_{1:t}$  and controls $\bm{u}_{1:t}$ and is also known as the posterior. The belief of a state variable is denoted as
 \begin{equation}
-x_t \sim bel(x_t),
+\bm{x}_t \sim bel(\bm{x}_t),
 \end{equation}
-which a reduced notation for the posterior
+which is a reduced notation for the posterior
 \begin{equation}
-bel(x_t) = p(x_t| z_{1:t}, u_{1:t}).
+bel(\bm{x}_t) = p(\bm{x}_t| \bm{z}_{1:t}, \bm{u}_{1:t}).
 \end{equation}
-The posterior is the PDF of a state variable $x_t$ at time $t$ conditioned on all the previous control inputs $u_{1:t}$ and measurements $z_{1:t}$. The posterior $bel(x_t)$ is usually calculated from a \textit{predicted belief} $\overline{bel}(x_t)$, this calculation is known as the \textit{update step}.
+The posterior $bel(\bm{x}_t)$ is usually calculated from a \textit{predicted belief} $\overline{bel}(\bm{x}_t)$, this calculation is known as the \textit{update step}.
 
 The \textit{predicted belief} is defined as
 \begin{equation}
-\overline{bel}(x_t) = p(x_t|z_{1:t-1}, u_{1:t}),
+\overline{bel}(\bm{x}_t) = p(\bm{x}_t|\bm{z}_{1:t-1}, \bm{u}_{1:t}),
 \end{equation} 
-and is the PDF of the state variable $x_t$ without taking the measurement $z_t$ in to consideration, hence it is known as the \textit{prediction step}.
+and is the PDF of the state variable $\bm{x}_t$ without taking the measurement $\bm{z}_t$ in to consideration and it is known as the \textit{prediction step}.
 \section{Bayes Filter}
-The \textit{Bayes Filter} algorithm is the cornerstone for determining beliefs and filters such as the Kalman filter is a variation of it. The pseudo-algorithm for the Bayes filter is shown in Algorithm \ref{bayesAlg}. One can observe that the algorithm is recursive as it takes the previous belief $x_{t-1}$ at time $t-1$ as an argument to estimate and return the belief $x_t$ at time $t$. The algorithm takes three parameters, namely the previous belief $bel(x_{t-1})$, the latest control input $u_t$ and the measurements $z_t$, which is a result of the control input. The pseudo-algorithm shows one iteration of the algorithm which consist out of two steps, namely the \textit{prediction step} in line 3, and \textit{update step} in line 4.
+The \textit{Bayes Filter} algorithm is the cornerstone for determining beliefs and filters such as the Kalman filter is a variation of it. The pseudo-algorithm for the Bayes filter is shown in Algorithm \ref{bayesAlg}. One can observe that the algorithm is recursive as it takes the previous belief $\bm{x}_{t-1}$ at time $t-1$ as an argument to estimate and return the belief $\bm{x}_t$ at time $t$. The algorithm takes three parameters, namely the previous belief $bel(\bm{x}_{t-1})$, the latest control input $\bm{u}_t$ and the measurements $\bm{z}_t$. The pseudo-algorithm shows one iteration of the algorithm that consists out of two steps, namely the \textit{prediction step} in line 3, and \textit{update step} in line 4.
 
-The \textit{prediction step} calculates a belief of the state $x_t$ based on the previous state $x_{t-1}$ and the control input $u_t$. In this step the marginal distribution over $x_{t-1}$ is calculated of the product of two distributions: the prior belief $bel(x_{t-1})$, and the  transition probability $p(x_t|u_t,x_{t-1})$.
+The \textit{prediction step} calculates a predicted belief of the state $\bm{x}_t$ based on the previous state $\bm{x}_{t-1}$ and the control input $\bm{u}_t$. In this step the marginal distribution over $\bm{x}_{t-1}$ is calculated of the product of two distributions: the prior belief $bel(\bm{x}_{t-1})$, and the  transition probability $p(\bm{x}_t|\bm{u}_t,\bm{x}_{t-1})$.
 
-In the \textit{update step} the final belief of state $x_t$ is calculated by multiplying the predicted belief $\overline{bel}(x_t)$ with the probability of $z_t$ given $x_t$. The result usually does not integrate to one, hence it is usually not a valid PDF and has to be normalized by multiplying it with $\eta$. The final belief $bel(x_t)$ is returned.
+In the \textit{update step} the final belief of state $\bm{x}_t$ is calculated by multiplying the predicted belief $\overline{bel}(\bm{x}_t)$ with the probability of $\bm{z}_t$ given $\bm{x}_t$. The result usually does not integrate to one, hence it is usually not a valid PDF and has to be normalized by multiplying it with $\eta$. The final belief $bel(\bm{x}_t)$ is returned.
 \begin{algorithm}
 \caption{Bayes Filter}\label{bayesAlg}
 \begin{algorithmic}[1]
-\Procedure{Bayes\_Filter}{$bel(x_{t-1}), u_t, z_t$}
-\ForAll{$x_t$}
-\State $\overline{bel}(x_t) = \int p(x_t|u_t, x_{t-1})bel(x_{t-1})\, dx_{t-1}$
-\State $bel(x_t) = \eta p(z_t|x_t) \overline{bel} (x_t)$
+\Procedure{Bayes\_Filter}{$bel(\bm{x}_{t-1}), \bm{u}_t, \bm{z}_t$}
+\ForAll{$\bm{x}_t$}
+\State $\overline{bel}(\bm{x}_t) = \int p(\bm{x}_t|\bm{u}_t, \bm{x}_{t-1})bel(\bm{x}_{t-1})\, d\bm{x}_{t-1}$
+\State $bel(\bm{x}_t) = \eta p(\bm{z}_t|\bm{x}_t) \overline{bel} (\bm{x}_t)$
 \EndFor
-\State \textbf{return} $bel(x_t)$
+\State \textbf{return} $bel(\bm{x}_t)$
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
@@ -756,7 +758,7 @@ The Kalman filter makes three assumptions in addition to the Markov assumptions 
 \end{equation}
 with 
 \begin{equation}
-\bm{\varepsilon} \sim \mathcal{N}(\bm{\varepsilon}; \bm{0}, R)
+\bm{\varepsilon} \sim \mathcal{N}(\bm{\varepsilon}; \bm{0}, R_t)
 \end{equation}
 therefore the transition PDF $p(x_t|u_t, x_{t-1})$ is linear its arguments.
 
@@ -766,7 +768,7 @@ therefore the transition PDF $p(x_t|u_t, x_{t-1})$ is linear its arguments.
 \end{equation} 
 with
 \begin{equation}
-\bm{\zeta}_t \sim \mathcal{N}(\bm{\zeta}_t; \bm{0}, Q).
+\bm{\zeta}_t \sim \mathcal{N}(\bm{\zeta}_t; \bm{0}, Q_t).
 \end{equation}
 
 3. The initial belief $bel(\bm{x}_0)$ of the system must be a Gaussian distribution.
@@ -813,40 +815,262 @@ B = \begin{bmatrix}
 \end{equation}
 
 \section{Extended Kalman Filter}
-The Kalman filter discussed above is very efficient due to the fact that state transitions and measurements were linear, hence them mean $\bm{\mu}_t$ and covariance $\Sigma_t$ of a resulting Gaussian distribution can be computed analytically.
-As mentioned in Chapter \ref{chapMotionModel}, state transitions and measurements are in reality rarely linear. In this project, only non-linear state transitions were considered and measurements were assumed to be linear.
+The Kalman filter discussed above is very efficient due to the fact that state transitions and measurements were assumed to be linear, hence them mean $\bm{\mu}_t$ and covariance $\Sigma_t$ of a resulting belief $bel(\bm{x}_t)$ can be computed analytically.
+As mentioned in Chapter \ref{chapMotionModel}, state transitions and measurements are in reality rarely linear and therefore the normal Kalman filter is unsuitable for most robotics problems. In this project, only non-linear state transitions were considered and measurements were assumed to be linear.
+
+\subsection{Description of EKF}
+The state transition of a non linear system can be described by
+\begin{equation}
+\bm{x}_t = \bm{g}(\bm{u}_t, \bm{x}_{t-1}) + \bm{\varepsilon}_t,
+\end{equation}
+and non-linear measurements can be described by
+\begin{equation}
+\bm{z}_t = \bm{h}(\bm{x}_t) + \bm{\zeta}_t,
+\end{equation}
+where $\bm{h}$ and $\bm{g}$ are non-linear vector functions. A Gaussian RV transformed through a non-linear function results in a non-Gaussian RV, therefore the belief $bel(\bm{x}_t)$ is no longer Gaussian distributed and cannot be computed analytically.
+
+The extended Kalman filter (EKF) is a variation on the Kalman filter and enables one to approximate a Gaussian distributed belief $bel({\bm{x}_t})$ of a system with non-linear state transitions or measurements or both. The EKF linearises the functions $\bm{h}$ and $\bm{g}$ by means of Taylor expansion and as a result the belief $bel(\bm{x}_t)$ is approximated as a Gaussian distribution. 
+
+In general, with Taylor expansion a non-linear vector function
+\begin{equation}\label{eq: taylorLin}
+\bm{f}(\bm{x}) =
+\begin{bmatrix}
+f_1(\bm{x}) & ... & f_M(\bm{x})
+\end{bmatrix}^T,
+\end{equation}
+with
+\begin{equation}
+\bm{x} =
+\begin{bmatrix}
+x_1 & ... & x_N
+\end{bmatrix}^T,
+\end{equation}
+can be approximated as a linear vector function tangent to a given point $\bm{k}$ 
+\begin{equation}
+\bm{f}(\bm{x}) \approx \bm{f}(\bm{k}) + \bm{f}'(\bm{k})(\bm{x-k}),
+\end{equation}
+where the jacobian matrix
+\begin{equation}\label{eq:jacobian}
+\bm{f}'(\bm{x}) = \frac{\partial\bm{f}(\bm{x})}{\partial \bm{x}} =
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} & \dots &\frac{\partial f_1}{\partial x_N}\\
+\vdots & \ddots &\vdots\\
+\frac{\partial f_M}{\partial x_1} & \dots &\frac{\partial f_M}{\partial x_N}
+\end{bmatrix}.
+\end{equation}
+
+Taylor expansion can be applied to linearise the non-linear vector functions $\bm{g}$ and $\bm{h}$. Using  Equation \ref{eq: taylorLin}, $\bm{g}$ can be approximated as a linear vector function around $\bm{\mu}_{t-1}$
+\begin{equation}\label{eq:linear_taylor}
+\begin{split}
+\bm{g}(\bm{u_t}, \bm{x}_{t-1}) & \approx \bm{g}(\bm{u}_t, \bm{\mu}_{t-1}) + \bm{g}'(\bm{u}_t, \bm{\mu}_{t-1})(\bm{x}_{t-1} - \bm{\mu}_{t-1})\\
+& = \bm{g}(\bm{u}_t, \bm{\mu}_{t-1}) + G_t(\bm{x}_{t-1} - 
+\bm{\mu}_{t-1}),
+\end{split}  
+\end{equation}
+where $G_t$ is the jacobian matrix and can be determined by using Equation \ref{eq:jacobian}, therefore
+\begin{equation}\label{eq:Gt}
+G_t = \bm{g}'(\bm{u}_t, \bm{\mu}_{t-1}) = \frac{\partial \bm{g}(\bm{u}_t, \bm{x}_{t-1})}{\partial \bm{x}_{t-1}}.
+\end{equation}
+The same procedure can be followed to approximate the measurement function $\bm{h}$ as a linear vector function around the predicted mean $\overline{\bm{\mu}}$
+\begin{equation}
+\begin{split}
+\bm{h}(\bm{x}_{t}) & \approx \bm{h}(\bm{\overline{\mu}}_{t}) + \bm{h}'(\bm{\overline{u}}_t)(\bm{x}_{t} - \bm{\overline{\mu}}_{t})\\
+& = \bm{h}(\bm{\overline{\mu}}_t) + H_t(\bm{x}_{t} - 
+\bm{\overline{\mu}}_{t}),
+\end{split}  
+\end{equation}
+where
+\begin{equation}
+H_t = \bm{h}'(\bm{u}_t) = \frac{\partial \bm{h}(\bm{x}_{t})}{\partial \bm{x}_{t}}.
+\end{equation}
+
+In Algorithm \ref{EKFalg} the procedure of the EKF is shown and one will notice that is very similar to Algorithm \ref{kalAlg} of the Kalman filter. The only difference is that the non-linear state transition and measurement functions are linearised and therefore the state belief of the EKF is not exact.
+
+
+\begin{algorithm}
+\caption{Extended Kalman Filter}\label{EKFalg}
+\begin{algorithmic}[1]
+\Procedure{EKF}{$\bm{\mu}_{t-1}, \Sigma_{t-1},\bm{u}_t, \bm{z}_t$}
+\State $\overline{\bm{\mu}}_t = \bm{g}(\bm{u}_t, \bm{\mu}_{t-1})$
+\State $\overline{\Sigma}_t = G_t \Sigma_{t-1} G_t^T + R_t$
+\State $K_t = \overline{\Sigma}_t H_t^T(H_t\overline{\Sigma}_t H_t^T + Q_t)^{-1}$
+\State $\bm{\mu}_t = \overline{\bm{\mu}}_t + K_t(\bm{z}_t - h(\overline{\bm{\mu}}_t))$
+\State $\Sigma_t = (I - K_tH_t)\overline{\Sigma}_t$
+\State \textbf{return} $\bm{\mu}_t, \Sigma_t$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+This section covered the basic theory of the EKF, the next section will discuss how the EKF was implemented in Python.
+\subsection{Application of EKF}
+In this subsection the EKF is applied to localise a robot whose movement is described by the velocity motion model. Measurements of the robot's location were assumed to be linear. A moving robot with measurements were simulated and beliefs of the robot's pose were estimated using the EKF.
+
+The robot's pose $\bm{x}_t$ at time $t$ is dependent on the previous pose $\bm{x}_{t-1}$ at time $t-1$ and the control $\bm{u}_t$. The transition of the robot's pose can be described in general as
+\begin{equation}
+\bm{x}_t =
+\begin{bmatrix}
+x_t\\
+y_t\\
+\theta_t
+\end{bmatrix}
+= \bm{g}(\bm{u}_t, \bm{x}_{t-1}) + \bm{\varepsilon},
+\end{equation}
+where the velocity motion model describes $\bm{g}$ as
+\begin{equation}
+\bm{g}(\bm{u}_t, \bm{x}_{t-1})=
+\begin{bmatrix}
+x_{t-1} - \frac{v_t}{\omega_t} \sin\theta_{t-1} + \frac{v_t}{\omega_t} \sin(\theta_{t-1} + \omega_t \Delta t)\\
+y_{t-1} + \frac{v_t}{\omega_t} \cos\theta_{t-1} - \frac{v_t}{\omega_t} \cos(\theta_{t-1} + \omega_t \Delta t)\\
+\theta_{t-1} + \omega_t \Delta t
+\end{bmatrix}.
+\end{equation}
+The noise $\bm{\varepsilon}$ is defined as
+\begin{equation}
+\bm{\varepsilon} \sim \mathcal{N}(\bm{\varepsilon}; \bm{0}; R),
+\end{equation}
+where the covariance matrix R is defined as
+\begin{equation}
+R =
+\begin{bmatrix}
+\sigma_x^2 & 0 & 0\\
+0 & \sigma_y^2 & 0\\
+0 & 0 & \sigma_\theta^2
+\end{bmatrix}.
+\end{equation}
+$R$ is a diagonal matrix, hence the noise added to each RV is independent.
+
+The next step is to linearise the non-linear vector function $\bm{g}$ by means of Taylor expansion. Equation \ref{eq:jacobian} and Equation \ref{eq:Gt} can be used to calculate the jacobian matrix $G_t$ of $\bm{g}$:
+\begin{equation}\label{eq:velocityJacobian}
+G_t = \bm{g}'(\bm{u}_t, \bm{x}_{t-1}) =
+\begin{bmatrix}
+1 & 0 & -\frac{v_t}{\omega_t} \cos\theta + \frac{v_t}{\omega_t} \cos(\theta + \omega_t \Delta t)\\
+0 & 1 & -\frac{v_t}{\omega_t}\sin\theta + \frac{v_t}{\omega_t}\sin(\theta + \omega_t \Delta t)\\
+0 & 0 & 1 
+\end{bmatrix}.
+\end{equation}
+Using Equation \ref{eq:linear_taylor} and the jacobian matrix $G_t$ calculated in Equation \ref{eq:velocityJacobian}, the vector function $\bm{g}$ can be linearised around $\bm{u_{t-1}}$, thus
+\begin{equation}\label{eq:linearG}
+\bm{g}(\bm{u_t}, \bm{x}_{t-1}) \approx \bm{g}(\bm{u}_t, \bm{\mu}_{t-1}) + G_t(\bm{x}_{t-1} - 
+\bm{\mu}_{t-1}).
+\end{equation} 
+Using the result in Equation \ref{eq:linearG}, the state transition in equation can be approximated as
+\begin{equation}
+\bm{x}_t \approx \bm{g}(\bm{u}_t, \bm{\mu}_{t-1}) + G_t(\bm{x}_{t-1} - \bm{\mu}_{t-1}) + \bm{\varepsilon}.
+\end{equation} 
+Linear measurements were assumed for the implementation and therefore
+\begin{equation}
+\bm{z}_t = C_t \bm{x}_t + \bm{\zeta}_t.
+\end{equation}
+
+For the simulation the robot was given ten different control inputs $\bm{u}_t$ and $\Delta t$ was set to one.
 \section{Unscented Kalman Filter}
+The linearisation used in the EKF is rudimentary, as non-linear functions are linearised only around the mean which, in some scenarios, can lead to very inaccurate approximations. The unscented Kalman filter (UKF) is an alternative approach which in many cases deliver better results than that of the EKF, especially when $\bm{g}$ and $\bm{h}$ is highly non-linear.
+
+As mentioned before, a Gaussian distribution propagated through a non-linear function results in a distribution that is non-Gaussian. The principle the UKF follows is to draw carefully chosen points called \textit{sigma points} around the mean from an existing Gaussian distribution and transform it through a non-linear function. The transformed sigma points can then be used to approximate the resultant distribution as a Gaussian distribution.
+
+Usually there is a sigma point located at the mean and two sigma points symmetrically around the mean for each dimension (along the main axes). For a $n$-dimensional Gaussian distribution there are $2n +1$ sigma points picked. Sigma points are denoted as
+\begin{equation}
+\mathcal{X}^{[i]},\ i\ = \ 1,\ ...,\ 2n,
+\end{equation}
+where $i$ indicates the index of the sigma point.
+
+Sigma points are determined as follows:
+\begin{flalign}
+    &\mathcal{X}^{[0]} = \bm{\mu},& \\
+    &\mathcal{X}^{[i]} = \bm{\mu} + \left(\sqrt{(n + \lambda)\Sigma}\right)\ \text{for}\ \ i =1, ...,n,&\\ 
+    &\mathcal{X}^{[i]} = \bm{\mu} - \left(\sqrt{(n + \lambda)\Sigma}\right)\ \text{for}\ \ i = n + 1, ...,2n,&
+\end{flalign}
+where the scaling parameter $\lambda$ is defined as
+\begin{equation}
+\lambda = \alpha^2(n+\kappa) - n.
+\end{equation}
+The parameters $\alpha$ and $\kappa$ determines the spread of the sigma points around the mean.
+
+Each sigma point $\mathcal{X}^{[i]}$ has corresponding weights $w_m^{[i]}$  and $w_c^{[i]}$, and is respectively used to recover the mean $\bm{\mu}_t$ and covariance $\Sigma_t$. Weights corresponding to $\mathcal{X}^{[0]}$, the mean $\bm{\mu}$ are determined as 
+\begin{flalign}
+    &w_m^{[0]} = \frac{\lambda}{n + \lambda},& \\ 
+    &w_c^{[0]} = \frac{\lambda}{n+\lambda} + (1 - \alpha^2 + \beta).&
+\end{flalign}
+The parameter the optimal choice for the parameter $\beta$ is usually $2$.
+The rest of the weights where $i = 1\ ,...,\ 2n$ are determined as
+\begin{flalign}
+    &w_m^{[i]} = w_c^{[i]} = \frac{1}{2(n + \lambda)}\ \ \text{for}\ i=1,\ ...,\ 2n.& 
+\end{flalign}
+After sigma points and weights have been calculated, the chosen sigma points can be transformed through a non-linear vector function $\bm{f}$ to determine resulting sigma points $\mathcal{Y}^{[i]}$ and is given by 
+\begin{equation}
+\mathcal{Y}^{[i]} = \bm{f}\left(\mathcal{X}^{[i]}\right).
+\end{equation}
+The distribution as a result of the non-linear transformation can be approximated as Gaussian distribution by estimating the mean $\bm{u}'$ and covariance $\Sigma'$ with 
+\begin{equation}
+\bm{\mu}' = \sum_{i = 0}^{2n}w_m^{[i]}\mathcal{Y}^{[i]},
+\end{equation}
+\begin{equation}
+\Sigma' = \sum_{i=0}^{2n}w_c^{[i]}\left(\mathcal{Y}^{[i]} \right)
+\end{equation}
+The general theory of the UKF was covered in this section, the next section will discuss the implementation of the UKF.
+\subsection{Application of UKF}
+\begin{algorithm}
+\caption{Unscented Kalman Filter}\label{UKFalg}
+\begin{algorithmic}[1]
+\Procedure{UKF}{$\bm{\mu}_{t-1}, \Sigma_{t-1},\bm{u}_t, \bm{z}_t$}
+\State $\mathcal{X}_{t-1} = 
+\begin{pmatrix}
+\bm{\mu}_{t-1}  & \ \bm{\mu}_{t-1}+\gamma\sqrt{\Sigma_{t-1}} & \ \bm{\mu}_{t-1} - \gamma \sqrt{\Sigma_{t-1}})
+\end{pmatrix}
+$ 
+\State $\overline{\mathcal{X}}^*_{t-1} = \bm{g}(\bm{u}_t, \mathcal{X}_{t-1})$
+\State $\bm{\overline{\mu}}_t = \sum_i^{2n} w_m^{[i]} \overline{\mathcal{X}}^{*[i]}_{t}$
+\State $\overline{\Sigma}_t = \sum_i^{2n}w_c^{[i]}\left(\mathcal{\overline{X}}_t^{*[i]} - \overline{\bm{\mu}}_t\right)\left(\mathcal{\overline{X}}_t^{*[i]} - \overline{\bm{\mu}}_t\right)^T +R_t$
+\State $\mathcal{\overline{X}}_t = 
+\begin{pmatrix}
+\bm{\overline{\mu}}_{t}  & \ \bm{\overline{\mu}}_{t}+\gamma\sqrt{\overline{\Sigma_{t}}} & \ \bm{\overline{\mu}}_{t} - \gamma \sqrt{\overline{\Sigma_{t}}})
+\end{pmatrix}$
+\State $\overline{\mathcal{Z}}_t = \bm{h}\left(\mathcal{\overline{X}}_t\right)$
+\State $\hat{\bm{z}}_t = \sum_{i=0}^{2n}w_m^{[i]} \overline{\mathcal{Z}}_t^{[i]}$ 
+\State $S_t = \sum_{i=0}^{2n} w_c^{[i]}\left( \overline{\mathcal{Z}}_t^{[i]} - \hat{\bm{z}}_t  \right)\left( \overline{\mathcal{Z}}_t^{[i]} - \hat{\bm{z}}_t  \right)^T + Q_t$
+\State $\overline{\Sigma}_t^{x,z} = \sum_{i=0}^{2n}  w_c^{[i]}\left( \overline{\mathcal{X}}_t^{[i]} - \overline{\bm{\mu}}_t  \right)\left( \overline{\mathcal{Z}}_t^{[i]} - \hat{\bm{z}}_t  \right)^T $
+\State $K_t = \overline{\Sigma}_t^{x,z}S_t^{-1}$
+\State $\bm{\mu}_t = \overline{\bm{\mu}}_t + K_t(\bm{z}_t - \hat{\bm{z}}_t)$
+\State $\Sigma_t = \overline{\Sigma}_t - K_tS_tK_t^T$
+\State \textbf{return} $\bm{\mu}_t, \Sigma_t$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
 \chapter{Probabilistic Graphical Models}
 This chapter gives a brief introduction to probabilistic graphical models which will later be used to solve the localisation problem with different techniques of numerical integration. PGMs are a very vast field, therefore only the theory relevant to this report will be covered. This chapter is based on the work of Koller and Friedman~\cite{koller}, Barber~\cite{barber} and Schoeman~\citep{JC}.
 \section{Overview}
-Reasoning about systems with uncertainty can become very complex and sometimes it is completely unmanageable. The PGM is a graphical technique which make problems tractable by modelling probabilistic systems in a logical and compact manner. PGMs are thus used to describe the relationship between variables and allows to reason about them. This action of querying a system or reasoning about a variable is called inference. It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from making medical diagnosis to localising robots.
+Reasoning about systems with uncertainty can become very complex and sometimes it is completely unmanageable. The PGM is a graphical technique which make problems tractable by modelling probabilistic systems in a logical and compact manner. PGMs are thus used to describe the relationship between variables and allows to reason about it. This action of querying a system or reasoning about a variable is called inference. It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from making medical diagnosis to localising robots.
 
-PGMs can be divided in to two categories. The first is Markov networks, which are used for non-causal systems. The second is Bayesian networks where relationships between random variables are causal and specified as CPDs. As the localisation problem is in most cases causal, the focus of this chapter is on Bayesian networks.
+PGMs used for modelling can be divided in to two categories. The first is Markov networks, which are used for non-causal systems. The second is Bayesian networks, where relationships between random variables are causal and specified as CPDs. As the localisation problem is in most cases causal, the focus of this chapter is on Bayesian networks.
 
 Due to the relevance to localisation, the theory is discussed in terms of continuous random variables, but it can also be applied to discrete random variables. 
 \section{Basic Concepts of Graphical Models}
-There are a few basic concepts to understand before defining a Bayesian network. Graphical models consists of nodes and edges. Edges are the link between nodes and can be directed or undirected. Markov networks are undirected graphs, thus all edges are undirected. Bayesian networks are directed graphs, thus all edges are directed. In Figure \ref{fig:bays_pgm}, a undirected and directed graph can sequentially be observed.
+There are a few basic concepts to understand before defining a Bayesian network. Graphical models consist of nodes and edges. Edges are the links between nodes and can be directed or undirected. Markov networks are undirected graphs, thus all edges are undirected. Bayesian networks are directed graphs, thus all edges are directed. An example of an undirected and directed graph can be seen in Figure \ref{fig:directed_graph} and Figure \ref{fig:undirected_graph} respectively.
 
-In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $x_1 \to x_k$, then $x_1$ is an ancestor of $x_k$, and $x_k$ is a descendant of $x_1$. In Figure \ref{fig:comGraphs}(b), $a$ is an ancestor of $c$ and $c$ is a descendant of $a$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:comGraphs} (b), then $a$ is a parent of $b$ and $b$ is a child of $a$.~\cite{barber}
-\begin{figure}[h!]
-  \centering
-  \begin{subfigure}[b]{0.25\linewidth}
-    \includegraphics[width=\linewidth]{Figures/undirected_graph.png}
-    \caption{Undirected graph}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.25\linewidth}
-    \includegraphics[width=\linewidth]{Figures/directed_graph.png}
+In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $x_1 \to x_k$, then $x_1$ is an ancestor of $x_k$, and $x_k$ is a descendant of $x_1$. In Figure \ref{fig:directed_graph}, $a$ is an ancestor of $c$ and $c$ is a descendant of $a$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:undirected_graph}, $a$ is a parent of $b$ and $b$ is a child of $a$.~\cite{barber}
+
+\begin{figure}[htbp]
+  \begin{minipage}[b]{0.5\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figures/undirected_graph.png}
     \caption{Directed graph}
-  \end{subfigure}
-  \caption{Undirected and directed graphs}
-  \label{fig:comGraphs}
+    \label{fig:directed_graph}
+  \end{minipage}
+  \hspace{0.5cm}
+  \begin{minipage}[b]{0.5\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figures/directed_graph.png}
+    \caption{Undirected graph}
+    \label{fig:undirected_graph}
+  \end{minipage}
 \end{figure}
-\section{Bayesian PGMs}
-Bayesian networks consists of random variables in the form of nodes and are connected by directed edges. Nodes that are not directly connected to each other, are considered independent. Relationships between nodes are indicated as CPDs, thus each node can be associated with a CPD
+
+\section{Bayesian Networks}
+Bayesian networks consists of random variables in the form of nodes and are connected by directed edges. Nodes that are not directly connected to each other, are considered conditionally independent. Relationships between nodes are indicated as conditional probability distributions (CPDs) and each node can be associated with a CPD
 \begin{equation}
 x_i \sim p(x_i|Par(x_i)),
 \end{equation}
-where $Par(x_i)$ indicates the parent of node $x_i$.
+where $Par(x_i)$ indicates the parents of node $x_i$.
 
 CPDs can be written as a factors. A factor is a function that takes a number of random variables as arguments and is defined as
 \begin{equation}
@@ -854,15 +1078,15 @@ CPDs can be written as a factors. A factor is a function that takes a number of 
 \end{equation}
 where the scope of a factor is its arguments 
 \begin{equation}
-Scope\{\phi_i\} = \{x_i, Par(x_i)\}.
+\text{Scope}\{\phi_i\} = \{x_i, Par(x_i)\}.
 \end{equation}
 The concept of a factor is important that will be used in the rest of the report.
 
-Figure \ref{fig:bays_pgm} is an example of a Bayesian network with seven nodes labelled from $a$ to $c$. Each node is associated with a CPD. Directed edges between nodes are indicated with arrows.
+Figure \ref{fig:bays_pgm} shows an example of a Bayesian network with seven nodes labelled from $a$ to $g$. Each node is associated with a CPD. Directed edges between nodes are indicated with arrows.
 \begin{figure}[H]
   \includegraphics[width=0.5\linewidth]{Figures/bayesian_pgm.png}
   \centering
-  \caption{Bayesian PGM}
+  \caption{Bayesian network}
   \label{fig:bays_pgm}
 \end{figure}
 The chain rule specifies that the joint probability density distribution of all the variables in a Bayesian network can be found by finding the product of all the CPDs associated with nodes~\citep{koller} and is defined as
@@ -871,93 +1095,93 @@ p(x_1, ..., x_n) = \prod_i p(x_i|Par(x_i)).
 \end{equation}
 The chain rule can be applied to the Bayesian network in Figure \ref{fig:bays_pgm}
 \begin{equation}
-\begin{split}
-p(a,b,c,d,e,f,g) & = p(a)p(b)p(c)p(d|a)p(e|b,d)p(f|b,c)p(g|f)\\
-& = \phi_a(a)\phi_b(b)\phi_c(c)\phi_d(d,a)\phi_e(e,b,d)\phi_f(f,b,c)\phi_g(g,f).
-\end{split}
+p(a,b,c,d,e,f,g) = p(a)p(b)p(c)p(d|a)p(e|b,d)p(f|b,c)p(g|f)
 \end{equation}
-A marginal PDF of the subset of variables $a$, $b$ and $c$ can be found by integrating over the remaining variables
+A marginal PDF of the subset of variables $a$, $b$ and $c$ can be found by integrating over all the variables not in the subset, therefore
 \begin{equation}
 p(a,b,c) = \int\int\int\int p(a,b,c,d,e,f,g)dd\,de\,df\,dg.
 \end{equation}
+The chain rule together with marginalisation can be used to inference a Bayesian network, but it can be very tedious. The next section covers an alternative method to inference Bayesian networks in a structured manner.
 \section{Cluster Graphs}
-The next step is to reason about variables of a Bayesian network. Various methods can be used to inference a Bayesian network, one method is to construct a cluster graph. The cluster graph consists of clusters connected by undirected edges.
+The next step is to reason about variables of a Bayesian network in a more efficient manner. Various methods can be used to inference a Bayesian network; one method is to construct a cluster graph. The cluster graph consists of clusters connected by undirected edges.
 
-Clusters can be formed by grouping factors together such that each cluster is subset of the variables of the Bayesian network
+Clusters can be formed by grouping factors together such that each cluster $C_i$ is subset of the variables of the Bayesian network
 \begin{equation}
 C_i \subseteq \{x_1, ..., x_n\}.
 \end{equation}
-The undirected edges between clusters are called sepsets and are responsible for passing messages between clusters. A sepset between two clusters contains information about variables that are common to both clusters and is defined as
+The undirected edges between clusters are called sepsets and are responsible for passing messages between clusters. A sepset between two clusters contains information about variables that are common to both clusters. An edge between $C_i$ and cluster $C_j$ is associated with a sepset with a subset of variables that is common to both $C_i$ and $C_j$ and is defined as
 \begin{equation}
 S_{i,j} \subseteq C_i \cap C_j.
 \end{equation}
 There are multiple ways to construct clusters, but it should adhere to two requirements~\citep{koller}:
 
-1. Family preservation requires that every factor $\phi_k$ in a set of factors $\Phi$ should be accommodated by a cluster, thus
+1. Family preservation requires that every factor $\phi_k$ in a Bayesian network with a set of factors $\Phi$, there exists a cluster $C_i$ which accommodates $\phi_k$
 \begin{equation}
-Scope[{\phi}_k] \subseteq C_i.
+\text{Scope}[{\phi}_k] \subseteq C_i.
 \end{equation}
 
-2. The running intersection property states that there exists an unique path connecting a pair of clusters containing the same variable $x$, and every cluster and sepset along the path also contain $x$. This path allows clusters to share their beliefs of $x$. In other words, for any variable $x$, the set of sepsets and clusters containing $x$ form a tree~\citep{koller}. This prevents feedback loops and thus counters the phenomena where cluster's reinforce their own beliefs of variables.
+2. The running intersection property states that there exists an unique path connecting a pair of clusters containing the same variable $x$, and every cluster and sepset along the path also contain $x$. This path allows clusters to share their beliefs of $x$. In other words, for any variable $x$, the set of sepsets and clusters containing $x$ form a tree~\citep{koller}. This prevents feedback loops and thus counters the phenomena where clusters reinforce their own beliefs of variables.
 
-Figure \ref{fig:bays_pgm} is updated in Figure \ref{fig:cluster_bound} where CPDs is replaced with factors and possible cluster boundaries are indicated with dashed rectangles. Note that there are other ways to construct the cluster graph.
+Figure \ref{fig:bays_pgm} is converted in Figure \ref{fig:cluster_bound} where CPDs are replaced with factors and possible cluster boundaries are indicated with dashed rectangles. Note that there are other ways to construct the cluster graph.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/cluster_divisions.png}
   \centering
-  \caption{Bayesian PGM with cluster boundaries}
+  \caption{Bayesian network with cluster boundaries}
   \label{fig:cluster_bound}
 \end{figure}
 
-The initial belief of a cluster can be calculated by finding the product of all the factors inside the cluster.~\citep{koller}. The initial belief of a cluster is defined as
+The initial belief of a cluster can be calculated by finding the product of all the factors inside the cluster~\citep{koller}. The initial belief of a cluster is defined as
 \begin{equation}
 \psi_i(C_i) = \prod_{k}\phi_k.
 \end{equation}
-Figure \ref{fig:cluster_bound} is updated in Figure \ref{fig:clustergraph}. Clusters are indicated by ellipsis. Initial beliefs are calculated and shown inside the ellipsis. Sepsets are indicated by rectangles.
+Figure \ref{fig:cluster_bound} is transformed in Figure \ref{fig:clustergraph}. Clusters are indicated by ellipsis. Initial beliefs are calculated and shown inside the ellipsis. Sepsets are indicated by rectangles.
 \begin{figure}[H]
   \includegraphics[width=0.7\linewidth]{Figures/clustergraph.png}
   \centering
-  \caption{Cluster graph}
+  \caption{Cluster graph showing sepsets and clusters with initial beliefs}
   \label{fig:clustergraph}
 \end{figure}
+This section showed how to construct a cluster graph with clusters and sepsets. The cluster graph allows clusters to share beliefs of variables by means of message passing which will be explored in the next section. 
 \section{Message Passing}
-Clusters can share beliefs of common variables with messages passing. Messages are associated with sepsets. An outgoing message of a cluster can be calculated by multiplying the cluster with all the incoming messages and then integrating over the variables that are not in the sepset.
-\\Thus, messages can be calculated accordingly~\citep{koller}
-\begin{equation}
-\delta_{i\to j}(S_{i,j}) = \int_{C_i - S_{i,j}}\psi_i \times \prod_{k\ne j} \delta_{k\to i}(S_{k,i}).
+Clusters can share beliefs of common variables using message passing. Every sepset $S_{i,j}$ has two messages, $\delta_{i, j}$ and $\delta_{j,i}$, associated with it. This allows clusters, connected by a sepset, to communicate in both directions. An outgoing message $\delta_{i,j}$ of a cluster $C_i$ can be calculated by multiplying the initial cluster belief $\psi_i$ with all the incoming messages $\delta_{k,j}$ from other clusters $C_k$ and then marginalising onto the variables contained in the sepset $S_{i,j}$, thus integrating over variables not in the sepset ie. $C_i - S_{i,j}$. This procedure is defined as~\citep{koller}
+\begin{equation}\label{eq:messageOut}
+\delta_{i,j}(S_{i,j}) = \int_{C_i - S_{i,j}}\psi_i \times \prod_{k\ne j} \delta_{k,i}(S_{k,i}).
 \end{equation}
-Applying to the cluster graph in Figure \ref{fig:clustergraph}:
-\begin{equation}\label{eq:del12}
-\delta_{1,2}(d) = \int_a \psi_1(a,d)da
-\end{equation}
+Equation \ref{eq:messageOut} can be demonstrated by calculating arbitrary messages $\delta_{2,3}$ and in $\delta_{3,4}$ Figure \ref{fig:clustergraph}, therefore
 \begin{equation}
 \delta_{2,3}(b) = \int_d \int_e \delta_{1,2}(d)\psi_2(b,d,e)dd\ de
 \end{equation}
+and
 \begin{equation}
-\delta_{3,4}(f) = \int_b \int_c \delta_{2,3}(b)\psi_3(b,c,f)db\ dc
+\delta_{3,4}(f) = \int_b \int_c \delta_{2,3}(b)\psi_3(b,c,f)db\ dc.
 \end{equation}
-\begin{equation}
-\delta_{4,3}(f) = \int_g \psi_4(f,g)dg
-\end{equation}
-\begin{equation}
-\delta_{3,2}(b) = \int_c \int_f \delta_{4,3}(f)\psi_3(b,c,f)dc\ df
-\end{equation}
-\begin{equation}
-\delta_{2,1}(d) = \int_b \int_e \delta_{3,2}(b)\psi_2(b,d,e)db\ de
-\end{equation}
-Sometimes the value of a RV in a PGM is known, in other words there is evidence of a RV available. Evidence of random variables is available to the entire PGM and after evidence of a RV is inferred the RV itself doesn't appear in the PGM any more. Evidence is indicated by a capital letter, thus $X$ is evidence of the RV $x$. Evidence is used to reduce a PDF before calculating messages.
 
-In Equation \ref{eq:evidence} an out going message $\delta_{i \to j}(y)$ is calculated. Evidence of $x$ is available and is indicated as $X$. The evidence of $x$ is used to reduce the cluster $\psi_i$ before multiplying it with all incoming messages and integrating over $z$.
+Sometimes the value of a RV in a PGM is known, in other words there is evidence of a RV available. Evidence of random variables is available to the entire PGM, therefore after evidence of a RV is inserted the RV itself doesn't appear in the PGM any more. Evidence is indicated by a capital letter, thus $X$ is evidence of the RV $x$. Evidence is used to reduce a PDF before calculating messages.
+
+In Equation \ref{eq:evidence}, an outgoing message $\delta_{i , j}(y)$ is calculated. Evidence of $x$ is available and is indicated as $X$. The evidence of $x$ is used to reduce the cluster $\psi_i$ before multiplying it with all incoming messages and integrating over $z$.
 \begin{equation}\label{eq:evidence}
-\delta_{i\to j}(y) = \int_{z}\psi_i(x = X, y, z) \times \prod_{k\ne j} \delta_{k\to i}(S_{k,i})
+\delta_{i , j}(y) = \int_{z}\psi_i(x = X, y, z) \times \prod_{k\ne j} \delta_{k , i}(S_{k,i})
 \end{equation}
-After all the incoming messages of a cluster have been determined, the joint distribution of a cluster can be calculated by multiplying the cluster's initial belief with all of the incoming messages, and normalizing the end result. Koller and Friedman~\cite{koller} specifies this as
+After all the incoming messages of a cluster have been determined, the belief of a cluster can be calculated by multiplying the cluster's initial belief with all of the incoming messages, and normalising the end result. Koller and Friedman~\cite{koller} specifies this as
 \begin{equation}
-\beta_i(C_i) \propto \psi_i \times \prod_{k} \delta_{k \to i}(S_{k,i}).
+\beta_i(C_i) \propto \psi_i \times \prod_{k} \delta_{k , i}(S_{k,i}).
 \end{equation}
 
-The structure of a Bayesian network consists of random variables and directed edges. Each RV is associated with a factor which describes its relationship with other random variables. One method to reason about a Bayesian network is to group factors to construct a cluster graph. Clusters of a cluster graph are connected by sepsets which allows message passing between clusters. After the initial belief of each cluster has been determined, outgoing messages of clusters can be calculated. Messages between clusters contain information about common variables and are used to update the belief clusters have of variables. The Bayesian network will be used in the next chapter to model the uncertainty of the location of a robot.
+This chapter covered the properties of the Bayesian network and how one can reason about a Bayesian network by constructing a cluster graph. The Bayesian network will be used in the next chapter to model the uncertainty of the location of a robot.
 \chapter{Localisation using Probabilistic Graphical Models}
-\section{Linear localisation}
+In this chapter the localisation problem will be solved using PGMs. There is a 
+\section{Modelling the Localisation problem}
+In this section the localisation problem is modelled using a Bayesian network. The network is then transformed into a cluster graph in order to reason about the belief of the pose $\bm{x}_t$ at time t.
+
+The localisation problem is modelled with the Bayesian network and is shown in Figure. The belief of the robot's initial state is given to the network as $p(\bm{x}_0)$. The state of the robots pose $\bm{x}_t$ is dependent on the previous state $\bm{x}_{t-1}$ and control $\bm{u}_t$. The measurement $\bm{z}_t$ is dependent on the current state $\bm{x}_t$ of the robot.
+
+As discussed in Section, the CPD associated with each node can be written as a factor. The Bayesian network in Figure is converted to a cluster graph shown in Figure. There are a few ways to group the factors to form clusters. In this cluster graph factors $\phi_{u_t}, \phi_{x_t}$ and $\phi_{z_t}$ were grouped together in cluster $C_t$. The initial belief of a cluster $C_t$ can be determined as
+\begin{equation}
+\psi_t(x_t, x_{t-1}, u_t, z_t) = \phi_{x_t}(x_t,u_t,x_{t-1})\phi_{z_t}(z_t,x_t)\phi_{u_t}(u_t).
+\end{equation}
+Sepsets with common variables between cluster are indicated with rectangles.
+
+Only messages in the "forward" direction were calculated and the technique called \textit{smoothing} was not used. Smoothing is a technique where messages are sent back in time to get better estimates of previous beliefs.
 \section{Non-linear localisation}
 \subsection{Taylor series expansion}
 \subsection{Unscented transform}

@@ -11,9 +11,9 @@
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Velocity motion model\relax }}{11}
 \addvspace {10pt}
 \addvspace {10pt}
-\addvspace {10pt}
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Undirected and directed graphs\relax }}{18}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Bayesian PGM\relax }}{18}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Bayesian PGM with cluster boundaries\relax }}{20}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Cluster graph\relax }}{20}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Directed graph\relax }}{21}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Undirected graph\relax }}{21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Bayesian network\relax }}{21}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Bayesian network with cluster boundaries\relax }}{23}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Cluster graph showing sepsets and clusters with initial beliefs\relax }}{23}
 \addvspace {10pt}

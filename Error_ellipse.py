@@ -8,10 +8,10 @@ Created on Wed Sep 19 08:48:58 2018
 #import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse
 import numpy as np
-
+import matplotlib.pyplot as plt
 class e_ellipse:
     @staticmethod
-    def plot_eEllipse(mean, sigma, ax , col):        
+    def plot_eEllipse(mean, sigma, col):        
            # ax1 = plt.subplot(111, aspect = 'equal')
             eigValues, eigVectors= np.linalg.eig(sigma[0:2,0:2])            
             maxIndex = np.argmax(eigValues)
@@ -29,4 +29,4 @@ class e_ellipse:
                         height = 2*np.sqrt(eigValues[minIndex]*5.991), 
                         angle = np.rad2deg(alpha), color = col)            
             ell.set_facecolor('none')
-            ax.add_artist(ell)
+            plt.gca().add_artist(ell)

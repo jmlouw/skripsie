@@ -12,10 +12,10 @@ import numpy as np
 
 class UKF:    
     
-    def __init__(self, R, Q, ax):        
+    def __init__(self, R, Q):        
         self.R = R
         self.Q = Q
-        self.ax = ax
+        #self.ax = ax
     
     def func_UKF(self, meanPrev, sigPrev, control_t, z): #EKF algorithm... solves the non-linear localisation problem
         dt = 1        
