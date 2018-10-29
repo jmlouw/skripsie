@@ -19,18 +19,18 @@
 \contentsline {subsubsection}{Multiplication of Canonical Forms:}{6}
 \contentsline {subsubsection}{Marginalisation of a Canonical Form:}{6}
 \contentsline {subsubsection}{Reduction with Evidence:}{7}
-\contentsline {subsection}{\numberline {2.2.2}Linear Transformations using the Canoncical Form}{7}
+\contentsline {subsection}{\numberline {2.2.2}Conditional Probability Distributions in the Canonical Form}{7}
 \contentsline {chapter}{\chapternumberline {3}Motion Models}{9}
 \contentsline {section}{\numberline {3.1}Basic Concepts}{9}
 \contentsline {section}{\numberline {3.2}Linear Motion Model}{10}
-\contentsline {section}{\numberline {3.3}Non-linear Motion Model}{10}
+\contentsline {section}{\numberline {3.3}Nonlinear Motion Model}{10}
 \contentsline {chapter}{\chapternumberline {4}Localisation using Kalman Filters}{12}
 \contentsline {section}{\numberline {4.1}Background}{12}
 \contentsline {section}{\numberline {4.2}Bayes Filter}{12}
 \contentsline {section}{\numberline {4.3}Kalman Filter}{13}
 \contentsline {subsection}{\numberline {4.3.1}Description of Kalman Filter}{13}
-\contentsline {subsection}{\numberline {4.3.2}Kalman Filter Implementation}{14}
-\contentsline {section}{\numberline {4.4}Extended Kalman Filter}{14}
+\contentsline {subsection}{\numberline {4.3.2}Application of the Kalman Filter}{14}
+\contentsline {section}{\numberline {4.4}Extended Kalman Filter}{15}
 \contentsline {subsection}{\numberline {4.4.1}Description of EKF}{15}
 \contentsline {subsection}{\numberline {4.4.2}Application of EKF}{16}
 \contentsline {section}{\numberline {4.5}Unscented Kalman Filter}{17}
@@ -43,8 +43,13 @@
 \contentsline {section}{\numberline {5.5}Message Passing}{23}
 \contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{25}
 \contentsline {section}{\numberline {6.1}Modelling the Localisation problem}{25}
-\contentsline {section}{\numberline {6.2}Non-linear localisation}{25}
-\contentsline {subsection}{\numberline {6.2.1}Taylor series expansion}{25}
-\contentsline {subsection}{\numberline {6.2.2}Unscented transform}{25}
-\contentsline {subsection}{\numberline {6.2.3}Monte Carlo integration}{25}
-\contentsline {chapter}{List of References}{26}
+\contentsline {section}{\numberline {6.2}Reasoning with a Cluster Graph}{25}
+\contentsline {section}{\numberline {6.3}Numerical Integration}{27}
+\contentsline {subsection}{\numberline {6.3.1}Taylor Series Expansion}{27}
+\contentsline {subsection}{\numberline {6.3.2}Unscented Transform}{29}
+\contentsline {subsection}{\numberline {6.3.3}Monte Carlo Integration}{30}
+\contentsline {chapter}{\chapternumberline {7}Results}{31}
+\contentsline {subsection}{\numberline {7.0.1}Accuracy}{31}
+\contentsline {subsection}{\numberline {7.0.2}Efficiency}{31}
+\contentsline {chapter}{\chapternumberline {8}Conclusion}{32}
+\contentsline {chapter}{List of References}{33}
