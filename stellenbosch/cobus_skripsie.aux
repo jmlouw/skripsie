@@ -83,110 +83,132 @@
 \newlabel{vmodel}{{\M@TitleReference {3.3}{Nonlinear Motion Model}}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Velocity motion model\relax }}{11}}
 \newlabel{fig:vel_model}{{\M@TitleReference {3.2}{Velocity motion model\relax }}{11}}
+\citation{thrun}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
 \@writefile{toc}{\contentsline {chapter}{\chapternumberline {4}Localisation using Kalman Filters}{12}}
 \newlabel{chap:kalmanFilter}{{\M@TitleReference {4}{Localisation using Kalman Filters}}{12}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Background}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Bayes Filter}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Bayes Filter}{13}}
+\newlabel{sec:bayesFilter}{{\M@TitleReference {4.2}{Bayes Filter}}{13}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Bayes Filter\relax }}{13}}
 \newlabel{bayesAlg}{{\M@TitleReference {1}{Bayes Filter\relax }}{13}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Kalman Filter}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Description of Kalman Filter}{13}}
-\newlabel{eq:linearKmm}{{\M@TitleReference {4.4}{Description of Kalman Filter}}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Description of the Kalman Filter}{13}}
+\newlabel{eq:linearKmm}{{\M@TitleReference {4.4}{Description of the Kalman Filter}}{13}}
+\newlabel{eq:linearMeasurements}{{\M@TitleReference {4.7}{Description of the Kalman Filter}}{14}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Kalman Filter\relax }}{14}}
 \newlabel{alg:kalmanFilter}{{\M@TitleReference {2}{Kalman Filter\relax }}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Application of the Kalman Filter}{14}}
+\newlabel{subsec:appEKF}{{\M@TitleReference {4.3.2}{Application of the Kalman Filter}}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Result of application with Kalman filter\relax }}{15}}
+\newlabel{fig:resultKF}{{\M@TitleReference {4.1}{Result of application with Kalman filter\relax }}{15}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Extended Kalman Filter}{15}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Description of EKF}{15}}
-\newlabel{eq: taylorLin}{{\M@TitleReference {4.14}{Description of EKF}}{15}}
-\newlabel{eq:jacobian}{{\M@TitleReference {4.17}{Description of EKF}}{15}}
-\newlabel{eq:linear_taylor}{{\M@TitleReference {4.18}{Description of EKF}}{15}}
-\newlabel{eq:Gt}{{\M@TitleReference {4.19}{Description of EKF}}{15}}
+\newlabel{eq:taylorGeneral}{{\M@TitleReference {4.16}{Description of EKF}}{16}}
+\newlabel{eq:jacobian}{{\M@TitleReference {4.17}{Description of EKF}}{16}}
+\newlabel{eq:linear_taylor}{{\M@TitleReference {4.18}{Description of EKF}}{16}}
+\newlabel{eq:Gt}{{\M@TitleReference {4.19}{Description of EKF}}{16}}
 \newlabel{eq:Ht}{{\M@TitleReference {4.21}{Description of EKF}}{16}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Extended Kalman Filter\relax }}{16}}
-\newlabel{EKFalg}{{\M@TitleReference {3}{Extended Kalman Filter\relax }}{16}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Application of EKF}{16}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Extended Kalman Filter\relax }}{17}}
+\newlabel{alg:EKF}{{\M@TitleReference {3}{Extended Kalman Filter\relax }}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Application of EKF}{17}}
+\newlabel{eq:stateTranGen}{{\M@TitleReference {4.22}{Application of EKF}}{17}}
 \newlabel{eq:velocityJacobian}{{\M@TitleReference {4.26}{Application of EKF}}{17}}
 \newlabel{eq:linearG}{{\M@TitleReference {4.27}{Application of EKF}}{17}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Unscented Kalman Filter}{17}}
-\newlabel{sec:UKF}{{\M@TitleReference {4.5}{Unscented Kalman Filter}}{17}}
-\newlabel{eq:unscentedMean}{{\M@TitleReference {4.39}{Unscented Kalman Filter}}{18}}
-\newlabel{eq:unscentedCov}{{\M@TitleReference {4.40}{Unscented Kalman Filter}}{18}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Application of UKF}{18}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Unscented Kalman Filter\relax }}{19}}
-\newlabel{UKFalg}{{\M@TitleReference {4}{Unscented Kalman Filter\relax }}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Result of the application of the extended Kalman filter\relax }}{18}}
+\newlabel{fig:resultEKF}{{\M@TitleReference {4.2}{Result of the application of the extended Kalman filter\relax }}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Unscented Kalman Filter}{18}}
+\newlabel{sec:UKF}{{\M@TitleReference {4.5}{Unscented Kalman Filter}}{18}}
+\newlabel{eq:calcLam}{{\M@TitleReference {4.34}{Unscented Kalman Filter}}{19}}
+\newlabel{eq:unscentedMean}{{\M@TitleReference {4.39}{Unscented Kalman Filter}}{19}}
+\newlabel{eq:unscentedCov}{{\M@TitleReference {4.40}{Unscented Kalman Filter}}{19}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces Unscented Kalman Filter\relax }}{20}}
+\newlabel{alg:UKF}{{\M@TitleReference {4}{Unscented Kalman Filter\relax }}{20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Application of UKF}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Result of the application of the unscented Kalman filter\relax }}{21}}
+\newlabel{fig:resultUKF}{{\M@TitleReference {4.3}{Result of the application of the unscented Kalman filter\relax }}{21}}
 \citation{koller}
 \citation{barber}
 \citation{JC}
 \citation{barber}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {5}Probabilistic Graphical Models}{20}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overview}{20}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Basic Concepts of Graphical Models}{20}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {5}Probabilistic Graphical Models}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Overview}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Basic Concepts of Graphical Models}{22}}
 \citation{koller}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Directed graph\relax }}{21}}
-\newlabel{fig:directed_graph}{{\M@TitleReference {5.1}{Directed graph\relax }}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Undirected graph\relax }}{21}}
-\newlabel{fig:undirected_graph}{{\M@TitleReference {5.2}{Undirected graph\relax }}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Bayesian Networks}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Bayesian network\relax }}{21}}
-\newlabel{fig:bays_pgm}{{\M@TitleReference {5.3}{Bayesian network\relax }}{21}}
-\citation{koller}
-\citation{koller}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Cluster Graphs}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Undirected graph\relax }}{23}}
+\newlabel{fig:undirected_graph}{{\M@TitleReference {5.1}{Undirected graph\relax }}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Directed graph\relax }}{23}}
+\newlabel{fig:directed_graph}{{\M@TitleReference {5.2}{Directed graph\relax }}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Bayesian Networks}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Bayesian network\relax }}{23}}
+\newlabel{fig:bays_pgm}{{\M@TitleReference {5.3}{Bayesian network\relax }}{23}}
 \citation{koller}
 \citation{koller}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Bayesian network with cluster boundaries\relax }}{23}}
-\newlabel{fig:cluster_bound}{{\M@TitleReference {5.4}{Bayesian network with cluster boundaries\relax }}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Cluster graph showing sepsets and clusters with initial beliefs\relax }}{23}}
-\newlabel{fig:clustergraph}{{\M@TitleReference {5.5}{Cluster graph showing sepsets and clusters with initial beliefs\relax }}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}Message Passing}{23}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Cluster Graphs}{24}}
 \citation{koller}
-\newlabel{eq:messageOut}{{\M@TitleReference {5.11}{Message Passing}}{24}}
-\newlabel{eq:evidence}{{\M@TitleReference {5.14}{Message Passing}}{24}}
+\citation{koller}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Bayesian network with cluster boundaries\relax }}{25}}
+\newlabel{fig:cluster_bound}{{\M@TitleReference {5.4}{Bayesian network with cluster boundaries\relax }}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Cluster graph showing sepsets and clusters with initial beliefs\relax }}{25}}
+\newlabel{fig:clustergraph}{{\M@TitleReference {5.5}{Cluster graph showing sepsets and clusters with initial beliefs\relax }}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.5}Message Passing}{25}}
+\newlabel{eq:messageOut}{{\M@TitleReference {5.10}{Message Passing}}{25}}
+\citation{koller}
+\newlabel{eq:mes34}{{\M@TitleReference {5.12}{Message Passing}}{26}}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{25}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Modelling the Localisation problem}{25}}
-\newlabel{sec:model}{{\M@TitleReference {6.1}{Modelling the Localisation problem}}{25}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Reasoning with a Cluster Graph}{25}}
-\newlabel{sec:cluster}{{\M@TitleReference {6.2}{Reasoning with a Cluster Graph}}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Bayesian network of localisation problem\relax }}{26}}
-\newlabel{fig:loc_bayes}{{\M@TitleReference {6.1}{Bayesian network of localisation problem\relax }}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Cluster graph with grouped factors and sepsets\relax }}{26}}
-\newlabel{fig:loc_cluster}{{\M@TitleReference {6.2}{Cluster graph with grouped factors and sepsets\relax }}{26}}
-\newlabel{eq:mesBel}{{\M@TitleReference {6.5}{Reasoning with a Cluster Graph}}{26}}
-\newlabel{eq:outMes}{{\M@TitleReference {6.6}{Reasoning with a Cluster Graph}}{27}}
-\newlabel{eq:pgmBayesEq}{{\M@TitleReference {6.7}{Reasoning with a Cluster Graph}}{27}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Numerical Integration}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Taylor Series Expansion}{27}}
-\newlabel{eq:nonLinStateTransFunc}{{\M@TitleReference {6.8}{Taylor Series Expansion}}{27}}
-\newlabel{eq:taylorCanLin1}{{\M@TitleReference {6.10}{Taylor Series Expansion}}{28}}
-\newlabel{eq:taylorCanLin2}{{\M@TitleReference {6.11}{Taylor Series Expansion}}{28}}
-\newlabel{eq:nonLinMesFunc}{{\M@TitleReference {6.13}{Taylor Series Expansion}}{28}}
-\newlabel{eq:mesLin1}{{\M@TitleReference {6.15}{Taylor Series Expansion}}{28}}
-\newlabel{eq:mesLin2}{{\M@TitleReference {6.16}{Taylor Series Expansion}}{28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Unscented Transform}{29}}
-\newlabel{eq:mean_y}{{\M@TitleReference {6.18}{Unscented Transform}}{29}}
-\newlabel{eq:Sigma_yy}{{\M@TitleReference {6.19}{Unscented Transform}}{29}}
-\newlabel{eq:Sigma_xy}{{\M@TitleReference {6.20}{Unscented Transform}}{29}}
-\newlabel{eq:linearTransform}{{\M@TitleReference {6.21}{Unscented Transform}}{29}}
-\newlabel{eq:mean_y2}{{\M@TitleReference {6.23}{Unscented Transform}}{29}}
-\newlabel{eq:crossCovariance}{{\M@TitleReference {6.25}{Unscented Transform}}{30}}
-\newlabel{eq:detF}{{\M@TitleReference {6.3.2}{Unscented Transform}}{30}}
-\newlabel{eq:detg}{{\M@TitleReference {6.27}{Unscented Transform}}{30}}
-\newlabel{eq:detSigma_n}{{\M@TitleReference {6.28}{Unscented Transform}}{30}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Monte Carlo Integration}{30}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {6}Localisation using Probabilistic Graphical Models}{27}}
+\newlabel{chap:pgmLoc}{{\M@TitleReference {6}{Localisation using Probabilistic Graphical Models}}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Modelling the Localisation problem}{27}}
+\newlabel{sec:model}{{\M@TitleReference {6.1}{Modelling the Localisation problem}}{27}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Reasoning with a Cluster Graph}{27}}
+\newlabel{sec:cluster}{{\M@TitleReference {6.2}{Reasoning with a Cluster Graph}}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Bayesian network of localisation problem\relax }}{28}}
+\newlabel{fig:loc_bayes}{{\M@TitleReference {6.1}{Bayesian network of localisation problem\relax }}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Cluster graph with grouped factors and sepsets\relax }}{28}}
+\newlabel{fig:loc_cluster}{{\M@TitleReference {6.2}{Cluster graph with grouped factors and sepsets\relax }}{28}}
+\newlabel{eq:mesBel}{{\M@TitleReference {6.5}{Reasoning with a Cluster Graph}}{28}}
+\newlabel{eq:outMes}{{\M@TitleReference {6.6}{Reasoning with a Cluster Graph}}{29}}
+\newlabel{eq:pgmBayesEq}{{\M@TitleReference {6.7}{Reasoning with a Cluster Graph}}{29}}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {7}Results}{31}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.0.1}Accuracy}{31}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.0.2}Efficiency}{31}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {7}Numerical Integration}{30}}
+\newlabel{sec:numInt}{{\M@TitleReference {7}{Numerical Integration}}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Taylor Expansion}{30}}
+\newlabel{eq:nonLinStateTransFunc}{{\M@TitleReference {7.1}{Taylor Expansion}}{30}}
+\newlabel{eq:taylorCanLin1}{{\M@TitleReference {7.3}{Taylor Expansion}}{30}}
+\newlabel{eq:taylorCanLin2}{{\M@TitleReference {7.4}{Taylor Expansion}}{30}}
+\newlabel{eq:nonLinMesFunc}{{\M@TitleReference {7.6}{Taylor Expansion}}{31}}
+\newlabel{eq:mesLin1}{{\M@TitleReference {7.8}{Taylor Expansion}}{31}}
+\newlabel{eq:mesLin2}{{\M@TitleReference {7.9}{Taylor Expansion}}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Unscented Transform}{31}}
+\newlabel{eq:mean_y}{{\M@TitleReference {7.11}{Unscented Transform}}{31}}
+\newlabel{eq:Sigma_yy}{{\M@TitleReference {7.12}{Unscented Transform}}{32}}
+\newlabel{eq:Sigma_xy}{{\M@TitleReference {7.13}{Unscented Transform}}{32}}
+\newlabel{eq:linearTransform}{{\M@TitleReference {7.14}{Unscented Transform}}{32}}
+\newlabel{eq:mean_y2}{{\M@TitleReference {7.16}{Unscented Transform}}{32}}
+\newlabel{eq:crossCovariance}{{\M@TitleReference {7.18}{Unscented Transform}}{32}}
+\newlabel{eq:detF}{{\M@TitleReference {7.2}{Unscented Transform}}{32}}
+\newlabel{eq:detg}{{\M@TitleReference {7.20}{Unscented Transform}}{32}}
+\newlabel{eq:detSigma_n}{{\M@TitleReference {7.21}{Unscented Transform}}{32}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Monte Carlo Integration}{33}}
+\citation{duchi}
+\citation{duchi}
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
-\@writefile{toc}{\contentsline {chapter}{\chapternumberline {8}Conclusion}{32}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {8}Results}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Accuracy}{34}}
+\newlabel{eq:defKL}{{\M@TitleReference {8.1}{Accuracy}}{34}}
+\newlabel{eq:klGauss}{{\M@TitleReference {8.4}{Accuracy}}{35}}
+\@writefile{lot}{\contentsline {table}{\numberline {8.1}{\ignorespaces Table to test captions and labels\relax }}{35}}
+\newlabel{table:kl}{{\M@TitleReference {8.1}{Table to test captions and labels\relax }}{35}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Computational Efficiency}{35}}
+\@writefile{lof}{\addvspace {10pt}}
+\@writefile{lot}{\addvspace {10pt}}
+\@writefile{toc}{\contentsline {chapter}{\chapternumberline {9}Conclusion}{36}}
 \bibdata{mybib}
 \bibcite{peebles}{{1}{2001}{{Peebles}}{{}}}
 \bibcite{koller}{{2}{2009}{{Koller \emph  {et~al.{}}}}{{Koller, Friedman \BIBand {} Bach}}}
@@ -195,6 +217,7 @@
 \bibcite{JC}{{5}{2016}{{Schoeman}}{{}}}
 \bibcite{thrun}{{6}{2005}{{Choset \emph  {et~al.{}}}}{{Choset, Hutchinson, Lynch, Kantor, Burgard, Kavraki \BIBand {} Thrun}}}
 \bibcite{barber}{{7}{2012}{{Barber}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{List of References}{33}}
-\memsetcounter{lastsheet}{42}
-\memsetcounter{lastpage}{33}
+\bibcite{duchi}{{8}{2007}{{Duchi}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{List of References}{37}}
+\memsetcounter{lastsheet}{46}
+\memsetcounter{lastpage}{37}
