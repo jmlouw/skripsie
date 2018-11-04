@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: 19232969_Louw_JM_skripsie2018.aux
+The style file: usmeg-n.bst
+Database file #1: mybib.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty year in draw_ellipse
+You've used 8 entries,
+            3338 wiz_defined-function locations,
+            694 strings with 6162 characters,
+and the built_in function-call counts, 5062 in all, are:
+= -- 361
+> -- 97
+< -- 8
++ -- 48
+- -- 30
+* -- 450
+:= -- 628
+add.period$ -- 17
+call.type$ -- 8
+change.case$ -- 36
+chr.to.int$ -- 8
+cite$ -- 11
+duplicate$ -- 532
+empty$ -- 528
+format.name$ -- 71
+if$ -- 1032
+int.to.chr$ -- 1
+int.to.str$ -- 9
+missing$ -- 73
+newline$ -- 55
+num.names$ -- 21
+pop$ -- 176
+preamble$ -- 1
+purify$ -- 32
+quote$ -- 0
+skip$ -- 164
+stack$ -- 0
+substring$ -- 266
+swap$ -- 205
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 38
+warning$ -- 1
+while$ -- 40
+width$ -- 0
+write$ -- 112
+(There was 1 warning)

@@ -2,7 +2,7 @@
 afrikaans,english,
 %... Global lang drivers
 ]{memoir}
-\usepackage[report, goldenblock]{usthesis}%... Thesis options
+\usepackage[report, stdblock]{usthesis}%... Thesis options
 \usepackage[afrikaans, english]{babel}
 %\SingleSpacing
 \usepackage[left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry}
@@ -14,10 +14,10 @@ afrikaans,english,
 \usepackage{subcaption}
 \usepackage{color} % or xcolor
 \usepackage{float} %figure location
-
+\usepackage{pdfpages}
 \renewcommand{\thesection}{\thechapter.\arabic{section}}
 \usepackage{tabto}
-
+\usepackage{longtable}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 %Watermark
@@ -33,34 +33,62 @@ afrikaans,english,
 \addto{\captionsenglish}{\renewcommand{\bibname}{List of References}}
 
 \begin{document}
+
 \pagestyle{plain}
 \frontmatter
 %TiltePage:
 \title{Numerical Integration for Probabilistic Reasoning}
-\author{JM.\ Louw}{Jacobus Martin Louw}
+\author{JM.\ Louw}{Jacobus Martin Louw\\
+19232969}
 \faculty{Faculty of Electrical and Electronic Engineering}
-\degree{BEng (E&E)}{Bachelor of Engineering (Electrical and Electronic)}
-\ReportDescript{Final Report}
+\degree{BEng (E&E)}{Baccalaureus in Engineering (Electrical and Electronic)}
+\ReportDescript{Report submitted in partial fulfilment of the requirements of the module 
+Project (E) 448 for the degree 
+Baccalaureus in Engineering in the Department of 
+Electrical and Electronic Engineering at the University of Stellenbosch}
 \supervisor{Dr\ CE\ van Daalen}
-\frontmatter
 %\WaterMark{UScrest-WM}
 \TitlePage
 
 \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
-%Declaration Page
-\DeclarationPage
+
 
 %abstract
 \address{Department of Electrical and Electronic Engineering,\\
 University of Stellenbosch,\\
 Private Bag X1, 7602 Matieland, South Africa.}
 \newpage
+\chapter{Acknowledgements}
+I would like to acknowledge with much appreciation the excellent guidance that I received from my study leader, Dr CE van Daalen. I also want to sincerely thank JC Schoeman for all his time and for the valuable advice I received from him. Further I want to acknowledge and thank Prof. Ryno Naude for his willingness to read through my report and for his valuable input. Lastly I want to thank Mr Rudolf Visser, as well as my parents, for proofreading my report and giving feedback. I really appreciate each contribution which added much value to my final product.
+
+\includepdf[pages=-]{SU_PlagiarismDeclaration.pdf}
+\chapter{Opsomming}
+Die projek behels die beredenering van die mees waarskynlike toestand van '‘n robot. Die stogastiese veranderlikes wat die toestand van '‘n robot beskryf is kontnue, dus maak die meeste berekeninge, wat gebruik word om die toestand van '‘n robot te benader, gebruik van integrasie. In '‘n lineêre sisteem het hierdie integrale '‘n eindige antwoord, maar in die geval van '‘n nie-linêere sisteem kan dit nie analities bereken word nie en moet '‘n benaderde waarde met numeriese integrasie bepaal word. 
+
+Hierdie verslag ondersoek die tradisionele tegnieke, byvoorbeeld die uitgebreide en die reuklose Kalman filters, om '‘n robot met '‘n nie-linêere beweging te lokaliseer. Die waarskynlikheids-grafiese-model (WGM) gebruik '‘n alternatiewe metode om die probleem te modelleer en daar word bevind dat dit die dieselfde resultaat lewer as die generiese Bayes filter. Daar word dan ondersoek hoe alternatiewe metodes van numeriese integrasie in die Bayes filter ge{\"\i}mplementeer kan word, wat '‘n mens in staat sal stel om die geloofwaardigheid van die toestand van '‘n robot te bepaal.
+
+Drie tegnieke, wat numeriese integrasie insluit, word ondersoek om die geloofwaardigheid van die toestand van '‘n robot by benadering te bepaal.  Die tegnieke sluit die Taylor uitbreiding, die reuklose transform en Monte Carlo integrasie in en word toegepas om '‘n algemene nie-linêere lokaliseringsprobleem op te los. Die tegnieke word vergelyk in terme van akkuraatheid en werksverrigting.
+
+Dit word bevind dat die akkuraatheid en werksverrigting van die tegnieke vir hierdie spesifieke probleem baie ooreenstem. Die Monte Carlo tegniek met '‘n ho{{\"e} monster-telling, gee '‘n meer akkurate benadering, maar ten koste van werksverrigting. Dit word verwag dat indien '‘n nie-linêere metingsmodel gebruik word, '‘n mens in staat sal wees om beter tussen die tegnieke in terme van akkuraatheid te onderskei.
+\chapter{Summary}
+The report entails the probabilistic reasoning of the state of a robot. The random variables which describe the state of a robot are continuous, therefore most of the operations used to reason about this make use of integration. In a linear system these integrals have finite answers, but in the case of a nonlinear system it cannot be computed analytically and one has to approximate it with techniques of numerical integration.
+
+This report investigates traditional techniques for example the extended and unscented Kalman filters to localise a robot with a nonlinear movement. The PGM is used as an alternative method to model the problem and it is found that it gives the same result as the generic Bayes filter. It is then investigated how alternative methods of numerical integration can be implemented in the Bayes filter, which will allow one to approximate the belief of the state of a robot.
+
+Three techniques, which entail numerical integration, are investigated to approximate this belief. The techniques include Taylor expansion, the unscented transform and Monte Carlo integration and are applied to solve a common nonlinear localisation problem. The techniques are compared in terms of accuracy and computational efficiency.
+
+It is found that for this specific problem, the performance of the techniques are very similar. The Monte Carlo technique with a high sample count gives a more accurate approximation, but at the cost of computational efficiency. It is expected that if a nonlinear measurement model is used, one will be able to distinguish better between the techniques in terms of accuracy.
+
+
+
+\pagebreak
+
 
 \tableofcontents
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 \pagebreak
 \listoffigures
-
+\listoftables
 \chapter{List of Acronyms}
 
 \begin{tabbing}
@@ -102,31 +130,29 @@ Private Bag X1, 7602 Matieland, South Africa.}
 \> $K$	\> - \> information matrix\\
 \> $\delta$ \> - \> message in a cluster graph\\
 \> $\eta$ \> - \> normalisation coefficient\\
-\> $\psi$ \> - \> initial belief cluster\\
+\> $\psi$ \> - \> cluster factor\\
 \> $\Sigma$ \> - \> covariance matrix\\
 \> $\sigma$ \> - \> standard deviation\\
 \> $\mu$ \> - \> mean
 
 \end{tabbing}
-\begin{abstract}
-Text in default language ...
-\end{abstract}
+
 
 
 \mainmatter
 \chapter{Introduction}
-Robot localisation is the process of estimating where a robot is located relative to its environment. It is essential for autonomous robots to have a precise knowledge of their location in order to navigate their surroundings.
+Robot localisation is the process of estimating where a robot is located relative to its environment. It is for example essential for autonomous robots to have a precise knowledge of their location in order to navigate their surroundings.
 
 When estimating the location of a robot, a map of the environment and the control input to the robot are usually available. The robot is also generally fitted with sensors which, together with beacons, measure where the robot is located relative to the map. Unfortunately the information of the robot's movements and measurements of its location are uncertain due to noise. The position and orientation of the robot should rather be estimated in a probabilistic manner from the information gathered from the sensors. The localisation techniques must therefore be able to deal with noise and describe the robot's location with a measure of uncertainty.
 
-Probabilistic reasoning of systems with continuous random variables (RV) use integration for various operations. In most nonlinear systems these integrals cannot be calculated analytically and one must use numerical methods. Kalman filters have been used extensively for localisation. Techniques such as the extended Kalman filter use primitive numerical integration that can lead to inaccurate estimations, especially when measurements are also nonlinear. However, there are several alternative numerical techniques available that are more accurate.
+Probabilistic reasoning of systems containing continuous random variables (RV) use integration for various operations. In most nonlinear systems these integrals cannot be calculated analytically and one must use numerical methods. Kalman filters have been used extensively for localisation. Techniques such as the extended Kalman filter use primitive numerical integration that can lead to inaccurate estimations, especially when measurements are also nonlinear. However, there are several alternative numerical techniques available that are more accurate.
 
 A probabilistic graphical model (PGM) is a technique that is used to model systems with uncertainty in an organised manner. It describes the relationship between RVs and allows one to reason about their likelihood based on knowledge that is available to the system. Reasoning about random variables (RVs) in a PGM consists of a number of steps and one can easily identify where integration is used.
 
-The end goal of this project is to investigate different techniques of numerical integration and to implement each technique in a PGM to reason about a nonlinear localisation problem. The techniques of numerical integration will be compared in terms of accuracy and efficiency.
+The end goal of this project is to investigate different techniques of numerical integration and to implement each technique in a PGM to reason about a nonlinear localisation problem. The techniques of numerical integration will be compared in terms of accuracy and computational efficiency.
 \setcounter{secnumdepth}{2}
 \chapter{Gaussian Random Variables}
-The Gaussian or normal distribution is commonly used in probability theory, and is amongst other things, very easy to use. Although Gaussian distributions make severe assumptions such as the exponential decay of the distribution away from its mean, they are often surprisingly good estimations for real world distributions. The Gaussian distribution is a very important concept in this report, because all the probability distributions are approximated as Gaussian distributions. Key concepts, features and representations of the Gaussian distribution are discussed in this chapter and is based on the work of Peebles and Shi~\cite{peebles} and Koller and Friedman~\cite{koller}.
+The Gaussian or normal distribution is commonly used in probability theory, and is amongst other things, very easy to use. Although Gaussian distributions make extreme assumptions such as the exponential decay of the distribution away from its mean, they are often surprisingly good estimations for real world distributions. The Gaussian distribution is a very important concept in this report, because all the probability distributions are approximated as Gaussian distributions. Key concepts, features and representations of the Gaussian distribution are discussed in this chapter and is based on the work of Peebles~\cite{peebles} and Koller \textit{et al}~\cite{koller}.
 
 \section{Covariance Form}
 The value of a random variable (RV) is of a random nature and is drawn from a certain function. In the case of a Gaussian RV, the value is drawn from a Gaussian distribution.
@@ -138,33 +164,35 @@ x\sim\mathcal{N}(\mu,\sigma),
 \end{equation}
 has a PDF that is defined by
 \begin{equation}\label{eq:1}
-p(x) = \eta\exp\left[\frac{-(x-\mu)^2}{2\sigma^2}\right],
+p(x) = \eta\exp\left[\frac{-(x-\mu)^2}{2\sigma^2}\right]
 \end{equation}
-with a normalisation coefficient 
+and with a normalisation coefficient 
 \begin{equation}\label{eq:2}
 \eta = \frac{1}{\sqrt{2\pi\sigma^2}}.
 \end{equation}
-The mean parameter $\mu$ describes the location of the peak of the distribution and the variance parameter $\sigma^2$ describes the tempo at which the distribution decays. The probability to draw a value of $X$ out of a Gaussian distribution decreases exponentially as $X$ moves farther away from the mean of the Gaussian distribution. The standard deviation of the Gaussian distribution is denoted as $\sigma$ and it  describes the spread of the PDF.
+The mean parameter $\mu$ describes the location of the peak of the distribution and the standard deviation $\sigma$ describes the spread of the distribution, and is indicated in Figure \ref{fig:gPDF1}. The variance $\sigma^2$ describes the rate at which the distribution decays. The probability to obtain value of $X$ from a Gaussian distribution decreases exponentially as $X$ moves farther away from the mean of the distribution.
 
 If $x$ is a continuous RV, then the mean or expectation of $x$ is
 \begin{equation}
-\mu = \mathcal{E}\left[ x \right] = \int x \cdot p(x)dx.
+\begin{split}
+\mu & = \mathcal{E}\left[ x \right] \\
+& = \int x \cdot p(x)dx.
+\end{split}
 \end{equation}
 The variance of $x$ can be calculated as
 \begin{equation}
 \begin{split}
 \sigma^2 & = \mathcal{E}\left[\left(x - \mathcal{E}[x]\right)^2\right]\\
-& = \mathcal{E}[x^2] - (\mathcal{E}[x])^2
+& = \mathcal{E}[x^2] - (\mathcal{E}[x])^2.
 \end{split}
 \end{equation}
- Figure \ref{fig:gPDF1} indicates the mean $\mu$ and standard deviation $\sigma$ of an univariate Gaussian PDF.
 \begin{figure}[H]
   \includegraphics[width=0.6\linewidth]{Figures/univariate.png}
   \centering
   \caption[Univariate Gaussian PDF]{An univariate Gaussian PDF can be observed, where the mean is indicated with $\mu$ and the standard deviation is indicated with $\sigma$.}
   \label{fig:gPDF1}
 \end{figure}
-The definition of the Gaussian distribution can be extended to describe the PDF of $N$ random variables (RVs). This is called the multivariate Gaussian distribution. The multivariate Gaussian distribution is described by an $N$-dimensional mean vector $\bm{\mu}$ and an $N\times N$ covariance matrix $\Sigma$. A random vector $\bm{x}$, with $N$ random variables (RVs), is defined as
+The definition of the Gaussian distribution can be extended to describe the probability density function (PDF) of $N$ random variables (RVs). This is called the multivariate Gaussian distribution. The multivariate Gaussian distribution is described by an $N$-dimensional mean vector $\bm{\mu}$ and an $N\times N$ covariance matrix $\Sigma$. A random vector $\bm{x}$, with $N$ random variables (RVs), is defined as
 \begin{equation}
 \bm{x} = [x_1\ ...\ x_N]^T,
 \end{equation}
@@ -181,22 +209,22 @@ where $\eta$ is a normalisation coefficient and is defined as
 \eta = \frac{1}{(2\pi)^{\frac{N}{2}}|\Sigma|^{\frac{1}{2}}}.
 \end{equation}
 
-For this project it is required that $\Sigma$ is positive definite and thus also nonsingular, which guarantees a determinant that is nonzero. Positive definite covariance matrices are also invertible, thus the alternative canonical or information form, which requires $\Sigma^{-1}$, can be used. The canonical form is discussed in the following section.
+For this project it is required that the covariance matrix $\Sigma$ is positive definite and thus also nonsingular, which guarantees a determinant that is nonzero. Positive definite covariance matrices are also invertible, thus the alternative canonical or information form, which requires $\Sigma^{-1}$, can be used. (The canonical form is discussed in the following section.)
 
-The mean vector of RV vector $\bm{x}$ is equal to the expectation of $\bm{x}$ and is defined as
+The mean vector of the random vector $\bm{x}$ is equal to the expectation of $\bm{x}$ and is defined as
 \begin{equation}
 \bm{\mu} = \mathcal{E}[\bm{x}].
 \end{equation}
-The covariance matrix $\Sigma$ specifies the correlation between RVs and is equal to
+The covariance matrix $\Sigma$ specifies the relationship between the RVs of the random vector $\bm{x}$ and is equal to
 \begin{equation}\label{eq:defCovariance}
 \begin{split}
 \Sigma & = \mathcal{E}\left[(\bm{x} - \mathcal{E}[\bm{x}])^2\right]\\
 & = \mathcal{E}[\bm{xx}^T] - \mathcal{E}[\bm{x}]\mathcal{E}[\bm{x}]^T.
 \end{split}
 \end{equation}
-\subsection{Error Ellipse}The following section is based on an article by Abdi ~\cite{abdi} and on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.
+\subsection{Error Ellipse}The following subsection is based on an article by Abdi~\cite{abdi} and on a webpage from "Computer vision for dummies"~\cite{draw_ellipse}.
 
-A multivariate Gaussian distribution with RV vector
+A multivariate Gaussian distribution describing the random vector
 \begin{equation}
 \bm{x} = [x_1\ x_2]^T
 \end{equation}
@@ -210,13 +238,15 @@ We can use eigenvalue decomposition to factorise the covariance matrix $\Sigma$,
 \end{equation}
 Each column of the matrix $Q$ contains an eigenvector $\bm{v}$. The matrix $Q$ is defined as
 \begin{equation}
-Q =
-[\bm{v_1} \ \bm{v_2}]
-=
+\begin{split}
+Q & =
+[\bm{v_1} \ \bm{v_2}]\\
+& =
 \begin{bmatrix}
 v_{11} & v_{21}\\
 v_{12} & v_{22}
 \end{bmatrix}.
+\end{split}
 \end{equation}
 The matrix $\Lambda$ is a diagonal matrix and each of its diagonal entries contains an eigenvalue $\lambda$. The matrix $\Lambda$ is defined as 
 \begin{equation}
@@ -226,7 +256,7 @@ The matrix $\Lambda$ is a diagonal matrix and each of its diagonal entries conta
 0 & \lambda_2
 \end{bmatrix}.
 \end{equation}
-An error ellipse of a Gaussian PDF can be specified in terms of confidence levels, which is the probability that a value drawn from the distribution will fall inside the ellipse. Thus, differently sized ellipses can be plotted for different confidence levels. The lengths of the major and minor axes are sequentially specified as $2\sqrt{s\lambda_1}$ and $2\sqrt{s\lambda_2}$, where $\lambda_1 \geq \lambda_2$. The value of $s$ is determined by the confidence level of the error ellipse. In the case of an error ellipse with a confidence level of 95\%, $s$ is set to 5.991. The Chi-Square distribution can be used to find $s$ for other confidence levels, but it is beyond the scope of this document.
+An error ellipse of a Gaussian PDF can be specified in terms of confidence levels, which is the probability that a value drawn from the distribution will fall inside the ellipse. Thus, differently sized ellipses can be plotted for different confidence levels. The lengths of the major and minor axes are respectively specified as $2\sqrt{s\lambda_1}$ and $2\sqrt{s\lambda_2}$, where $\lambda_1 \geq \lambda_2$. The value of $s$ is determined by the confidence level of the error ellipse. In the case of an error ellipse with a confidence level of 95\%, $s$ is set to 5.991. The Chi-Square distribution can be used to find $s$ for other confidence levels, but it is beyond the scope of this treatise.
 
 The orientation $\alpha$ of the error ellipse is shown in Figure \ref{fig:e_ellipse}. To obtain $\alpha$ we calculate the angle, relative to the x-axis, of the eigenvector with the largest spread. The angle $\alpha$ is defined as
 \begin{equation}
@@ -237,20 +267,20 @@ where $\lambda_1 \geq \lambda_2$.
 \begin{figure}[H]
   \includegraphics[width=0.5\linewidth]{Figures/e_ellipse.png}
   \centering
-  \caption[Error Ellipse]{An error ellipse is shown. The major and minor axes are indicated with the dotted lines and the orientation of the ellipse is indicated with $\alpha$.}
+  \caption[Error ellipse]{An error ellipse is shown. The major and minor axes are indicated with the dotted lines and the orientation of the ellipse is indicated with $\alpha$.}
   \label{fig:e_ellipse}
 \end{figure}
 \section{Canonical Form}\label{sec:canonical}
-The canonical or information form is an alternative way to describe Gaussian distributions. Using the canonical form has benefits, for example that certain operations are easier to perform. It can also be used to represent Gaussian conditional probability densities (CPDs), which will be discussed later in this section. This section is based on the work of Koller and Friedman~\cite{koller} and Schoeman~\citep{JC}.
+The canonical or information form is an alternative way to describe Gaussian distributions. Using the canonical form has benefits, for example that certain operations are easier to perform. It can also be used to represent Gaussian conditional probability distributions (CPDs), which will be discussed later in this section. This section is based on the work of Koller \textit{et al}~\cite{koller} and Schoeman~\citep{JC}.
 
-The definition of the Gaussian distribution, shown in Equation \ref{eq:3}, can be rewritten in the following way
+The definition of the Gaussian distribution, shown in Equation \ref{eq:3}, can be rewritten in the following way:
 \begin{equation}
 \begin{split}\label{eq:pdf_expand}
 p(\bm{x}) & = \eta\exp\left[-\frac{1}{2}(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})\right]\\
 & = \exp\left(-\frac{1}{2}\bm{x}^T\Sigma^{-1}\bm{x} + \bm{\mu}^T\Sigma^{-1}\bm{x} - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}\right).
 \end{split}
 \end{equation}
-We define the information matrix as
+The information matrix is defined as
 \begin{equation}\label{eq:defInfoMatrix}
 K = \Sigma^{-1},
 \end{equation}
@@ -262,11 +292,11 @@ and the scalar as
 \begin{equation}\label{eq:defScalG}
 g = - \frac{1}{2}\bm{\mu}^T\Sigma^{-1}\bm{\mu} + \ln{\eta}.
 \end{equation}
-We can substitute the definitions from Equation \ref{eq:defInfoMatrix} to Equation \ref{eq:defScalG} into Equation \ref{eq:pdf_expand}, and the define the canonical form as
+We can substitute the definitions from Equations \ref{eq:defInfoMatrix} to \ref{eq:defScalG} into Equation \ref{eq:pdf_expand}, and the define the canonical form as
 \begin{equation}\label{eq:defCanonical}
 \mathcal{C}_g(\bm{x}; K,\bm{h},g) = \exp\left(-\frac{1}{2}\bm{x}^TK\bm{x} + \bm{h}^T\bm{x} +g \right).
 \end{equation}
-Inspecting Equation \ref{eq:defInfoMatrix} to Equation \ref{eq:defScalG} again, it can be seen that one can always determine $g$, if the values of $\bm{h}$ and $K$ is available. This enables us to describe the canonical form in a simpler form, therefore
+Inspecting Equations \ref{eq:defInfoMatrix} to \ref{eq:defScalG} again, it can be seen that one can always determine $g$, if the values of $\bm{h}$ and $K$ are available. This enables one to describe the canonical form in a simpler form, therefore
 \begin{equation}
 \mathcal{C}(\bm{x}; K,\bm{h}) \propto \mathcal{C}_g(\bm{x}; K,\bm{h},g).
 \end{equation}
@@ -278,13 +308,11 @@ and
 \begin{equation}
 \bm{\mu} = \Sigma\bm{h}.
 \end{equation}
-If $K$ is not invertible and the covariance can not be recovered, the canonical form is therefore more general than the covariance form.
+If $K$ is not invertible and the covariance cannot be recovered, the canonical form is therefore more general than the covariance form.
 
 It can be seen from the above that it is very easy to convert between the canonical and covariance forms. 
 \subsection{Operations using the Canonical Form}
-This section will cover useful operations using the canonical forms. 
-
-Extending and rearranging the scopes of canonical forms may be necessary before doing operations, because it is important that the scopes of canonical forms are identical when doing operations. 
+Useful operations can be performed by using the canonical form which will be discussed in this section. It is important that the scopes of canonical forms are identical when doing operations, therefore it may be necessary to extend or rearrange them.
 \subsubsection{Extending the Scope of a Canonical Form:}
 The scope of a canonical form can be extended by adding zero entries to the matrix $K$ and vector $\bm{h}$. The scope of a canonical form of a $M$ sized random vector $\bm{x}$, can easily be extended to the size of $M + N$, by adding zeros in the following way:
 \begin{equation}
@@ -390,19 +418,19 @@ Let $\mathcal{C}(\bm{x},\bm{y};K,\bm{h})$ be a canonical form with subsets $\bm{
 K' = K_{\bm{xx}},
 \end{equation}
 \begin{equation}
-\bm{h'} = \bm{h}_{\bm{x}} - K_{\bm{xy}}\bm{Y},
+\bm{h'} = \bm{h}_{\bm{x}} - K_{\bm{xy}}\bm{Y}.
 \end{equation}
 
 The operations discussed above are very simple to perform and will be used in the following chapters.
 \subsection{Conditional Probability Distributions in the Canonical Form}
 One of the advantages of the canonical form is that it is possible to represent conditional probability distributions (CPDs).
 
-The CPD $p(\bm{y}|\bm{x})$ is a distribution over the vector $\bm{y}$, given we know the value of the vector $\bm{x}$, and is defined as
+The CPD $p(\bm{y}|\bm{x})$ is a distribution over the vector $\bm{y}$, given that the value of the vector $\bm{x}$ is known and  defined as
 \begin{equation}
 p(\bm{y}|\bm{x}) = \frac{p(\bm{y},\bm{x})}{p(\bm{x})}.
 \end{equation}
 
-If the arguments of the CPD $p(\bm{y}|\bm{x})$ can be described by a linear function, therefore
+If the arguments of the CPD $p(\bm{y}|\bm{x})$ can be described by a linear function in the form of
 \begin{equation}
 \bm{y} = F\bm{x} + \bm{g} + \bm{n},
 \end{equation}
@@ -466,7 +494,7 @@ I\\-F^T\\-I
 \right].
 \end{split}
 \end{equation}
-We now define a new combined random vector
+A new combined random vector is defined as
 \begin{equation}\label{eq:ranVec}
 \bm{w} = 
 \begin{bmatrix}
@@ -476,7 +504,7 @@ We now define a new combined random vector
 
 \end{bmatrix}
 \end{equation}
-and an information matrix
+and an information matrix as
 \begin{equation}\label{eq:newK}
 K' =
 \begin{bmatrix}
@@ -487,7 +515,7 @@ I\\-F^T\\-I
 I\\-F^T\\-I
 \end{bmatrix}^T.
 \end{equation}
-We can substitute Equation \ref{eq:ranVec} and Equation \ref{eq:newK} into Equation \ref{eq:32} which gives
+Equation \ref{eq:ranVec} and \ref{eq:newK} can be substituted into Equation \ref{eq:32} which gives
 \begin{equation}
 \label{eq:35}
 \begin{split}
@@ -498,7 +526,7 @@ K'
 \right].
 \end{split}
 \end{equation}
-We can now use Equation \ref{eq:defCanonical} to write the conditional distribution of Equation \ref{eq:35} in the canonical form as follows
+Equation \ref{eq:defCanonical} can be used to write the conditional distribution of Equation \ref{eq:35} in the canonical form as follows:
 \begin{equation}\label{eq:linCan}
 p(\bm{y}|\bm{x}) \propto \mathcal{C}(\bm{w}; K', \bm{0})\\
  =\mathcal{C}\left(
@@ -519,9 +547,9 @@ I\\
 -I
 \end{bmatrix}^T
 , \bm{0}
-\right)
+\right).
 \end{equation}
-The parameter $\bm{g}$ is known and can be used as evidence to reduce the canonical form in Equation \ref{eq:linCan}, therefore
+The parameter $\bm{g}$ is known and can be used as evidence to reduce the canonical form in Equation \ref{eq:linCan} as follows:
 \begin{equation}\label{eq:conCanResult}
 \begin{split}
 \mathcal{C}(\bm{w}; K', \bm{0})& =\mathcal{C}\left(
@@ -564,10 +592,10 @@ I\\
 The canonical form can therefore also be used to represent a  Gaussian conditional probability distribution (CPD) with arguments which have a linear relationship. The canonical form is used in later chapters to do operations on various Gaussian distributions.
 
 \chapter{Motion and Measurement Models}\label{chap:motionModel}
-Before locating a robot, it is important to model the way the robot moves. A simple linear motion model will be described, which will later be used to illustrate basic principles when estimating the location of a linear moving robot. In practice the movement of a robot is seldom linear, therefore a more complex nonlinear motion model will also have to be explored. The motion model describes $p(\bm{x}_t|\bm{u}_t,\bm{x}_{t-1})$, which is the state transition probability density function (PDF). This is important and is used in the \textit{prediction step} of the Bayes filter, discussed in Chapter \ref{chap:kalmanFilter}.  Robot motion will be limited to planar movement to make it easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement and can easily be extended to three dimensions. This chapter is based on the work of Thrun, Burgard and Fox~\citep{thrun}.
+Before locating a robot, it is important to model the way the robot moves. A simple linear motion model will be described, which will later be used to illustrate basic principles when estimating the location of a linear moving robot. In practice the movement of a robot is seldom linear, therefore a more complex nonlinear motion model will also have to be explored. The motion model describes $p(\bm{x}_t|\bm{u}_t,\bm{x}_{t-1})$, which is the state transition probability density function (PDF). This is important and is used in the \textit{prediction step} of the Bayes filter, which discussed in Chapter \ref{chap:kalmanFilter}.  Robot motion will be limited to planar movement to make it easier to convey concepts or ideas to the reader. Note that the theory discussed is not limited to planar movement and can easily be extended to three dimensions. This chapter is based on the work of Thrun \textit{et al}~\citep{thrun}.
 
 \section{Linear Motion Model}\label{sec:linearMotionModel}
-In this section a simple linear motion model is investigated which describes the linear movement of a robot. The robot's position describes the kinematic state of a robot and is defined as
+In this section a simple linear motion model is investigated which describes the linear movement of a robot. The kinematic state of a robot is described by the robot's position and is defined as
 \begin{equation}
 \bm{x}_t =
 \begin{bmatrix}
@@ -603,27 +631,27 @@ v_{y,t} \Delta t
 \begin{bmatrix}
 \varepsilon_x \\
 \varepsilon_y
-\end{bmatrix}
+\end{bmatrix}.
 \end{equation}
 Equation \ref{eq:linStateTrans} can be described as a linear function in terms of $\bm{x}_t$, $\bm{x}_{t-1}$ and $\bm{u}_t$, therefore
 \begin{equation}\label{eq:lineartrans}
-\bm{x_t} = A_t \bm{x_{t - 1}} + B_t \bm{u_t} + \bm{\varepsilon}_t,
+\bm{x_t} = A \bm{x_{t - 1}} + B \bm{u_t} + \bm{\varepsilon}_t,
 \end{equation}
 where
 \begin{equation}
-A_t =
+A =
 \begin{bmatrix}
 1 & 0\\
 0 & 1
 \end{bmatrix},
 \end{equation}
 \begin{equation}
-B_t = \begin{bmatrix}
+B = \begin{bmatrix}
 \Delta t & 0\\
 0 & \Delta t
 \end{bmatrix},
 \end{equation}
-and the noise is described with a Gaussian distribution
+and the noise is described by a Gaussian distribution
 \begin{equation}
 \bm{\varepsilon}_t \sim \mathcal{N}(\bm{\varepsilon}_t; 0, R).
 \end{equation}
@@ -640,7 +668,7 @@ The variances $\sigma_x^2$ and $\sigma_y^2$ are determined empirically and $\Del
 This concludes the linear motion model. The next section explores a more complex nonlinear motion model.
 
 \section{Nonlinear Motion Model}\label{vmodel}
-The kinematic state of a robot moving in a plane is redefined for the nonlinear motion model. For the nonlinear motion model it is described by three variables which is referred to as the pose of the robot and is defined as
+The kinematic state of a robot moving in a plane is redefined for the nonlinear motion model. It is described by three variables which is referred to as the pose of the robot and is defined as
 \begin{equation}
 \bm{x_t} =
 \begin{bmatrix}
@@ -654,15 +682,14 @@ The pose of the robot is illustrated in Figure \ref{fig:pose_robot}, where $x_t$
 \begin{figure}[H]
   \includegraphics[width=0.4\linewidth]{Figures/pose_robot.png}
   \centering
-  \caption[Robot pose]{The pose of a robot is illustrated where the position of the robot at time $t$ is indicated with $x_t$ and $y_t$. The orientation of the robot is indicated with $\theta_t$.}
+  \caption[Robot pose]{The pose of a robot is illustrated where the position of the robot at time $t$ is indicated by $x_t$ and $y_t$. The orientation of the robot is indicated with $\theta_t$.}
   \label{fig:pose_robot}
 \end{figure}
-
-The general state transition function of a nonlinear motion model can in be described as
+The general state transition function of a nonlinear motion model is defined as
 \begin{equation}
 \bm{x}_t = \bm{g}(\bm{u}_t, \bm{x}_{t-1}) + \bm{\varepsilon}_t
 \end{equation}
-Two nonlinear motion models were considered for this project, namely the velocity and the odometry model. The odometry motion model makes use of sensor measurements to describe a robot's movement over time. Odometry models can  only be used in retrospect after a robot has moved and cannot be used for motion planning. The velocity model is suitable for motion planning and assumes that a robot can be controlled with a rotational and translational velocity. The velocity motion model therefore predicts how the robot will move and is not as accurate as the odometry motion model. Both the odometry and velocity motion models are common and are widely used. As the velocity motion model meets the demands for the goal this project, it was chosen as the motion model.
+Two nonlinear motion models are considered for this project, namely the velocity and the odometry model. The odometry motion model makes use of sensor measurements to describe a robot's movement over time. Odometry models can  only be used in retrospect after a robot has moved and cannot be used for motion planning. The velocity model is suitable for motion planning and assumes that a robot can be controlled with a rotational and translational velocity. The velocity motion model therefore predicts how the robot will move and is not as accurate as the odometry motion model. Both the odometry and velocity motion models are common and are widely used. As the velocity motion model meets the demands for the goal this project, it was chosen as the motion model.
 
 The velocity motion model assumes that the movement of a robot can be described by a translational velocity $v_t$ and a rotational velocity $\omega_t$, shown in Figure \ref{fig:vel_model}. The control vector $u_t$ is thus described as
 \begin{equation}
@@ -808,12 +835,12 @@ The initial belief $bel(\bm{x}_0)$ of the robot's location is known and five con
 
   \includegraphics[width=0.8\linewidth]{Figures/result_kalmanfilter.png}
   \centering
-  \caption[The result where the Kalman filter is used to solve a linear localisation problem]{
+  \caption[The result where the Kalman filter is applied to solve a linear localisation problem]{
 The figure above shows the result where the Kalman filter is used to estimate the position of a linear moving robot at five time steps. The exact position of the robot at each time step is indicated with a black cross. The estimated belief at each time step is illustrated with a 95\% confidence purple error ellipse and the mean is indicated with a purple dot. The left most error ellipse represents the initial belief.}
 \label{fig:resultKF}
 \end{figure}
 
-\section{Extended Kalman Filter}\label{sec:EKF}
+\section{Extended Kalman Filter (EKF)}\label{sec:EKF}
 The Kalman filter as discussed above is very efficient due to the fact that state transitions and measurements are assumed to be linear, hence the mean $\bm{\mu}_t$ and covariance $\Sigma_t$ of a resulting belief $bel(\bm{x}_t)$ can be computed analytically.
 As mentioned in Chapter \ref{chap:motionModel}, state transitions and measurements are in practice seldom linear and therefore the normal Kalman filter is not suitable for most robotics problems. 
 
@@ -967,13 +994,13 @@ Five time steps of the movement of a robot were simulated in Python. The initial
 \begin{figure}[H]
   \includegraphics[width=0.7\linewidth]{Figures/result_EKF.png}
   \centering
-  \caption[Results of the application of the extended Kalman filter]{The figure shows the result where the extended Kalman filter is applied to to estimate the pose of a robot performing a nonlinear movement. The exact position of the robot at each time step is indicated with a black cross. The beliefs which are computed with the EKF are shown in green and the initial belief is indicated in black. The uncertainty of a belief is illustrated with an 95\% confidence error ellipse and a dot is used to indicate the mean.}
+  \caption[The result where the EKF is applied to solve a nonlinear localisation problem]{The figure shows the result where the extended Kalman filter is applied to to estimate the pose of a robot performing a nonlinear movement. The exact position of the robot at each time step is indicated with a black cross. The beliefs which are computed with the EKF are shown in green and the initial belief is indicated in black. The uncertainty of a belief is illustrated with an 95\% confidence error ellipse and a dot is used to indicate the mean.}
 
 \label{fig:resultEKF}
 \end{figure}
 
 
-\section{Unscented Kalman Filter}\label{sec:UKF}
+\section{Unscented Kalman Filter (UKF)}\label{sec:UKF}
 The linearisation used in the EKF can sometimes be very inaccurate, as the nonlinear functions are linearised only around the mean $\bm{u}_t$. The unscented Kalman filter (UKF) is an alternative approach which in many cases deliver better results than that of the EKF, especially when the measurement and state transition functions are severely nonlinear.
 
 As mentioned before, a Gaussian distribution that is transformed through a nonlinear function results in a distribution that is not Gaussian. The principle on which UKF is based, is to draw carefully chosen points called \textit{sigma points} around the mean of an existing Gaussian distribution and transform them through a nonlinear function. The transformed sigma points can then be used to approximate the resultant distribution as a Gaussian distribution.
@@ -1059,20 +1086,20 @@ Algorithm \ref{alg:UKF} is implemented in Python to estimate the belief of the s
 \begin{figure}[H]
   \includegraphics[width=0.7\linewidth]{Figures/result_UKF.png}
   \centering
-  \caption[The result where the unscented Kalman filter is applied to solve a nonlinear localisation problem]{The robot is performing a nonlinear movement which is described by the velocity motion model. The belief of the robot's pose at each time step which is estimated by the UKF is shown in blue. The uncertainty of a belief is indicated with a 95\% confidence error ellipse and the mean is indicated with a dot. The initial belief is illustrated in black.}
+  \caption[The result where the UKF is applied to solve a nonlinear localisation problem]{The robot is performing a nonlinear movement which is described by the velocity motion model. The belief of the robot's pose at each time step which is estimated by the UKF is shown in blue. The uncertainty of a belief is indicated with a 95\% confidence error ellipse and the mean is indicated with a dot. The initial belief is illustrated in black.}
 
 \label{fig:resultUKF}
 \end{figure}
 
 This concludes the investigation to use the Kalman filter to solve the localisation problem. The following chapter covers the theory of the PGM which can be used as an alternative method to reason about the kinematic state of a robot.
 
-\chapter{Probabilistic Graphical Models}
+\chapter{Probabilistic Graphical Models (PGM)}
 This chapter gives a brief introduction to the probabilistic graphical models which will be used to solve the localisation problem, using different techniques of numerical integration. PGMs form part of a vast study field, therefore only the theory relevant to this report will be discussed. This chapter is based on the work of Koller and Friedman~\cite{koller}, Barber~\cite{barber} and Schoeman~\citep{JC}.
 \section{Overview}
 Reasoning about systems that have a measure of uncertainty can become very complex. Sometimes these systems are completely unmanageable. The PGM is a graphical technique which makes problems tractable by modelling probabilistic systems in a logical and compact manner. PGMs are thus used to describe the relationship between variables and allow one to reason about it. The querying of a system or reasoning about a variable is called inference. It is a very popular technique, as it is intuitive, transparent and easy to manipulate. Hence, PGMs have countless applications from diagnosing medical problems to estimating the location of a robot.
 
 PGMs used for modelling can be divided into two categories. The first includes Markov networks, which are used for non-causal systems. The second includes Bayesian networks, where relationships between random variables are causal and specified as CPDs. As the localisation problem in most cases is causal, the focus of this chapter is on Bayesian networks. Due to the relevance to localisation, the theory is discussed in terms of continuous random variables, but it can also be applied to discrete random variables. 
-\section{Basic Concepts of Graphical Models}
+\section{Basic Concepts of PGMs}
 There are a few basic concepts to understand before defining a Bayesian network. Graphical models consist of nodes and edges. Edges are the links between nodes and can be directed or undirected. A Markov network is described by an undirected graph, where all edges are undirected. A Bayesian network is described by a directed graph, where all the edges are directed. An example of an undirected and directed graph can be seen in Figure \ref{fig:undirected_graph} and Figure \ref{fig:directed_graph} respectively.
 
 In the case of directed graphs, nodes can be classified as ancestors, parents, children and descendants. If there exists a directed path from $x_1 \to x_k$, then $x_1$ is an ancestor of $x_k$, and $x_k$ is a descendant of $x_1$. In Figure \ref{fig:directed_graph}, $a$ is an ancestor of $c$ and $c$ is a descendant of $a$. A parent is an ancestor with only one edge between the ancestor and descendant. A child is a descendant with only one edge between the descendant and the ancestor. In Figure \ref{fig:undirected_graph}, $a$ is a parent of $b$ and $b$ is a child of $a$.~\cite{barber}
@@ -1114,7 +1141,7 @@ Figure \ref{fig:bays_pgm} shows an example of a Bayesian network with seven node
 \begin{figure}[H]
   \includegraphics[width=0.5\linewidth]{Figures/bayesian_pgm.png}
   \centering
-  \caption{Bayesian network}
+  \caption[Bayesian network example]{}
   \label{fig:bays_pgm}
 \end{figure}
 The chain rule specifies that the joint probability density distribution of all the variables in a Bayesian network can be determined by calculating the product of all the CPDs associated with the nodes~\citep{koller}. It is defined as
@@ -1189,7 +1216,7 @@ After all the incoming messages of a cluster have been determined, the belief of
 \beta_i(C_i) \propto \psi_i \times \prod_{k} \delta_{k , i}(S_{k,i}).
 \end{equation}
 This chapter covers the properties of the Bayesian network and how a cluster graph can be used to reason about the variables of a Bayesian network. The Bayesian network will be used in the next chapter to model the localisation problem.
-\chapter{Localisation using Probabilistic Graphical Models}\label{chap:pgmLoc}
+\chapter{Localisation using a Probabilistic Graphical Model (PGM)}\label{chap:pgmLoc}
 In this chapter a PGM will be used as an alternative method to reason about a localisation problem. The problem is modelled with a Bayesian network in Section \ref{sec:model} and in Section \ref{sec:cluster} a cluster graph is constructed to reason about the location of the robot. This technique then is compared to that of the Bayes filter in Algortim \ref{bayesAlg}. This chapter is based on the work of Koller and Friedman~\cite{koller}.
 
 \section{Modelling the Localisation problem}\label{sec:model}
@@ -1209,7 +1236,7 @@ The current state of the robot's pose $\bm{x}_t$ is dependent on the previous st
 \begin{figure}
   \includegraphics[width=0.7\linewidth]{Figures/bayesnetloc.png}
   \centering
-  \caption[Bayesian network of localisation problem]{The Bayesian network used to model the localisation problem. The nodes of the Bayesian network are indicated with circles and edges are indicated with arrows. The CPD associated with each node is shown.}
+  \caption[Bayesian network of the localisation problem]{The Bayesian network used to model the localisation problem. The nodes of the Bayesian network are indicated with circles and edges are indicated with arrows. The CPD associated with each node is shown.}
   \label{fig:loc_bayes}
 \end{figure}
 \section{Reasoning with a Cluster Graph}\label{sec:cluster}
@@ -1495,5 +1522,72 @@ The unscented transform is considered superior to using Taylor expansion, but it
 
 \backmatter
 \bibliography{mybib}{}
+
+\begin{appendices}
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\chapter{Appendix A: Project Planning Schedule}
+\begin{longtable}{ ||l|l|m{11cm}|| }
+\hline
+Week & Starting Date & Description\\
+\hline \hline
+1  & 23/07/2018 & Start by doing an investigation of the linear localisation problem. Begin with a study on PGMs.\\
+\hline 
+2 & 30/07/2018 & Continue with a literature study on PGMs. Investigate the canonical form.\\
+\hline  
+3 & 06/08/2018 & Use Python to simulate a robot with linear movement. Implement a Gaussian class in Python to do operations with the canonical form. Continue with a literature study on PGMs.\\
+\hline 
+4 & 13/08/2018& Apply the Kalman filter to localise the linear moving robot. Use the Bayes filter together with Canonical form to solve linear localisation problem.\\
+\hline  
+5 & 20/08/2018 & Investigate nonlinear motion models and simulate a robot which moves in a nonlinear manner.\\
+\hline
+6 & 27/08/2018 & Apply the EKF to localise the nonlinear moving robot.\\
+\hline
+7 & 03/09/2018 & Apply the UKF to localise the nonlinear moving robot.\\
+\hline
+8 & 10/09/2018 & Model the problem with a PGM.\\
+\hline
+9 & 17/09/2018 & Use Bayes filter/PGM with Taylor expansion to solve the nonlinear localisation problem.\\
+\hline
+10 & 24/9/2018 & Use Bayes filter/PGM with the unscented transform to solve the nonlinear localisation problem.\\
+\hline
+11 & 01/10/2018 & Use Bayes filter/PGM with Monte Carlo integration to solve the nonlinear localisation problem. Analyse the results.\\
+\hline
+12 & 08/10/2018 & The writing of the report\\
+\hline
+13 & 15/10/2018 & The writing of the report\\
+\hline
+14 & 22/10/2018 & The writing of the report.\\
+\hline
+15 & 29/10/2018 & Finalise report.\\
+\hline
+\caption{Schedule}
+\end{longtable}
+\chapter{Appendix B: Outcomes Compliance}
+\renewcommand{\thetable}{B\arabic{table}}
+\begin{longtable}{ ||m{0.3\linewidth}|m{0.2\linewidth}|m{0.4\linewidth}|| }
+\hline
+ELO outcome & Chapters & Description\\
+\hline \hline
+ELO 1. Problem solving: Identify, formulate, analyse and solve complex engineering problems creatively and innovatively.  & Chapters 4, 6, 7, 8 & The problem of doing operations on Gaussian distributions is identified and is solved by making use of the Canonical form. The nonlinear localisation problem is identified and solved using traditional techniques and a PGM. Different techniques to linearise nonlinear transforms are investigated in order to solve the nonlinear localisation problem. The problem of measuring the results is identified and solved using Kullback-Leibler divergence.  \\
+\hline 
+ElO 2. Application of scientific and engineering knowledge & Chapters 4, 6, 7, 8  & Traditional techniques are used to solve the localisation problem. The localisation problem is modelled with a PGM. Analysis of results with Kullback-Leibler divergence.\\
+\hline  
+ELO 3. Engineering Design & Chapters 6, 7, 8 & The design of the PGM to solve localisation problem. Three alternative approximation techniques are investigated. The design and analysis of the simulation.\\
+\hline 
+ELO 4. Investigations, experiments and data analysis & Chapters 4 and 8 & The application and results of the traditional techniques. The analysis and investigation of results in Chapter 8.\\
+\hline  
+ELO 5. Engineering methods, skills and tools, including Information Technology & Chapters 3, 4, 7 and 8 & The use of Python to simulate the localisation problem. The use of Python to implement techniques to solve the localisation problem. The use of Python to extract en analyse results. LaTeX is used to write the report.\\
+\hline
+ELO 6. Professional and technical communication& All chapters & The appropriate language style and structure are used in the entire report. Figures, tables and are used as visual materials. The report is between 10 000 and 15 000 words.\\
+\hline
+ELO 8. Individual work& All chapters & This project is done individually with the guidance of a study leader.\\
+\hline
+ELO 9. Independent learning ability& All chapters & Gathering and using information regarding Gaussian distributions, recursive filters, PGMs and numerical integration.\\
+\hline
+\caption{Compliance to ELO outcomes}
+\end{longtable}
+
+\end{appendices}
 
 \end{document}\grid

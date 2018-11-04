@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from scipy import misc
 import copy
+import time
+
 class BayesNonLinear:
     
     ##KALMAN FILTER##
@@ -25,6 +27,7 @@ class BayesNonLinear:
     def estimate(self, beliefXtPrev, control_t, z_t, mode):#solves the linear localisation problem with the more general bayes filter        
         myBeliefXtPrev = copy.deepcopy(beliefXtPrev) #deepcopy?
         
+        start = time.time()
         if(mode == 0):
             Fa, ga, sig_n = self.linearize_taylor(beliefXtPrev, control_t)
         if(mode == 1):
@@ -33,7 +36,8 @@ class BayesNonLinear:
             Fa, ga, sig_n = self.lob(beliefXtPrev, control_t)
         if(mode == 3):
             Fa, ga, sig_n = self.random_estimate(beliefXtPrev, control_t)
-            
+        end = time.time() 
+        exTime = end - start
             
         sig_n_inv = np.linalg.inv(sig_n)       
         tempMatrix = np.concatenate((-Fa.T,np.identity(len(Fa))))          
@@ -62,9 +66,11 @@ class BayesNonLinear:
         
         beliefXt = fac_zt_xt.multiplyNew(beliefXt_)
         
-        return beliefXt #returns the belief of the Xt
+        return beliefXt, exTime #returns the belief of the Xt
     
-    def linearize_taylor(self, beliefXtPrev, control_t):       
+    def linearize_taylor(self, beliefXtPrev, control_t):    
+        
+        
         meanPrev = beliefXtPrev.mean
         dt = 1
         theta_prev = meanPrev[2]
